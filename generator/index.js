@@ -3,7 +3,7 @@ const fetch = require("node-fetch-commonjs");
 const {dirname} = require("path");
 
 let baseUrl = 'http://localhost/fr_afc/index.php';
-const filepath = '../dist';
+const filepath = '../docs';
 
 const replaceBaseUrl = (html) => {
   return html.replaceAll(baseUrl, 'https://footyrankings.github.io');
