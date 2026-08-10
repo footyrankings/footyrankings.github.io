@@ -2374,7 +2374,7 @@
 				border: 1px solid #e6e6e6;
 			}
 			th {
-				background-color: #014a7f !important;
+				background-color: #211D52 !important;
 				color: #fff;
 				text-align: center;
 			}
@@ -2391,11 +2391,11 @@
 				border: 0;
 			}
 
-			table:not(.rank-nav):not(.latest-rank) tr:nth-child(odd) {
+			table:not(.rank-nav):not(.latest-rank):not(.crank) tr:nth-child(odd) {
 				background: #fff;
 				color: #444;
 			}
-			table:not(.rank-nav):not(.latest-rank) tr:nth-child(even) {
+			table:not(.rank-nav):not(.latest-rank):not(.crank) tr:nth-child(even) {
 				background: #f2f2f2;
 				color: #444;
 			}
@@ -2751,10 +2751,19 @@
         justify-content: space-between;
     }
 
+    .crank {
+        border-collapse: separate;
+    }
+
     .crank th {
-        border: 1px solid white;
         border-collapse: collapse;
         vertical-align: middle;
+        position: sticky;
+        top: 90.5px;
+    }
+
+    .crank tr:nth-child(2) th {
+        top: 129px;
     }
 
     .crank th a {
@@ -2764,8 +2773,12 @@
 
     .crank td,
     .matches td {
-        border: 1px solid white;
         border-collapse: collapse;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    .crank .overall-rank {
+        white-space: nowrap;
     }
 
     .crank small {	
@@ -2775,6 +2788,20 @@
     .rank-nav span:not(:last-child)::after {
         content: "|";
         margin: 0 8px;
+    }
+
+    .crank tr.odd-row {
+        background: #f2f2f2;
+    }
+
+    .crank-current tbody tr.status-active .overall-rank,
+    .crank-current tbody tr.status-active .region-rank {
+        border-left: 5px solid #10b981;
+    }
+
+    .crank-current tbody tr.status-eliminated .overall-rank,
+    .crank-current tbody tr.status-eliminated .region-rank {
+        border-left: 5px solid #9ca3af;
     }
 
     .cpts {
@@ -2920,6 +2947,10 @@
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     }
 
+    @media only screen and (max-width: 360px) {
+        
+    }
+
     @media only screen and (max-width: 400px) {
         .crank td, .matches td {
             padding: 3px 6px;
@@ -2980,8 +3011,6 @@
         .crank th {
             font-size: 12px;
             padding: 4px;
-            position: sticky;
-            top: 65px;
         }
 
         .cpts, .matches, .matches tr.round td {
@@ -2993,9 +3022,22 @@
             padding: 4px;
             font-size: 11px;
         }
+
+        .crank tr.hide-tab-des+tr.hide-tab-des th {
+            top: 117.6px;
+        }
     }
 
-    @media only screen and (min-width: 768px) {
+    @media only screen and (max-width: 575px) {
+        .crank th {
+            top: 69.5px;
+        }
+        .crank tr.hide-tab-des+tr.hide-tab-des th {
+            top: 96.7px;
+        }
+    }
+
+    @media only screen and (min-width: 769px) {
         .hide-tab-des {
             display: none;
         }
@@ -3006,21 +3048,33 @@
             display: none;
         }
 
-        .crank.crank-current,
         .crank.crank-8years {
             font-size: 12px;
         }
 
-        .crank.crank-current .country-flag,
         .crank.crank-8years .country-flag {
             width: 20px;
         }
+
+        .crank tr.hide-mob-des+tr.hide-mob-des th {
+            top: 123.6px;
+        }
     }
 
-    @media only screen and (min-width: 992px) {
+    @media only screen and (min-width: 993px) {
         .hide-des,
         .hide-mob-des {
             display: none;
+        }
+    }
+
+    @media only screen and (max-width: 1200px) {
+        .crank.crank-8years {
+            font-size: 12px;
+        }
+
+        .crank tr.hide-mob-tab+tr.hide-mob-tab th {
+            top: 124.6px;
         }
     }
 
@@ -3050,6 +3104,19 @@
             if (selected === "team-all") document.querySelectorAll(".overall-rank").forEach(el => el.style.display = "table-cell");
             if (selected.includes("region")) document.querySelectorAll(".region-rank").forEach(el => el.style.display = "table-cell");
             if (selected.includes("zone")) document.querySelectorAll(".zone-rank").forEach(el => el.style.display = "table-cell");
+
+            updateTableStripes();
+        }
+
+        function updateTableStripes() {
+            document.querySelectorAll('.crank').forEach(table => {
+                const visibleRows = [...table.querySelectorAll('tr')]
+                    .filter(row => row.offsetParent !== null);
+
+                visibleRows.forEach((row, index) => {
+                    row.classList.toggle('odd-row', index % 2 === 0);
+                });
+            });
         }
     </script>
 </head><p style='font-size: 11pt; text-align: center;'>
@@ -3133,9 +3200,9 @@
 
 <table class='
     crank
-        crank-8years'>
+    crank-current    crank-8years'>
 
-    <tr style='background-color: #7AA8CC;' class='hide-mob-tab'>
+    <tr class='hide-mob-tab'>
         <th rowspan='2' class='overall-rank'>Rank</th>
         <th rowspan='2' class='region-rank' style='display: none'>Region<br/>Rank</th>
         <th rowspan='2' style='width: 240px;'>MA</th>
@@ -3182,14 +3249,14 @@
             <small>(GS+PO)</small>
         </th>
 	</tr>
-	<tr style='background-color: #7AA8CC;' class='hide-mob-tab'>
+	<tr class='hide-mob-tab'>
 		<th class='overall-rank region-rank'>ACLE</th>
 		<th class='overall-rank region-rank'>ACL2</th>
 		<th class='overall-rank region-rank'>ACGL</th>
         </tr>
     
     <!-- tablet header -->
-        <tr style='background-color: #7AA8CC;' class='hide-mob-des'>
+        <tr class='hide-mob-des'>
 		<th rowspan='2' class='overall-rank'>Rank</th>
 		<th rowspan='2' class='region-rank' style='display: none'>Region<br/>Rank</th>
 		<th rowspan='2'>MA</th>
@@ -3202,14 +3269,14 @@
                 
     		<th colspan='3' class='overall-rank region-rank'>2028/29 Slot</th>
     </tr>
-    <tr style='background-color: #7AA8CC;' class='hide-mob-des'>
+    <tr class='hide-mob-des'>
 		<th class='overall-rank region-rank'>ACLE</th>
 		<th class='overall-rank region-rank'>ACL2</th>
 		<th class='overall-rank region-rank'>ACGL</th>
     	</tr>
         
     <!-- mobile header -->
-        <tr style='background-color: #7AA8CC;' class='hide-tab-des'>
+        <tr class='hide-tab-des'>
 		<th rowspan='2' class='overall-rank'>Rank</th>
 		<th rowspan='2' class='region-rank' style='display: none'>Region<br/>Rank</th>
 		<th rowspan='2'>MA</th>
@@ -3220,14 +3287,14 @@
 
     		<th colspan='3' class='overall-rank region-rank'>2028/29 Slot</th>
     </tr>
-    <tr style='background-color: #7AA8CC;' class='hide-tab-des'>
+    <tr class='hide-tab-des'>
 		<th class='overall-rank region-rank'>ACLE</th>
 		<th class='overall-rank region-rank'>ACL2</th>
 		<th class='overall-rank region-rank'>ACGL</th>
         </tr>
         	<tr class='team-all
-        region-W '
-        style='background-color: lightgreen'
+        region-W         status-active'
+        
     >
         <td class='overall-rank' style='text-align: right'>
             <div>
@@ -3304,16 +3371,16 @@
             6/6            </td>
         
         
-                    <td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+                    <td style='text-align: center; line-height: 1;'>
                 3+2            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 1+0            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 -            </td>
             </tr>
     	<tr class='team-all
-        region-E '
-        style='background-color: lightgreen'
+        region-E         status-active'
+        
     >
         <td class='overall-rank' style='text-align: right'>
             <div>
@@ -3390,16 +3457,16 @@
             6/6            </td>
         
         
-                    <td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+                    <td style='text-align: center; line-height: 1;'>
                 3+2            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 1+0            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 -            </td>
             </tr>
     	<tr class='team-all
-        region-E '
-        style='background-color: lightgreen'
+        region-E         status-active'
+        
     >
         <td class='overall-rank' style='text-align: right'>
             <div>
@@ -3476,16 +3543,16 @@
             5/5            </td>
         
         
-                    <td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+                    <td style='text-align: center; line-height: 1;'>
                 3+1            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 1+0            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 -            </td>
             </tr>
     	<tr class='team-all
-        region-W '
-        style='background-color: lightgreen'
+        region-W         status-active'
+        
     >
         <td class='overall-rank' style='text-align: right'>
             <div>
@@ -3562,16 +3629,16 @@
             5/5            </td>
         
         
-                    <td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+                    <td style='text-align: center; line-height: 1;'>
                 3+1            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 1+0            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 -            </td>
             </tr>
     	<tr class='team-all
-        region-W '
-        style='background-color: lightgreen'
+        region-W         status-active'
+        
     >
         <td class='overall-rank' style='text-align: right'>
             <div>
@@ -3648,16 +3715,16 @@
             3/3            </td>
         
         
-                    <td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+                    <td style='text-align: center; line-height: 1;'>
                 3+0            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 1+0            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 -            </td>
             </tr>
     	<tr class='team-all
-        region-W '
-        style='background-color: lightgreen'
+        region-W         status-active'
+        
     >
         <td class='overall-rank' style='text-align: right'>
             <div>
@@ -3734,16 +3801,16 @@
             4/4            </td>
         
         
-                    <td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+                    <td style='text-align: center; line-height: 1;'>
                 2+0            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 1+0            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 -            </td>
             </tr>
     	<tr class='team-all
-        region-E '
-        style='background-color: lightgreen'
+        region-E         status-active'
+        
     >
         <td class='overall-rank' style='text-align: right'>
             <div>
@@ -3820,16 +3887,16 @@
             4/4            </td>
         
         
-                    <td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+                    <td style='text-align: center; line-height: 1;'>
                 3+0            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 1+0            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 -            </td>
             </tr>
     	<tr class='team-all
-        region-E '
-        style='background-color: lightgreen'
+        region-E         status-active'
+        
     >
         <td class='overall-rank' style='text-align: right'>
             <div>
@@ -3906,16 +3973,16 @@
             3/3            </td>
         
         
-                    <td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+                    <td style='text-align: center; line-height: 1;'>
                 2+0            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 1+0            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 -            </td>
             </tr>
     	<tr class='team-all
-        region-W '
-        style='background-color: lightgreen'
+        region-W         status-active'
+        
     >
         <td class='overall-rank' style='text-align: right'>
             <div>
@@ -3992,16 +4059,16 @@
             3/3            </td>
         
         
-                    <td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+                    <td style='text-align: center; line-height: 1;'>
                 1+1            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 1+0            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 -            </td>
             </tr>
     	<tr class='team-all
-        region-E '
-        style='background-color: lightgreen'
+        region-E         status-active'
+        
     >
         <td class='overall-rank' style='text-align: right'>
             <div>
@@ -4078,16 +4145,16 @@
             2/2            </td>
         
         
-                    <td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+                    <td style='text-align: center; line-height: 1;'>
                 1+1            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 1+0            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 -            </td>
             </tr>
     	<tr class='team-all
-        region-E '
-        style='background-color: lightgreen'
+        region-E         status-active'
+        
     >
         <td class='overall-rank' style='text-align: right'>
             <div>
@@ -4164,16 +4231,16 @@
             3/3            </td>
         
         
-                    <td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+                    <td style='text-align: center; line-height: 1;'>
                 1+0            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 1+0            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 -            </td>
             </tr>
     	<tr class='team-all
-        region-W '
-        style='background-color: lightgreen'
+        region-W         status-active'
+        
     >
         <td class='overall-rank' style='text-align: right'>
             <div>
@@ -4250,16 +4317,16 @@
             2/2            </td>
         
         
-                    <td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+                    <td style='text-align: center; line-height: 1;'>
                 1+0            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 1+0            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 -            </td>
             </tr>
     	<tr class='team-all
-        region-W '
-        style='background-color: lightgreen'
+        region-W         status-active'
+        
     >
         <td class='overall-rank' style='text-align: right'>
             <div>
@@ -4336,16 +4403,16 @@
             2/2            </td>
         
         
-                    <td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+                    <td style='text-align: center; line-height: 1;'>
                 0+1            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 1+0            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 -            </td>
             </tr>
     	<tr class='team-all
-        region-E '
-        style='background-color: lightgreen'
+        region-E         status-active'
+        
     >
         <td class='overall-rank' style='text-align: right'>
             <div>
@@ -4422,16 +4489,16 @@
             2/2            </td>
         
         
-                    <td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+                    <td style='text-align: center; line-height: 1;'>
                 0+1            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 1+0            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 -            </td>
             </tr>
     	<tr class='team-all
-        region-E '
-        style='background-color: lightgreen'
+        region-E         status-active'
+        
     >
         <td class='overall-rank' style='text-align: right'>
             <div>
@@ -4508,16 +4575,16 @@
             2/2            </td>
         
         
-                    <td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+                    <td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 1+1            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 -            </td>
             </tr>
     	<tr class='team-all
-        region-W '
-        style='background-color: lightgreen'
+        region-W         status-active'
+        
     >
         <td class='overall-rank' style='text-align: right'>
             <div>
@@ -4594,16 +4661,16 @@
             2/2            </td>
         
         
-                    <td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+                    <td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 1+1            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 -            </td>
             </tr>
     	<tr class='team-all
-        region-W '
-        style='background-color: lightgreen'
+        region-W         status-active'
+        
     >
         <td class='overall-rank' style='text-align: right'>
             <div>
@@ -4680,16 +4747,16 @@
             2/2            </td>
         
         
-                    <td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+                    <td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 1+1            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 -            </td>
             </tr>
     	<tr class='team-all
-        region-W '
-        style='background-color: lightgreen'
+        region-W         status-active'
+        
     >
         <td class='overall-rank' style='text-align: right'>
             <div>
@@ -4766,16 +4833,16 @@
             3/3            </td>
         
         
-                    <td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+                    <td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 1+1            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 -            </td>
             </tr>
     	<tr class='team-all
-        region-E '
-        style='background-color: lightgreen'
+        region-E         status-active'
+        
     >
         <td class='overall-rank' style='text-align: right'>
             <div>
@@ -4852,16 +4919,16 @@
             2/2            </td>
         
         
-                    <td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+                    <td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 1+1            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 -            </td>
             </tr>
     	<tr class='team-all
-        region-E '
-        style='background-color: lightgreen'
+        region-E         status-active'
+        
     >
         <td class='overall-rank' style='text-align: right'>
             <div>
@@ -4938,16 +5005,16 @@
             2/2            </td>
         
         
-                    <td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+                    <td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 1+1            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 -            </td>
             </tr>
     	<tr class='team-all
-        region-W '
-        style='background-color: lightgreen'
+        region-W         status-active'
+        
     >
         <td class='overall-rank' style='text-align: right'>
             <div>
@@ -5024,16 +5091,16 @@
             2/2            </td>
         
         
-                    <td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+                    <td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 0+1            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 1+0            </td>
             </tr>
     	<tr class='team-all
-        region-E '
-        style='background-color: lightgreen'
+        region-E         status-active'
+        
     >
         <td class='overall-rank' style='text-align: right'>
             <div>
@@ -5110,16 +5177,16 @@
             2/2            </td>
         
         
-                    <td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+                    <td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 0+1            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 0+1            </td>
             </tr>
     	<tr class='team-all
-        region-W '
-        style='background-color: lightgreen'
+        region-W         status-active'
+        
     >
         <td class='overall-rank' style='text-align: right'>
             <div>
@@ -5196,16 +5263,16 @@
             2/2            </td>
         
         
-                    <td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+                    <td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 0+1            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 1+0            </td>
             </tr>
     	<tr class='team-all
-        region-W '
-        style='background-color: lightgreen'
+        region-W         status-active'
+        
     >
         <td class='overall-rank' style='text-align: right'>
             <div>
@@ -5282,16 +5349,16 @@
             2/2            </td>
         
         
-                    <td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+                    <td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 1+0            </td>
             </tr>
     	<tr class='team-all
-        region-W '
-        style='background-color: lightgreen'
+        region-W         status-active'
+        
     >
         <td class='overall-rank' style='text-align: right'>
             <div>
@@ -5368,16 +5435,16 @@
             2/2            </td>
         
         
-                    <td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+                    <td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 0+1            </td>
             </tr>
     	<tr class='team-all
-        region-W '
-        style='background-color: lightgreen'
+        region-W         status-active'
+        
     >
         <td class='overall-rank' style='text-align: right'>
             <div>
@@ -5454,16 +5521,16 @@
             2/2            </td>
         
         
-                    <td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+                    <td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 0+1            </td>
             </tr>
     	<tr class='team-all
-        region-E '
-        style='background-color: lightgreen'
+        region-E         status-active'
+        
     >
         <td class='overall-rank' style='text-align: right'>
             <div>
@@ -5540,16 +5607,16 @@
             2/2            </td>
         
         
-                    <td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+                    <td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 0+1            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 0+1            </td>
             </tr>
     	<tr class='team-all
-        region-W '
-        style='background-color: lightgreen'
+        region-W         status-active'
+        
     >
         <td class='overall-rank' style='text-align: right'>
             <div>
@@ -5626,16 +5693,16 @@
             2/2            </td>
         
         
-                    <td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+                    <td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 0+1            </td>
             </tr>
     	<tr class='team-all
-        region-E '
-        style='background-color: lightgreen'
+        region-E         status-active'
+        
     >
         <td class='overall-rank' style='text-align: right'>
             <div>
@@ -5712,16 +5779,16 @@
             2/2            </td>
         
         
-                    <td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+                    <td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 0+1            </td>
             </tr>
     	<tr class='team-all
-        region-E '
-        style='background-color: lightgreen'
+        region-E         status-active'
+        
     >
         <td class='overall-rank' style='text-align: right'>
             <div>
@@ -5798,16 +5865,16 @@
             2/2            </td>
         
         
-                    <td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+                    <td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 0+1            </td>
             </tr>
     	<tr class='team-all
-        region-E '
-        style='background-color: lightgreen'
+        region-E         status-active'
+        
     >
         <td class='overall-rank' style='text-align: right'>
             <div>
@@ -5884,16 +5951,16 @@
             2/2            </td>
         
         
-                    <td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+                    <td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 0+1            </td>
             </tr>
     	<tr class='team-all
-        region-W '
-        style='background-color: lightgreen'
+        region-W         status-active'
+        
     >
         <td class='overall-rank' style='text-align: right'>
             <div>
@@ -5970,16 +6037,16 @@
             2/2            </td>
         
         
-                    <td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+                    <td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 0+1            </td>
             </tr>
     	<tr class='team-all
-        region-E '
-        style='background-color: lightgrey'
+        region-E         status-eliminated'
+        
     >
         <td class='overall-rank' style='text-align: right'>
             <div>
@@ -6056,16 +6123,16 @@
             0            </td>
         
         
-                    <td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+                    <td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 0+1            </td>
             </tr>
     	<tr class='team-all
-        region-W '
-        style='background-color: lightgreen'
+        region-W         status-active'
+        
     >
         <td class='overall-rank' style='text-align: right'>
             <div>
@@ -6142,16 +6209,16 @@
             1/1            </td>
         
         
-                    <td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+                    <td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 0+1            </td>
             </tr>
     	<tr class='team-all
-        region-W '
-        style='background-color: lightgreen'
+        region-W         status-active'
+        
     >
         <td class='overall-rank' style='text-align: right'>
             <div>
@@ -6228,16 +6295,16 @@
             1/1            </td>
         
         
-                    <td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+                    <td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 0+1            </td>
             </tr>
     	<tr class='team-all
-        region-W '
-        style='background-color: lightgrey'
+        region-W         status-eliminated'
+        
     >
         <td class='overall-rank' style='text-align: right'>
             <div>
@@ -6314,16 +6381,16 @@
             0            </td>
         
         
-                    <td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+                    <td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 0+1            </td>
             </tr>
     	<tr class='team-all
-        region-E '
-        style='background-color: lightgreen'
+        region-E         status-active'
+        
     >
         <td class='overall-rank' style='text-align: right'>
             <div>
@@ -6400,16 +6467,16 @@
             1/1            </td>
         
         
-                    <td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+                    <td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 0+1            </td>
             </tr>
     	<tr class='team-all
-        region-E '
-        style='background-color: lightgrey'
+        region-E         status-eliminated'
+        
     >
         <td class='overall-rank' style='text-align: right'>
             <div>
@@ -6486,16 +6553,16 @@
             0            </td>
         
         
-                    <td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+                    <td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 0+1            </td>
             </tr>
     	<tr class='team-all
-        region-W '
-        style='background-color: lightgreen'
+        region-W         status-active'
+        
     >
         <td class='overall-rank' style='text-align: right'>
             <div>
@@ -6572,16 +6639,16 @@
             1/1            </td>
         
         
-                    <td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+                    <td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 0+1            </td>
             </tr>
     	<tr class='team-all
-        region-E '
-        style='background-color: lightgreen'
+        region-E         status-active'
+        
     >
         <td class='overall-rank' style='text-align: right'>
             <div>
@@ -6658,16 +6725,16 @@
             1/1            </td>
         
         
-                    <td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+                    <td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 0+1            </td>
             </tr>
     	<tr class='team-all
-        region-W '
-        style='background-color: lightgrey'
+        region-W         status-eliminated'
+        
     >
         <td class='overall-rank' style='text-align: right'>
             <div>
@@ -6744,16 +6811,16 @@
             0            </td>
         
         
-                    <td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+                    <td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 0+1            </td>
             </tr>
     	<tr class='team-all
-        region-E '
-        style='background-color: lightgreen'
+        region-E         status-active'
+        
     >
         <td class='overall-rank' style='text-align: right'>
             <div>
@@ -6830,16 +6897,16 @@
             1/1            </td>
         
         
-                    <td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+                    <td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 0+1            </td>
             </tr>
     	<tr class='team-all
-        region-W '
-        style='background-color: lightgrey'
+        region-W         status-eliminated'
+        
     >
         <td class='overall-rank' style='text-align: right'>
             <div>
@@ -6916,16 +6983,16 @@
             0            </td>
         
         
-                    <td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+                    <td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 0+1            </td>
             </tr>
     	<tr class='team-all
-        region-E '
-        style='background-color: lightgrey'
+        region-E         status-eliminated'
+        
     >
         <td class='overall-rank' style='text-align: right'>
             <div>
@@ -7002,16 +7069,16 @@
             0            </td>
         
         
-                    <td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+                    <td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 0+1            </td>
             </tr>
     	<tr class='team-all
-        region-E '
-        style='background-color: lightgrey'
+        region-E         status-eliminated'
+        
     >
         <td class='overall-rank' style='text-align: right'>
             <div>
@@ -7088,16 +7155,16 @@
             0            </td>
         
         
-                    <td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+                    <td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 0+1            </td>
             </tr>
     	<tr class='team-all
-        region-W '
-        style='background-color: lightgrey'
+        region-W         status-eliminated'
+        
     >
         <td class='overall-rank' style='text-align: right'>
             <div>
@@ -7174,16 +7241,16 @@
             0            </td>
         
         
-                    <td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+                    <td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 0+1            </td>
             </tr>
     	<tr class='team-all
-        region-W '
-        style='background-color: lightgrey'
+        region-W         status-eliminated'
+        
     >
         <td class='overall-rank' style='text-align: right'>
             <div>
@@ -7260,11 +7327,11 @@
             0            </td>
         
         
-                    <td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+                    <td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 -            </td>
-			<td class='overall-rank region-rank' style='text-align: center; line-height: 1;'>
+			<td style='text-align: center; line-height: 1;'>
                 0+1            </td>
             </tr>
     </table>
@@ -7274,7 +7341,10 @@
     The AFC Club Competitions Ranking is based on the performance in AFC club competitions in the last 8 seasons. The points will be totalled with weighted formula, with more emphasis on recent seasons' results.
     The AFC Club Competitions in 2020 shall not be included in the overall ranking calculation due to the cancellation of the remaining matches in the AFC Cup 2020 in the context of the COVID-19 pandemic.
 View the ranking principle <a href='https://footyrankings.github.io/formula/'>here</a>.
-<hr/>							</div>
+<hr/>
+<script>
+    updateTableStripes();
+</script>							</div>
 						</div>
 					</div>
 				</section>

@@ -4,7 +4,7 @@ const {dirname} = require("path");
 
 let baseUrl = 'http://localhost/fr_afc/index.php';
 const filepath = '../docs';
-let years = [2026, 2027];
+let years = [2027];
 let countries = ['AFG','AUS','BAN','BHR','BHU','BRU','CAM','CHN','GUM','HKG','IDN','IND','IRN','IRQ','JOR','JPN','KGZ','KOR','KSA','KUW','LAO','LBN','MAC','MAS','MDV','MNG','MYA','NEP','NMI','OMA','PAK','PHI','PLE','PRK','QAT','SIN','SRI','SYR','THA','TJK','TKM','TLS','TPE','UAE','UZB','VIE','YEM'];
 
 const replaceBaseUrl = (html) => {

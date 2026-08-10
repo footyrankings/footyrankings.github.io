@@ -2374,7 +2374,7 @@
 				border: 1px solid #e6e6e6;
 			}
 			th {
-				background-color: #014a7f !important;
+				background-color: #211D52 !important;
 				color: #fff;
 				text-align: center;
 			}
@@ -2391,11 +2391,11 @@
 				border: 0;
 			}
 
-			table:not(.rank-nav):not(.latest-rank) tr:nth-child(odd) {
+			table:not(.rank-nav):not(.latest-rank):not(.crank) tr:nth-child(odd) {
 				background: #fff;
 				color: #444;
 			}
-			table:not(.rank-nav):not(.latest-rank) tr:nth-child(even) {
+			table:not(.rank-nav):not(.latest-rank):not(.crank) tr:nth-child(even) {
 				background: #f2f2f2;
 				color: #444;
 			}
@@ -2751,10 +2751,19 @@
         justify-content: space-between;
     }
 
+    .crank {
+        border-collapse: separate;
+    }
+
     .crank th {
-        border: 1px solid white;
         border-collapse: collapse;
         vertical-align: middle;
+        position: sticky;
+        top: 90.5px;
+    }
+
+    .crank tr:nth-child(2) th {
+        top: 129px;
     }
 
     .crank th a {
@@ -2764,8 +2773,12 @@
 
     .crank td,
     .matches td {
-        border: 1px solid white;
         border-collapse: collapse;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    .crank .overall-rank {
+        white-space: nowrap;
     }
 
     .crank small {	
@@ -2775,6 +2788,20 @@
     .rank-nav span:not(:last-child)::after {
         content: "|";
         margin: 0 8px;
+    }
+
+    .crank tr.odd-row {
+        background: #f2f2f2;
+    }
+
+    .crank-current tbody tr.status-active .overall-rank,
+    .crank-current tbody tr.status-active .region-rank {
+        border-left: 5px solid #10b981;
+    }
+
+    .crank-current tbody tr.status-eliminated .overall-rank,
+    .crank-current tbody tr.status-eliminated .region-rank {
+        border-left: 5px solid #9ca3af;
     }
 
     .cpts {
@@ -2920,6 +2947,10 @@
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     }
 
+    @media only screen and (max-width: 360px) {
+        
+    }
+
     @media only screen and (max-width: 400px) {
         .crank td, .matches td {
             padding: 3px 6px;
@@ -2980,8 +3011,6 @@
         .crank th {
             font-size: 12px;
             padding: 4px;
-            position: sticky;
-            top: 65px;
         }
 
         .cpts, .matches, .matches tr.round td {
@@ -2993,9 +3022,22 @@
             padding: 4px;
             font-size: 11px;
         }
+
+        .crank tr.hide-tab-des+tr.hide-tab-des th {
+            top: 117.6px;
+        }
     }
 
-    @media only screen and (min-width: 768px) {
+    @media only screen and (max-width: 575px) {
+        .crank th {
+            top: 69.5px;
+        }
+        .crank tr.hide-tab-des+tr.hide-tab-des th {
+            top: 96.7px;
+        }
+    }
+
+    @media only screen and (min-width: 769px) {
         .hide-tab-des {
             display: none;
         }
@@ -3006,21 +3048,33 @@
             display: none;
         }
 
-        .crank.crank-current,
         .crank.crank-8years {
             font-size: 12px;
         }
 
-        .crank.crank-current .country-flag,
         .crank.crank-8years .country-flag {
             width: 20px;
         }
+
+        .crank tr.hide-mob-des+tr.hide-mob-des th {
+            top: 123.6px;
+        }
     }
 
-    @media only screen and (min-width: 992px) {
+    @media only screen and (min-width: 993px) {
         .hide-des,
         .hide-mob-des {
             display: none;
+        }
+    }
+
+    @media only screen and (max-width: 1200px) {
+        .crank.crank-8years {
+            font-size: 12px;
+        }
+
+        .crank tr.hide-mob-tab+tr.hide-mob-tab th {
+            top: 124.6px;
         }
     }
 
@@ -3050,6 +3104,19 @@
             if (selected === "team-all") document.querySelectorAll(".overall-rank").forEach(el => el.style.display = "table-cell");
             if (selected.includes("region")) document.querySelectorAll(".region-rank").forEach(el => el.style.display = "table-cell");
             if (selected.includes("zone")) document.querySelectorAll(".zone-rank").forEach(el => el.style.display = "table-cell");
+
+            updateTableStripes();
+        }
+
+        function updateTableStripes() {
+            document.querySelectorAll('.crank').forEach(table => {
+                const visibleRows = [...table.querySelectorAll('tr')]
+                    .filter(row => row.offsetParent !== null);
+
+                visibleRows.forEach((row, index) => {
+                    row.classList.toggle('odd-row', index % 2 === 0);
+                });
+            });
         }
     </script>
 </head>
@@ -3336,20 +3403,6 @@
     
     <tr class='matches-acgl-content'>
         <td style=''>
-            Maziya (MDV)        </td>
-        <td style=''>
-            Regar TadAZ (TJK)        </td>
-        <td style='text-align:center;'>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </td>
-        <td style='text-align:center;'>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                </td>
-    </tr>
-
-    
-    <tr class='matches-acgl-content'>
-        <td style=''>
             Paro (BHU)        </td>
         <td style=''>
             Abu Muslim Farah (AFG)        </td>
@@ -3392,6 +3445,20 @@
     
     <tr class='matches-acgl-content'>
         <td style=''>
+            Maziya (MDV)        </td>
+        <td style=''>
+            Regar TadAZ (TJK)        </td>
+        <td style='text-align:center;'>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </td>
+        <td style='text-align:center;'>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </td>
+    </tr>
+
+    
+    <tr class='matches-acgl-content'>
+        <td style=''>
             Kasuka (BRU)        </td>
         <td style=''>
             Karketu Dili (TLS)        </td>
@@ -3406,9 +3473,9 @@
     
     <tr class='matches-acgl-content'>
         <td style=''>
-            Ezra (LAO)        </td>
-        <td style=''>
             Yangon United (MYA)        </td>
+        <td style=''>
+            Ezra (LAO)        </td>
         <td style='text-align:center;'>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 </td>

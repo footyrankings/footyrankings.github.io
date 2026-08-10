@@ -2374,7 +2374,7 @@
 				border: 1px solid #e6e6e6;
 			}
 			th {
-				background-color: #014a7f !important;
+				background-color: #211D52 !important;
 				color: #fff;
 				text-align: center;
 			}
@@ -2391,11 +2391,11 @@
 				border: 0;
 			}
 
-			table:not(.rank-nav):not(.latest-rank) tr:nth-child(odd) {
+			table:not(.rank-nav):not(.latest-rank):not(.crank) tr:nth-child(odd) {
 				background: #fff;
 				color: #444;
 			}
-			table:not(.rank-nav):not(.latest-rank) tr:nth-child(even) {
+			table:not(.rank-nav):not(.latest-rank):not(.crank) tr:nth-child(even) {
 				background: #f2f2f2;
 				color: #444;
 			}
@@ -2755,10 +2755,19 @@
         justify-content: space-between;
     }
 
+    .crank {
+        border-collapse: separate;
+    }
+
     .crank th {
-        border: 1px solid white;
         border-collapse: collapse;
         vertical-align: middle;
+        position: sticky;
+        top: 90.5px;
+    }
+
+    .crank tr:nth-child(2) th {
+        top: 129px;
     }
 
     .crank th a {
@@ -2768,8 +2777,12 @@
 
     .crank td,
     .matches td {
-        border: 1px solid white;
         border-collapse: collapse;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    .crank .overall-rank {
+        white-space: nowrap;
     }
 
     .crank small {	
@@ -2779,6 +2792,20 @@
     .rank-nav span:not(:last-child)::after {
         content: "|";
         margin: 0 8px;
+    }
+
+    .crank tr.odd-row {
+        background: #f2f2f2;
+    }
+
+    .crank-current tbody tr.status-active .overall-rank,
+    .crank-current tbody tr.status-active .region-rank {
+        border-left: 5px solid #10b981;
+    }
+
+    .crank-current tbody tr.status-eliminated .overall-rank,
+    .crank-current tbody tr.status-eliminated .region-rank {
+        border-left: 5px solid #9ca3af;
     }
 
     .cpts {
@@ -2924,6 +2951,10 @@
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     }
 
+    @media only screen and (max-width: 360px) {
+        
+    }
+
     @media only screen and (max-width: 400px) {
         .crank td, .matches td {
             padding: 3px 6px;
@@ -2984,8 +3015,6 @@
         .crank th {
             font-size: 12px;
             padding: 4px;
-            position: sticky;
-            top: 65px;
         }
 
         .cpts, .matches, .matches tr.round td {
@@ -2997,9 +3026,22 @@
             padding: 4px;
             font-size: 11px;
         }
+
+        .crank tr.hide-tab-des+tr.hide-tab-des th {
+            top: 117.6px;
+        }
     }
 
-    @media only screen and (min-width: 768px) {
+    @media only screen and (max-width: 575px) {
+        .crank th {
+            top: 69.5px;
+        }
+        .crank tr.hide-tab-des+tr.hide-tab-des th {
+            top: 96.7px;
+        }
+    }
+
+    @media only screen and (min-width: 769px) {
         .hide-tab-des {
             display: none;
         }
@@ -3010,21 +3052,33 @@
             display: none;
         }
 
-        .crank.crank-current,
         .crank.crank-8years {
             font-size: 12px;
         }
 
-        .crank.crank-current .country-flag,
         .crank.crank-8years .country-flag {
             width: 20px;
         }
+
+        .crank tr.hide-mob-des+tr.hide-mob-des th {
+            top: 123.6px;
+        }
     }
 
-    @media only screen and (min-width: 992px) {
+    @media only screen and (min-width: 993px) {
         .hide-des,
         .hide-mob-des {
             display: none;
+        }
+    }
+
+    @media only screen and (max-width: 1200px) {
+        .crank.crank-8years {
+            font-size: 12px;
+        }
+
+        .crank tr.hide-mob-tab+tr.hide-mob-tab th {
+            top: 124.6px;
         }
     }
 
@@ -3054,6 +3108,19 @@
             if (selected === "team-all") document.querySelectorAll(".overall-rank").forEach(el => el.style.display = "table-cell");
             if (selected.includes("region")) document.querySelectorAll(".region-rank").forEach(el => el.style.display = "table-cell");
             if (selected.includes("zone")) document.querySelectorAll(".zone-rank").forEach(el => el.style.display = "table-cell");
+
+            updateTableStripes();
+        }
+
+        function updateTableStripes() {
+            document.querySelectorAll('.crank').forEach(table => {
+                const visibleRows = [...table.querySelectorAll('tr')]
+                    .filter(row => row.offsetParent !== null);
+
+                visibleRows.forEach((row, index) => {
+                    row.classList.toggle('odd-row', index % 2 === 0);
+                });
+            });
         }
     </script>
 </head><p style='font-size: 11pt; text-align: center;'>
@@ -3124,7 +3191,7 @@
 </table>
 
 <table class='cpts cpts-QAT' style='padding: 16px 4px 0'>
-    <tr style='text-align: right; background-color: #7AA8CC'>
+    <tr style='text-align: right;'>
 		<th style='width: 20px;text-align: left; font-weight: bold;'>1</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
@@ -3225,7 +3292,7 @@
 	</tr>
 
 </table><table class='cpts cpts-THA' style='padding: 16px 4px 0'>
-    <tr style='text-align: right; background-color: #7AA8CC'>
+    <tr style='text-align: right;'>
 		<th style='width: 20px;text-align: left; font-weight: bold;'>2</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
@@ -3326,7 +3393,7 @@
 	</tr>
 
 </table><table class='cpts cpts-JPN' style='padding: 16px 4px 0'>
-    <tr style='text-align: right; background-color: #7AA8CC'>
+    <tr style='text-align: right;'>
 		<th style='width: 20px;text-align: left; font-weight: bold;'>3</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
@@ -3489,7 +3556,7 @@
     </tr>
 
 </table><table class='cpts cpts-KSA' style='padding: 16px 4px 0'>
-    <tr style='text-align: right; background-color: #7AA8CC'>
+    <tr style='text-align: right;'>
 		<th style='width: 20px;text-align: left; font-weight: bold;'>4</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
@@ -3652,7 +3719,7 @@
     </tr>
 
 </table><table class='cpts cpts-CHN' style='padding: 16px 4px 0'>
-    <tr style='text-align: right; background-color: #7AA8CC'>
+    <tr style='text-align: right;'>
 		<th style='width: 20px;text-align: left; font-weight: bold;'>5</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
@@ -3734,7 +3801,7 @@
 	</tr>
 
 </table><table class='cpts cpts-IRN' style='padding: 16px 4px 0'>
-    <tr style='text-align: right; background-color: #7AA8CC'>
+    <tr style='text-align: right;'>
 		<th style='width: 20px;text-align: left; font-weight: bold;'>6</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
@@ -3816,7 +3883,7 @@
 	</tr>
 
 </table><table class='cpts cpts-KOR' style='padding: 16px 4px 0'>
-    <tr style='text-align: right; background-color: #7AA8CC'>
+    <tr style='text-align: right;'>
 		<th style='width: 20px;text-align: left; font-weight: bold;'>7</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
@@ -3960,7 +4027,7 @@
     </tr>
 
 </table><table class='cpts cpts-UAE' style='padding: 16px 4px 0'>
-    <tr style='text-align: right; background-color: #7AA8CC'>
+    <tr style='text-align: right;'>
 		<th style='width: 20px;text-align: left; font-weight: bold;'>8</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
@@ -4104,7 +4171,7 @@
     </tr>
 
 </table><table class='cpts cpts-IRQ' style='padding: 16px 4px 0'>
-    <tr style='text-align: right; background-color: #7AA8CC'>
+    <tr style='text-align: right;'>
 		<th style='width: 20px;text-align: left; font-weight: bold;'>9</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
@@ -4167,7 +4234,7 @@
 	</tr>
 
 </table><table class='cpts cpts-MAS' style='padding: 16px 4px 0'>
-    <tr style='text-align: right; background-color: #7AA8CC'>
+    <tr style='text-align: right;'>
 		<th style='width: 20px;text-align: left; font-weight: bold;'>10</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
@@ -4230,7 +4297,7 @@
 	</tr>
 
 </table><table class='cpts cpts-AUS' style='padding: 16px 4px 0'>
-    <tr style='text-align: right; background-color: #7AA8CC'>
+    <tr style='text-align: right;'>
 		<th style='width: 20px;text-align: left; font-weight: bold;'>11</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
@@ -4336,7 +4403,7 @@
     </tr>
 
 </table><table class='cpts cpts-UZB' style='padding: 16px 4px 0'>
-    <tr style='text-align: right; background-color: #7AA8CC'>
+    <tr style='text-align: right;'>
 		<th style='width: 20px;text-align: left; font-weight: bold;'>12</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
@@ -4442,7 +4509,7 @@
     </tr>
 
 </table><table class='cpts cpts-BHR' style='padding: 16px 4px 0'>
-    <tr style='text-align: right; background-color: #7AA8CC'>
+    <tr style='text-align: right;'>
 		<th style='width: 20px;text-align: left; font-weight: bold;'>13</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
@@ -4505,7 +4572,7 @@
 	</tr>
 
 </table><table class='cpts cpts-CAM' style='padding: 16px 4px 0'>
-    <tr style='text-align: right; background-color: #7AA8CC'>
+    <tr style='text-align: right;'>
 		<th style='width: 20px;text-align: left; font-weight: bold;'>14</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
@@ -4568,7 +4635,7 @@
 	</tr>
 
 </table><table class='cpts cpts-HKG' style='padding: 16px 4px 0'>
-    <tr style='text-align: right; background-color: #7AA8CC'>
+    <tr style='text-align: right;'>
 		<th style='width: 20px;text-align: left; font-weight: bold;'>15</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
@@ -4631,7 +4698,7 @@
 	</tr>
 
 </table><table class='cpts cpts-OMA' style='padding: 16px 4px 0'>
-    <tr style='text-align: right; background-color: #7AA8CC'>
+    <tr style='text-align: right;'>
 		<th style='width: 20px;text-align: left; font-weight: bold;'>16</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
@@ -4694,7 +4761,7 @@
 	</tr>
 
 </table><table class='cpts cpts-SIN' style='padding: 16px 4px 0'>
-    <tr style='text-align: right; background-color: #7AA8CC'>
+    <tr style='text-align: right;'>
 		<th style='width: 20px;text-align: left; font-weight: bold;'>17</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
@@ -4757,7 +4824,7 @@
 	</tr>
 
 </table><table class='cpts cpts-VIE' style='padding: 16px 4px 0'>
-    <tr style='text-align: right; background-color: #7AA8CC'>
+    <tr style='text-align: right;'>
 		<th style='width: 20px;text-align: left; font-weight: bold;'>18</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
@@ -4844,7 +4911,7 @@
     </tr>
 
 </table><table class='cpts cpts-TJK' style='padding: 16px 4px 0'>
-    <tr style='text-align: right; background-color: #7AA8CC'>
+    <tr style='text-align: right;'>
 		<th style='width: 20px;text-align: left; font-weight: bold;'>19</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
@@ -4912,7 +4979,7 @@
     </tr>
 
 </table><table class='cpts cpts-JOR' style='padding: 16px 4px 0'>
-    <tr style='text-align: right; background-color: #7AA8CC'>
+    <tr style='text-align: right;'>
 		<th style='width: 20px;text-align: left; font-weight: bold;'>20</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
@@ -4999,7 +5066,7 @@
     </tr>
 
 </table><table class='cpts cpts-MYA' style='padding: 16px 4px 0'>
-    <tr style='text-align: right; background-color: #7AA8CC'>
+    <tr style='text-align: right;'>
 		<th style='width: 20px;text-align: left; font-weight: bold;'>21</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
@@ -5067,7 +5134,7 @@
     </tr>
 
 </table><table class='cpts cpts-KUW' style='padding: 16px 4px 0'>
-    <tr style='text-align: right; background-color: #7AA8CC'>
+    <tr style='text-align: right;'>
 		<th style='width: 20px;text-align: left; font-weight: bold;'>22</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
@@ -5173,7 +5240,7 @@
     </tr>
 
 </table><table class='cpts cpts-PHI' style='padding: 16px 4px 0'>
-    <tr style='text-align: right; background-color: #7AA8CC'>
+    <tr style='text-align: right;'>
 		<th style='width: 20px;text-align: left; font-weight: bold;'>23</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
@@ -5260,7 +5327,7 @@
     </tr>
 
 </table><table class='cpts cpts-IND' style='padding: 16px 4px 0'>
-    <tr style='text-align: right; background-color: #7AA8CC'>
+    <tr style='text-align: right;'>
 		<th style='width: 20px;text-align: left; font-weight: bold;'>24</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
@@ -5364,7 +5431,7 @@
     </tr>
 
 </table><table class='cpts cpts-IDN' style='padding: 16px 4px 0'>
-    <tr style='text-align: right; background-color: #7AA8CC'>
+    <tr style='text-align: right;'>
 		<th style='width: 20px;text-align: left; font-weight: bold;'>25</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
@@ -5451,7 +5518,7 @@
     </tr>
 
 </table><table class='cpts cpts-TKM' style='padding: 16px 4px 0'>
-    <tr style='text-align: right; background-color: #7AA8CC'>
+    <tr style='text-align: right;'>
 		<th style='width: 20px;text-align: left; font-weight: bold;'>26</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
@@ -5538,7 +5605,7 @@
     </tr>
 
 </table><table class='cpts cpts-LBN' style='padding: 16px 4px 0'>
-    <tr style='text-align: right; background-color: #7AA8CC'>
+    <tr style='text-align: right;'>
 		<th style='width: 20px;text-align: left; font-weight: bold;'>27</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
@@ -5601,7 +5668,7 @@
 	</tr>
 
 </table><table class='cpts cpts-MNG' style='padding: 16px 4px 0'>
-    <tr style='text-align: right; background-color: #7AA8CC'>
+    <tr style='text-align: right;'>
 		<th style='width: 20px;text-align: left; font-weight: bold;'>28</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
@@ -5661,7 +5728,7 @@
     </tr>
 
 </table><table class='cpts cpts-BAN' style='padding: 16px 4px 0'>
-    <tr style='text-align: right; background-color: #7AA8CC'>
+    <tr style='text-align: right;'>
 		<th style='width: 20px;text-align: left; font-weight: bold;'>29</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
@@ -5721,7 +5788,7 @@
     </tr>
 
 </table><table class='cpts cpts-KGZ' style='padding: 16px 4px 0'>
-    <tr style='text-align: right; background-color: #7AA8CC'>
+    <tr style='text-align: right;'>
 		<th style='width: 20px;text-align: left; font-weight: bold;'>30</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
@@ -5781,7 +5848,7 @@
     </tr>
 
 </table><table class='cpts cpts-SYR' style='padding: 16px 4px 0'>
-    <tr style='text-align: right; background-color: #7AA8CC'>
+    <tr style='text-align: right;'>
 		<th style='width: 20px;text-align: left; font-weight: bold;'>31</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
@@ -5841,7 +5908,7 @@
     </tr>
 
 </table><table class='cpts cpts-TPE' style='padding: 16px 4px 0'>
-    <tr style='text-align: right; background-color: #7AA8CC'>
+    <tr style='text-align: right;'>
 		<th style='width: 20px;text-align: left; font-weight: bold;'>32</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
@@ -5901,7 +5968,7 @@
     </tr>
 
 </table><table class='cpts cpts-MDV' style='padding: 16px 4px 0'>
-    <tr style='text-align: right; background-color: #7AA8CC'>
+    <tr style='text-align: right;'>
 		<th style='width: 20px;text-align: left; font-weight: bold;'>33</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
@@ -5944,7 +6011,7 @@
     </tr>
 
 </table><table class='cpts cpts-BHU' style='padding: 16px 4px 0'>
-    <tr style='text-align: right; background-color: #7AA8CC'>
+    <tr style='text-align: right;'>
 		<th style='width: 20px;text-align: left; font-weight: bold;'>34</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
@@ -5987,7 +6054,7 @@
     </tr>
 
 </table><table class='cpts cpts-BRU' style='padding: 16px 4px 0'>
-    <tr style='text-align: right; background-color: #7AA8CC'>
+    <tr style='text-align: right;'>
 		<th style='width: 20px;text-align: left; font-weight: bold;'>35</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
@@ -6030,7 +6097,7 @@
     </tr>
 
 </table><table class='cpts cpts-LAO' style='padding: 16px 4px 0'>
-    <tr style='text-align: right; background-color: #7AA8CC'>
+    <tr style='text-align: right;'>
 		<th style='width: 20px;text-align: left; font-weight: bold;'>36</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
@@ -6073,7 +6140,7 @@
     </tr>
 
 </table><table class='cpts cpts-AFG' style='padding: 16px 4px 0'>
-    <tr style='text-align: right; background-color: #7AA8CC'>
+    <tr style='text-align: right;'>
 		<th style='width: 20px;text-align: left; font-weight: bold;'>37</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
@@ -6116,7 +6183,7 @@
     </tr>
 
 </table><table class='cpts cpts-TLS' style='padding: 16px 4px 0'>
-    <tr style='text-align: right; background-color: #7AA8CC'>
+    <tr style='text-align: right;'>
 		<th style='width: 20px;text-align: left; font-weight: bold;'>38</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
