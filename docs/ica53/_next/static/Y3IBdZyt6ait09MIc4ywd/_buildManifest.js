@@ -1,7 +1,12 @@
 self.__BUILD_MANIFEST = {
   "__rewrites": {
     "afterFiles": [],
-    "beforeFiles": [],
+    "beforeFiles": [
+      {
+        "source": "/ica53//_next/:path+",
+        "destination": "/ica53/_next/:path+"
+      }
+    ],
     "fallback": []
   },
   "sortedPages": [
