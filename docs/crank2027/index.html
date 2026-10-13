@@ -1889,7 +1889,7 @@
 		<meta property="og:image:alt" content="" />
 		<meta property="og:locale" content="en_US" />
 		<meta name="twitter:site" content="@footyrankings" />
-		<meta name="twitter:text:title" content="AFC Club Competitions Ranking 2027" />
+		<meta name="twitter:text:title" content="AFC Men's Club Competitions MA Ranking 2027" />
 		<meta name="twitter:card" content="summary" />
 		<meta name="twitter:image" content="https://footyrankings.github.io/static/images/cropped-Slide1-270x270.png"/>
 
@@ -2712,7 +2712,7 @@
 							<div class="container">
 								<header class="page-header">
 									<div class="inner-header-content">
-										<h1 class="page-title">AFC Club Competitions Ranking 2027</h1>
+										<h1 class="page-title">AFC Men's Club Competitions MA Ranking 2027</h1>
 									</div>
 								</header>
 							</div>
@@ -2740,7 +2740,8 @@
     .crank .country-flag,
     .contrib .country-flag,
     .ccoef .country-flag,
-    .prizemoney .country-flag {
+    .prizemoney .country-flag,
+    .clubcoef .country-flag {
         width: 32px;
     }
 
@@ -2943,8 +2944,22 @@
         text-align: right;
     }
 
-    .prizemoney tr {
+    .prizemoney tr,
+    .clubcoef tr {
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .clubcoef td:nth-child(1),
+    .clubcoef td:nth-child(3),
+    .clubcoef td:nth-child(4),
+    .clubcoef td:nth-child(5),
+    .clubcoef td:nth-child(6) {
+        text-align: center;
+    }
+
+    .clubcoef td:nth-child(7) {
+        text-align: right;
+        font-weight: bold;
     }
 
     @media only screen and (max-width: 360px) {
@@ -2985,7 +3000,8 @@
         .cpts .country-flag,
         .ccoef .country-flag,
         .contrib .country-flag,
-        .prizemoney .country-flag {
+        .prizemoney .country-flag,
+        .clubcoef .country-flag {
             width: 20px !important;
         }
 
@@ -3018,7 +3034,9 @@
         }
 
         .prizemoney th,
-        .prizemoney td {
+        .prizemoney td,
+        .clubcoef th,
+        .clubcoef td {
             padding: 4px;
             font-size: 11px;
         }
@@ -3121,7 +3139,7 @@
     </script>
 </head><p style='font-size: 11pt; text-align: center;'>
     Last updated :&nbsp;
-    13 October 2026 21:14:33 WIB</p>
+    14 October 2026 01:00:38 WIB</p>
 
 <table style="width:100%;border:0;font-size:14pt;" class="hide-mob-tab rank-nav">
     <tbody>
@@ -3136,6 +3154,7 @@
             <!--                 <span><a href="https://footyrankings.github.io/matches2027/">Matches</a></span>
              -->
                                         <span><a href="https://footyrankings.github.io/cpts2027/">Country Points</a></span>
+                                        <span><a href="https://footyrankings.github.io/clubcoef2027/">Club Points</a></span>
                                         <span><a href="https://footyrankings.github.io/contrib2027/">Club Contribution</a></span>
                                         <span><a href="https://footyrankings.github.io/prizemoney2027/">Prize Money</a></span>
             		        <span><a href="#info">Info</a></span>
@@ -3170,6 +3189,11 @@
             </tr>
                             <tr>
                 <td colspan="2" style="text-align: center">
+                    <a href="https://footyrankings.github.io/clubcoef2027/">Club Points</a>
+                </td>
+            </tr>
+                            <tr>
+                <td colspan="2" style="text-align: center">
                     <a href="https://footyrankings.github.io/contrib2027/">Club Contribution</a>
                 </td>
             </tr>
@@ -3186,7 +3210,6 @@
 	</tbody>
 </table>
 
-<p style='padding: 16px; background-color: #FFFFCC;'>AFC has announced revised calculation methodology for AFC Club Competitions Ranking. For the 2024-25 season onwards, the rankings will be based on the performance of clubs from the previous eight years with weighted value. The points for each country will be based on the average performance of all clubs in AFC Club Competitions Group Stage onwards and will be applied retroactively for re-calculation of the 2021 and 2022 points. View the full statement from AFC <a href='//www.the-afc.com/en/more/afc_competitions/news/afc_competitions_committee_recommends_strategic_reforms_to_elevate_asian_club_football.html'>here</a>.</p><br>
 
 <h3>Filter by :&nbsp;&nbsp;
     <select onchange='filterchange()' id='filter' style='font-size: 18px; padding: 8px'>
@@ -3356,16 +3379,16 @@
                         
         <td class='hide-mob-tab' style='text-align: right;'>
             <span class='yearpoint' onclick='viewPoint(2027,"KSA")'>
-                5.744            </span>
+                6.244            </span>
         </td>
 
                         <td class='hide-des' style='text-align: right;'>
             <span class='yearpoint' onclick='viewPoint(2027,"KSA")'>
-                5.744            </span>
+                6.244            </span>
         </td>
 				
         		
-        <td style='text-align: right; font-weight: bold;'>115.798</td>
+        <td style='text-align: right; font-weight: bold;'>116.298</td>
         
                     <td class='hide-mob' style='text-align: center'>
             6/6            </td>
@@ -4302,16 +4325,16 @@
                         
         <td class='hide-mob-tab' style='text-align: right;'>
             <span class='yearpoint' onclick='viewPoint(2027,"JOR")'>
-                2.333            </span>
+                3.333            </span>
         </td>
 
                         <td class='hide-des' style='text-align: right;'>
             <span class='yearpoint' onclick='viewPoint(2027,"JOR")'>
-                2.333            </span>
+                3.333            </span>
         </td>
 				
         		
-        <td style='text-align: right; font-weight: bold;'>38.546</td>
+        <td style='text-align: right; font-weight: bold;'>39.546</td>
         
                     <td class='hide-mob' style='text-align: center'>
             2/2            </td>
@@ -4388,16 +4411,16 @@
                         
         <td class='hide-mob-tab' style='text-align: right;'>
             <span class='yearpoint' onclick='viewPoint(2027,"IRQ")'>
-                3.500            </span>
+                4.500            </span>
         </td>
 
                         <td class='hide-des' style='text-align: right;'>
             <span class='yearpoint' onclick='viewPoint(2027,"IRQ")'>
-                3.500            </span>
+                4.500            </span>
         </td>
 				
         		
-        <td style='text-align: right; font-weight: bold;'>37.513</td>
+        <td style='text-align: right; font-weight: bold;'>38.513</td>
         
                     <td class='hide-mob' style='text-align: center'>
             2/2            </td>
@@ -6991,13 +7014,185 @@
                 0+1            </td>
             </tr>
     	<tr class='team-all
-        region-E         status-eliminated'
+        region-W         status-eliminated'
         
     >
         <td class='overall-rank' style='text-align: right'>
             <div>
                             <img src='https://footyrankings.github.io/static/images/gray-equal.png'>&nbsp;
                         44            </div>
+        </td>
+        <td class='region-rank' style='text-align: right; display: none'>
+            24        </td>
+
+        
+		<td>
+                    <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/YEM'>
+            <span class='hide-mob'>&nbsp;&nbsp;Yemen</span>
+            <span class='hide-tab-des'>&nbsp;&nbsp;YEM</span>
+                </td>
+		
+                
+        <td class='hide-mob-tab' style='text-align: right;'>
+            <span class='yearpoint' onclick='viewPoint(2018,"YEM")'>
+                0.000            </span>
+        </td>
+
+                        
+        <td class='hide-mob-tab' style='text-align: right;'>
+            <span class='yearpoint' onclick='viewPoint(2019,"YEM")'>
+                0.000            </span>
+        </td>
+
+                        
+        <td class='hide-mob-tab' style='text-align: right;'>
+            <span class='yearpoint' onclick='viewPoint(2021,"YEM")'>
+                0.000            </span>
+        </td>
+
+                        
+        <td class='hide-mob-tab' style='text-align: right;'>
+            <span class='yearpoint' onclick='viewPoint(2022,"YEM")'>
+                0.000            </span>
+        </td>
+
+                        
+        <td class='hide-mob-tab' style='text-align: right;'>
+            <span class='yearpoint' onclick='viewPoint(2024,"YEM")'>
+                0.000            </span>
+        </td>
+
+                        
+        <td class='hide-mob-tab' style='text-align: right;'>
+            <span class='yearpoint' onclick='viewPoint(2025,"YEM")'>
+                0.000            </span>
+        </td>
+
+                        
+        <td class='hide-mob-tab' style='text-align: right;'>
+            <span class='yearpoint' onclick='viewPoint(2026,"YEM")'>
+                0.000            </span>
+        </td>
+
+                        
+        <td class='hide-mob-tab' style='text-align: right;'>
+            <span class='yearpoint' onclick='viewPoint(2027,"YEM")'>
+                0.000            </span>
+        </td>
+
+                        <td class='hide-des' style='text-align: right;'>
+            <span class='yearpoint' onclick='viewPoint(2027,"YEM")'>
+                0.000            </span>
+        </td>
+				
+        		
+        <td style='text-align: right; font-weight: bold;'>0.000</td>
+        
+                    <td class='hide-mob' style='text-align: center'>
+            0            </td>
+        
+        
+                    <td style='text-align: center; line-height: 1;'>
+                -            </td>
+			<td style='text-align: center; line-height: 1;'>
+                -            </td>
+			<td style='text-align: center; line-height: 1;'>
+                0+1            </td>
+            </tr>
+    	<tr class='team-all
+        region-W         status-eliminated'
+        
+    >
+        <td class='overall-rank' style='text-align: right'>
+            <div>
+                            <img src='https://footyrankings.github.io/static/images/gray-equal.png'>&nbsp;
+                        45            </div>
+        </td>
+        <td class='region-rank' style='text-align: right; display: none'>
+            25        </td>
+
+        
+		<td>
+                    <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/PAK'>
+            <span class='hide-mob'>&nbsp;&nbsp;Pakistan</span>
+            <span class='hide-tab-des'>&nbsp;&nbsp;PAK</span>
+                </td>
+		
+                
+        <td class='hide-mob-tab' style='text-align: right;'>
+            <span class='yearpoint' onclick='viewPoint(2018,"PAK")'>
+                0.000            </span>
+        </td>
+
+                        
+        <td class='hide-mob-tab' style='text-align: right;'>
+            <span class='yearpoint' onclick='viewPoint(2019,"PAK")'>
+                0.000            </span>
+        </td>
+
+                        
+        <td class='hide-mob-tab' style='text-align: right;'>
+            <span class='yearpoint' onclick='viewPoint(2021,"PAK")'>
+                0.000            </span>
+        </td>
+
+                        
+        <td class='hide-mob-tab' style='text-align: right;'>
+            <span class='yearpoint' onclick='viewPoint(2022,"PAK")'>
+                0.000            </span>
+        </td>
+
+                        
+        <td class='hide-mob-tab' style='text-align: right;'>
+            <span class='yearpoint' onclick='viewPoint(2024,"PAK")'>
+                0.000            </span>
+        </td>
+
+                        
+        <td class='hide-mob-tab' style='text-align: right;'>
+            <span class='yearpoint' onclick='viewPoint(2025,"PAK")'>
+                0.000            </span>
+        </td>
+
+                        
+        <td class='hide-mob-tab' style='text-align: right;'>
+            <span class='yearpoint' onclick='viewPoint(2026,"PAK")'>
+                0.000            </span>
+        </td>
+
+                        
+        <td class='hide-mob-tab' style='text-align: right;'>
+            <span class='yearpoint' onclick='viewPoint(2027,"PAK")'>
+                0.000            </span>
+        </td>
+
+                        <td class='hide-des' style='text-align: right;'>
+            <span class='yearpoint' onclick='viewPoint(2027,"PAK")'>
+                0.000            </span>
+        </td>
+				
+        		
+        <td style='text-align: right; font-weight: bold;'>0.000</td>
+        
+                    <td class='hide-mob' style='text-align: center'>
+            0            </td>
+        
+        
+                    <td style='text-align: center; line-height: 1;'>
+                -            </td>
+			<td style='text-align: center; line-height: 1;'>
+                -            </td>
+			<td style='text-align: center; line-height: 1;'>
+                0+1            </td>
+            </tr>
+    	<tr class='team-all
+        region-E         status-eliminated'
+        
+    >
+        <td class='overall-rank' style='text-align: right'>
+            <div>
+                            <img src='https://footyrankings.github.io/static/images/gray-equal.png'>&nbsp;
+                        46            </div>
         </td>
         <td class='region-rank' style='text-align: right; display: none'>
             21        </td>
@@ -7083,7 +7278,7 @@
         <td class='overall-rank' style='text-align: right'>
             <div>
                             <img src='https://footyrankings.github.io/static/images/gray-equal.png'>&nbsp;
-                        45            </div>
+                        47            </div>
         </td>
         <td class='region-rank' style='text-align: right; display: none'>
             22        </td>
@@ -7145,178 +7340,6 @@
 
                         <td class='hide-des' style='text-align: right;'>
             <span class='yearpoint' onclick='viewPoint(2027,"NMI")'>
-                0.000            </span>
-        </td>
-				
-        		
-        <td style='text-align: right; font-weight: bold;'>0.000</td>
-        
-                    <td class='hide-mob' style='text-align: center'>
-            0            </td>
-        
-        
-                    <td style='text-align: center; line-height: 1;'>
-                -            </td>
-			<td style='text-align: center; line-height: 1;'>
-                -            </td>
-			<td style='text-align: center; line-height: 1;'>
-                0+1            </td>
-            </tr>
-    	<tr class='team-all
-        region-W         status-eliminated'
-        
-    >
-        <td class='overall-rank' style='text-align: right'>
-            <div>
-                            <img src='https://footyrankings.github.io/static/images/gray-equal.png'>&nbsp;
-                        46            </div>
-        </td>
-        <td class='region-rank' style='text-align: right; display: none'>
-            24        </td>
-
-        
-		<td>
-                    <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/PAK'>
-            <span class='hide-mob'>&nbsp;&nbsp;Pakistan</span>
-            <span class='hide-tab-des'>&nbsp;&nbsp;PAK</span>
-                </td>
-		
-                
-        <td class='hide-mob-tab' style='text-align: right;'>
-            <span class='yearpoint' onclick='viewPoint(2018,"PAK")'>
-                0.000            </span>
-        </td>
-
-                        
-        <td class='hide-mob-tab' style='text-align: right;'>
-            <span class='yearpoint' onclick='viewPoint(2019,"PAK")'>
-                0.000            </span>
-        </td>
-
-                        
-        <td class='hide-mob-tab' style='text-align: right;'>
-            <span class='yearpoint' onclick='viewPoint(2021,"PAK")'>
-                0.000            </span>
-        </td>
-
-                        
-        <td class='hide-mob-tab' style='text-align: right;'>
-            <span class='yearpoint' onclick='viewPoint(2022,"PAK")'>
-                0.000            </span>
-        </td>
-
-                        
-        <td class='hide-mob-tab' style='text-align: right;'>
-            <span class='yearpoint' onclick='viewPoint(2024,"PAK")'>
-                0.000            </span>
-        </td>
-
-                        
-        <td class='hide-mob-tab' style='text-align: right;'>
-            <span class='yearpoint' onclick='viewPoint(2025,"PAK")'>
-                0.000            </span>
-        </td>
-
-                        
-        <td class='hide-mob-tab' style='text-align: right;'>
-            <span class='yearpoint' onclick='viewPoint(2026,"PAK")'>
-                0.000            </span>
-        </td>
-
-                        
-        <td class='hide-mob-tab' style='text-align: right;'>
-            <span class='yearpoint' onclick='viewPoint(2027,"PAK")'>
-                0.000            </span>
-        </td>
-
-                        <td class='hide-des' style='text-align: right;'>
-            <span class='yearpoint' onclick='viewPoint(2027,"PAK")'>
-                0.000            </span>
-        </td>
-				
-        		
-        <td style='text-align: right; font-weight: bold;'>0.000</td>
-        
-                    <td class='hide-mob' style='text-align: center'>
-            0            </td>
-        
-        
-                    <td style='text-align: center; line-height: 1;'>
-                -            </td>
-			<td style='text-align: center; line-height: 1;'>
-                -            </td>
-			<td style='text-align: center; line-height: 1;'>
-                0+1            </td>
-            </tr>
-    	<tr class='team-all
-        region-W         status-eliminated'
-        
-    >
-        <td class='overall-rank' style='text-align: right'>
-            <div>
-                            <img src='https://footyrankings.github.io/static/images/gray-equal.png'>&nbsp;
-                        47            </div>
-        </td>
-        <td class='region-rank' style='text-align: right; display: none'>
-            25        </td>
-
-        
-		<td>
-                    <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/YEM'>
-            <span class='hide-mob'>&nbsp;&nbsp;Yemen</span>
-            <span class='hide-tab-des'>&nbsp;&nbsp;YEM</span>
-                </td>
-		
-                
-        <td class='hide-mob-tab' style='text-align: right;'>
-            <span class='yearpoint' onclick='viewPoint(2018,"YEM")'>
-                0.000            </span>
-        </td>
-
-                        
-        <td class='hide-mob-tab' style='text-align: right;'>
-            <span class='yearpoint' onclick='viewPoint(2019,"YEM")'>
-                0.000            </span>
-        </td>
-
-                        
-        <td class='hide-mob-tab' style='text-align: right;'>
-            <span class='yearpoint' onclick='viewPoint(2021,"YEM")'>
-                0.000            </span>
-        </td>
-
-                        
-        <td class='hide-mob-tab' style='text-align: right;'>
-            <span class='yearpoint' onclick='viewPoint(2022,"YEM")'>
-                0.000            </span>
-        </td>
-
-                        
-        <td class='hide-mob-tab' style='text-align: right;'>
-            <span class='yearpoint' onclick='viewPoint(2024,"YEM")'>
-                0.000            </span>
-        </td>
-
-                        
-        <td class='hide-mob-tab' style='text-align: right;'>
-            <span class='yearpoint' onclick='viewPoint(2025,"YEM")'>
-                0.000            </span>
-        </td>
-
-                        
-        <td class='hide-mob-tab' style='text-align: right;'>
-            <span class='yearpoint' onclick='viewPoint(2026,"YEM")'>
-                0.000            </span>
-        </td>
-
-                        
-        <td class='hide-mob-tab' style='text-align: right;'>
-            <span class='yearpoint' onclick='viewPoint(2027,"YEM")'>
-                0.000            </span>
-        </td>
-
-                        <td class='hide-des' style='text-align: right;'>
-            <span class='yearpoint' onclick='viewPoint(2027,"YEM")'>
                 0.000            </span>
         </td>
 				

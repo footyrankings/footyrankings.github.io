@@ -2740,7 +2740,8 @@
     .crank .country-flag,
     .contrib .country-flag,
     .ccoef .country-flag,
-    .prizemoney .country-flag {
+    .prizemoney .country-flag,
+    .clubcoef .country-flag {
         width: 32px;
     }
 
@@ -2943,8 +2944,22 @@
         text-align: right;
     }
 
-    .prizemoney tr {
+    .prizemoney tr,
+    .clubcoef tr {
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .clubcoef td:nth-child(1),
+    .clubcoef td:nth-child(3),
+    .clubcoef td:nth-child(4),
+    .clubcoef td:nth-child(5),
+    .clubcoef td:nth-child(6) {
+        text-align: center;
+    }
+
+    .clubcoef td:nth-child(7) {
+        text-align: right;
+        font-weight: bold;
     }
 
     @media only screen and (max-width: 360px) {
@@ -2985,7 +3000,8 @@
         .cpts .country-flag,
         .ccoef .country-flag,
         .contrib .country-flag,
-        .prizemoney .country-flag {
+        .prizemoney .country-flag,
+        .clubcoef .country-flag {
             width: 20px !important;
         }
 
@@ -3018,7 +3034,9 @@
         }
 
         .prizemoney th,
-        .prizemoney td {
+        .prizemoney td,
+        .clubcoef th,
+        .clubcoef td {
             padding: 4px;
             font-size: 11px;
         }
@@ -3121,7 +3139,7 @@
     </script>
 </head><table class='cpts cpts-IRQ' style='padding: 16px 4px 0'>
     <tr style='text-align: right;'>
-		<th style='width: 20px;text-align: left; font-weight: bold;'>10</th>
+		<th style='width: 20px;text-align: left; font-weight: bold;'>8</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
             <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/IRQ' />
@@ -3141,7 +3159,7 @@
             <td class='hide-mob-tab' colspan='8' style='background-color: #EEEEEE; padding: 2px 10px; text-align: left;'>Group and knockout stage</td>
         <td class='hide-des' colspan='8' style='background-color: #EEEEEE; padding: 2px 10px; text-align: left;'>Group and knockout stage</td>
     			
-        <td rowspan='3' style='background-color: #FFFF93; font-weight: bold; text-align: right;'>3.500</td>
+        <td rowspan='3' style='background-color: #FFFF93; font-weight: bold; text-align: right;'>4.500</td>
 	</tr>
     <tr style='background-color: lightgreen;'>
         <td style='text-align: left;'>1</td>
@@ -3152,13 +3170,13 @@
         <td>CL2</td>
 
     
-        <td class=''>1</td>
+        <td class=''>2</td>
         <td class=''>0</td>
         <td class=''>0</td>
 
         
         <td class=''>3</td>
-		<td>4.000</td>
+		<td>6.000</td>
 
         
 	</tr>

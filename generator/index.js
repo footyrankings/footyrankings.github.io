@@ -49,6 +49,7 @@ async function getLatest() {
       `cpts${y}`,
       `prizemoney${y}`,
       `contrib${y}`,
+      `clubcoef${y}`,
     ];
 
     for (const directory of directories) {

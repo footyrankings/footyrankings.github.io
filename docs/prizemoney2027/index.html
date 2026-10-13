@@ -1889,7 +1889,7 @@
 		<meta property="og:image:alt" content="" />
 		<meta property="og:locale" content="en_US" />
 		<meta name="twitter:site" content="@footyrankings" />
-		<meta name="twitter:text:title" content="AFC Club Competition Prize Money 2027" />
+		<meta name="twitter:text:title" content="AFC Men's Club Competition Prize Money 2027" />
 		<meta name="twitter:card" content="summary" />
 		<meta name="twitter:image" content="https://footyrankings.github.io/static/images/cropped-Slide1-270x270.png"/>
 
@@ -2712,7 +2712,7 @@
 							<div class="container">
 								<header class="page-header">
 									<div class="inner-header-content">
-										<h1 class="page-title">AFC Club Competition Prize Money 2027</h1>
+										<h1 class="page-title">AFC Men's Club Competition Prize Money 2027</h1>
 									</div>
 								</header>
 							</div>
@@ -2740,7 +2740,8 @@
     .crank .country-flag,
     .contrib .country-flag,
     .ccoef .country-flag,
-    .prizemoney .country-flag {
+    .prizemoney .country-flag,
+    .clubcoef .country-flag {
         width: 32px;
     }
 
@@ -2943,8 +2944,22 @@
         text-align: right;
     }
 
-    .prizemoney tr {
+    .prizemoney tr,
+    .clubcoef tr {
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .clubcoef td:nth-child(1),
+    .clubcoef td:nth-child(3),
+    .clubcoef td:nth-child(4),
+    .clubcoef td:nth-child(5),
+    .clubcoef td:nth-child(6) {
+        text-align: center;
+    }
+
+    .clubcoef td:nth-child(7) {
+        text-align: right;
+        font-weight: bold;
     }
 
     @media only screen and (max-width: 360px) {
@@ -2985,7 +3000,8 @@
         .cpts .country-flag,
         .ccoef .country-flag,
         .contrib .country-flag,
-        .prizemoney .country-flag {
+        .prizemoney .country-flag,
+        .clubcoef .country-flag {
             width: 20px !important;
         }
 
@@ -3018,7 +3034,9 @@
         }
 
         .prizemoney th,
-        .prizemoney td {
+        .prizemoney td,
+        .clubcoef th,
+        .clubcoef td {
             padding: 4px;
             font-size: 11px;
         }
@@ -3134,6 +3152,7 @@
              -->
                             <span><a href="https://footyrankings.github.io/crank2027/">Country Ranking</a></span>
                                         <span><a href="https://footyrankings.github.io/cpts2027/">Country Points</a></span>
+                                        <span><a href="https://footyrankings.github.io/clubcoef2027/">Club Points</a></span>
                                         <span><a href="https://footyrankings.github.io/contrib2027/">Club Contribution</a></span>
                         		        <span><a href="#info">Info</a></span>
 		    </td>
@@ -3168,6 +3187,11 @@
                             <tr>
                 <td colspan="2" style="text-align: center">
                     <a href="https://footyrankings.github.io/cpts2027/">Country Points</a>
+                </td>
+            </tr>
+                            <tr>
+                <td colspan="2" style="text-align: center">
+                    <a href="https://footyrankings.github.io/clubcoef2027/">Club Points</a>
                 </td>
             </tr>
                             <tr>
@@ -3262,6 +3286,18 @@
         <tr class="matches-acle-content">
         <td>6</td>
         <td>
+            <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/KSA'>&nbsp;
+            <span class='hide-tab-des'>Al Hilal</span>
+            <span class='hide-mob'>Al Hilal</span>
+        </td>
+        <td>200,000</td>
+        <td>800,000</td>
+        <td>2,000</td>
+        <td>998,000</td>
+    </tr>
+        <tr class="matches-acle-content">
+        <td>7</td>
+        <td>
             <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/UZB'>&nbsp;
             <span class='hide-tab-des'>Neftchi Fergana</span>
             <span class='hide-mob'>Neftchi Fergana</span>
@@ -3272,7 +3308,7 @@
         <td>900,000</td>
     </tr>
         <tr class="matches-acle-content">
-        <td>7</td>
+        <td>8</td>
         <td>
             <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/UAE'>&nbsp;
             <span class='hide-tab-des'>Shabab Al Ahli</span>
@@ -3284,7 +3320,7 @@
         <td>900,000</td>
     </tr>
         <tr class="matches-acle-content">
-        <td>8</td>
+        <td>9</td>
         <td>
             <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/KSA'>&nbsp;
             <span class='hide-tab-des'>Al Ahli</span>
@@ -3296,23 +3332,11 @@
         <td>900,000</td>
     </tr>
         <tr class="matches-acle-content">
-        <td>9</td>
+        <td>10</td>
         <td>
             <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/KSA'>&nbsp;
             <span class='hide-tab-des'>Al Qadsiah</span>
             <span class='hide-mob'>Al Qadsiah</span>
-        </td>
-        <td>100,000</td>
-        <td>800,000</td>
-        <td></td>
-        <td>900,000</td>
-    </tr>
-        <tr class="matches-acle-content">
-        <td>10</td>
-        <td>
-            <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/KSA'>&nbsp;
-            <span class='hide-tab-des'>Al Hilal</span>
-            <span class='hide-mob'>Al Hilal</span>
         </td>
         <td>100,000</td>
         <td>800,000</td>
@@ -3334,18 +3358,6 @@
         <tr class="matches-acle-content">
         <td>12</td>
         <td>
-            <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/MAS'>&nbsp;
-            <span class='hide-tab-des'>JDT</span>
-            <span class='hide-mob'>Johor Darul Ta'zim</span>
-        </td>
-        <td>100,000</td>
-        <td>800,000</td>
-        <td></td>
-        <td>900,000</td>
-    </tr>
-        <tr class="matches-acle-content">
-        <td>13</td>
-        <td>
             <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/KOR'>&nbsp;
             <span class='hide-tab-des'>Jeonbuk HM</span>
             <span class='hide-mob'>Jeonbuk Hyundai Motors</span>
@@ -3356,7 +3368,7 @@
         <td>900,000</td>
     </tr>
         <tr class="matches-acle-content">
-        <td>14</td>
+        <td>13</td>
         <td>
             <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/KSA'>&nbsp;
             <span class='hide-tab-des'>Al Nassr</span>
@@ -3368,7 +3380,7 @@
         <td>900,000</td>
     </tr>
         <tr class="matches-acle-content">
-        <td>15</td>
+        <td>14</td>
         <td>
             <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/JPN'>&nbsp;
             <span class='hide-tab-des'>Kyoto Sanga</span>
@@ -3380,7 +3392,7 @@
         <td>900,000</td>
     </tr>
         <tr class="matches-acle-content">
-        <td>16</td>
+        <td>15</td>
         <td>
             <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/CHN'>&nbsp;
             <span class='hide-tab-des'>Shanghai Port</span>
@@ -3392,7 +3404,7 @@
         <td>900,000</td>
     </tr>
         <tr class="matches-acle-content">
-        <td>17</td>
+        <td>16</td>
         <td>
             <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/JPN'>&nbsp;
             <span class='hide-tab-des'>Vissel Kobe</span>
@@ -3402,6 +3414,18 @@
         <td>800,000</td>
         <td></td>
         <td>900,000</td>
+    </tr>
+        <tr class="matches-acle-content">
+        <td>17</td>
+        <td>
+            <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/MAS'>&nbsp;
+            <span class='hide-tab-des'>JDT</span>
+            <span class='hide-mob'>Johor Darul Ta'zim</span>
+        </td>
+        <td>100,000</td>
+        <td>800,000</td>
+        <td>2,000</td>
+        <td>898,000</td>
     </tr>
         <tr class="matches-acle-content">
         <td>18</td>
@@ -3515,18 +3539,6 @@
         <td>27</td>
         <td>
             <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/QAT'>&nbsp;
-            <span class='hide-tab-des'>Al Gharafa</span>
-            <span class='hide-mob'>Al Gharafa</span>
-        </td>
-        <td>0</td>
-        <td>800,000</td>
-        <td></td>
-        <td>800,000</td>
-    </tr>
-        <tr class="matches-acle-content">
-        <td>28</td>
-        <td>
-            <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/QAT'>&nbsp;
             <span class='hide-tab-des'>Al Sadd</span>
             <span class='hide-mob'>Al Sadd</span>
         </td>
@@ -3536,7 +3548,7 @@
         <td>800,000</td>
     </tr>
         <tr class="matches-acle-content">
-        <td>29</td>
+        <td>28</td>
         <td>
             <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/AUS'>&nbsp;
             <span class='hide-tab-des'>Newcastle Jets</span>
@@ -3548,7 +3560,7 @@
         <td>800,000</td>
     </tr>
         <tr class="matches-acle-content">
-        <td>30</td>
+        <td>29</td>
         <td>
             <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/KOR'>&nbsp;
             <span class='hide-tab-des'>Pohang Steelers</span>
@@ -3560,7 +3572,7 @@
         <td>800,000</td>
     </tr>
         <tr class="matches-acle-content">
-        <td>31</td>
+        <td>30</td>
         <td>
             <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/THA'>&nbsp;
             <span class='hide-tab-des'>Buriram United</span>
@@ -3572,7 +3584,7 @@
         <td>800,000</td>
     </tr>
         <tr class="matches-acle-content">
-        <td>32</td>
+        <td>31</td>
         <td>
             <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/JPN'>&nbsp;
             <span class='hide-tab-des'>Kashiwa Reysol</span>
@@ -3583,8 +3595,44 @@
         <td></td>
         <td>800,000</td>
     </tr>
+        <tr class="matches-acle-content">
+        <td>32</td>
+        <td>
+            <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/QAT'>&nbsp;
+            <span class='hide-tab-des'>Al Gharafa</span>
+            <span class='hide-mob'>Al Gharafa</span>
+        </td>
+        <td>0</td>
+        <td>800,000</td>
+        <td>2,000</td>
+        <td>798,000</td>
+    </tr>
         <tr class="matches-acl2-content">
         <td>33</td>
+        <td>
+            <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/JOR'>&nbsp;
+            <span class='hide-tab-des'>Al Hussein</span>
+            <span class='hide-mob'>Al Hussein</span>
+        </td>
+        <td>50,000</td>
+        <td>350,000</td>
+        <td></td>
+        <td>400,000</td>
+    </tr>
+        <tr class="matches-acl2-content">
+        <td>34</td>
+        <td>
+            <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/IRQ'>&nbsp;
+            <span class='hide-tab-des'>Al Shorta</span>
+            <span class='hide-mob'>Al Shorta</span>
+        </td>
+        <td>100,000</td>
+        <td>300,000</td>
+        <td></td>
+        <td>400,000</td>
+    </tr>
+        <tr class="matches-acl2-content">
+        <td>35</td>
         <td>
             <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/UAE'>&nbsp;
             <span class='hide-tab-des'>Al Wahda</span>
@@ -3596,7 +3644,7 @@
         <td>350,000</td>
     </tr>
         <tr class="matches-acl2-content">
-        <td>34</td>
+        <td>36</td>
         <td>
             <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/TKM'>&nbsp;
             <span class='hide-tab-des'>Arkadag</span>
@@ -3608,35 +3656,11 @@
         <td>350,000</td>
     </tr>
         <tr class="matches-acl2-content">
-        <td>35</td>
+        <td>37</td>
         <td>
             <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/QAT'>&nbsp;
             <span class='hide-tab-des'>Al Rayyan</span>
             <span class='hide-mob'>Al Rayyan</span>
-        </td>
-        <td>50,000</td>
-        <td>300,000</td>
-        <td></td>
-        <td>350,000</td>
-    </tr>
-        <tr class="matches-acl2-content">
-        <td>36</td>
-        <td>
-            <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/JOR'>&nbsp;
-            <span class='hide-tab-des'>Al Hussein</span>
-            <span class='hide-mob'>Al Hussein</span>
-        </td>
-        <td>0</td>
-        <td>350,000</td>
-        <td></td>
-        <td>350,000</td>
-    </tr>
-        <tr class="matches-acl2-content">
-        <td>37</td>
-        <td>
-            <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/IRQ'>&nbsp;
-            <span class='hide-tab-des'>Al Shorta</span>
-            <span class='hide-mob'>Al Shorta</span>
         </td>
         <td>50,000</td>
         <td>300,000</td>
@@ -3982,18 +4006,6 @@
         <tr class="matches-acgl-content">
         <td>66</td>
         <td>
-            <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/SYR'>&nbsp;
-            <span class='hide-tab-des'>Homs Al Fidaa</span>
-            <span class='hide-mob'>Homs Al Fidaa</span>
-        </td>
-        <td>0</td>
-        <td>150,000</td>
-        <td></td>
-        <td>150,000</td>
-    </tr>
-        <tr class="matches-acgl-content">
-        <td>67</td>
-        <td>
             <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/IND'>&nbsp;
             <span class='hide-tab-des'>Goa</span>
             <span class='hide-mob'>Goa</span>
@@ -4004,7 +4016,7 @@
         <td>150,000</td>
     </tr>
         <tr class="matches-acgl-content">
-        <td>68</td>
+        <td>67</td>
         <td>
             <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/TJK'>&nbsp;
             <span class='hide-tab-des'>Regar TadAZ</span>
@@ -4016,7 +4028,7 @@
         <td>150,000</td>
     </tr>
         <tr class="matches-acgl-content">
-        <td>69</td>
+        <td>68</td>
         <td>
             <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/TPE'>&nbsp;
             <span class='hide-tab-des'>Tainan City</span>
@@ -4028,7 +4040,7 @@
         <td>150,000</td>
     </tr>
         <tr class="matches-acgl-content">
-        <td>70</td>
+        <td>69</td>
         <td>
             <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/PHI'>&nbsp;
             <span class='hide-tab-des'>Manila Digger</span>
@@ -4040,7 +4052,7 @@
         <td>150,000</td>
     </tr>
         <tr class="matches-acgl-content">
-        <td>71</td>
+        <td>70</td>
         <td>
             <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/TPE'>&nbsp;
             <span class='hide-tab-des'>Hang Yuen</span>
@@ -4050,6 +4062,18 @@
         <td>150,000</td>
         <td></td>
         <td>150,000</td>
+    </tr>
+        <tr class="matches-acgl-content">
+        <td>71</td>
+        <td>
+            <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/SYR'>&nbsp;
+            <span class='hide-tab-des'>Homs Al Fidaa</span>
+            <span class='hide-mob'>Homs Al Fidaa</span>
+        </td>
+        <td>0</td>
+        <td>150,000</td>
+        <td>1,000</td>
+        <td>149,000</td>
     </tr>
         <tr class="matches-acgl-content">
         <td>72</td>

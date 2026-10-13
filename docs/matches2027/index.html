@@ -1889,7 +1889,7 @@
 		<meta property="og:image:alt" content="" />
 		<meta property="og:locale" content="en_US" />
 		<meta name="twitter:site" content="@footyrankings" />
-		<meta name="twitter:text:title" content="AFC Club Competitions Matches 2027" />
+		<meta name="twitter:text:title" content="AFC Men's Club Competitions Matches 2027" />
 		<meta name="twitter:card" content="summary" />
 		<meta name="twitter:image" content="https://footyrankings.github.io/static/images/cropped-Slide1-270x270.png"/>
 
@@ -2712,7 +2712,7 @@
 							<div class="container">
 								<header class="page-header">
 									<div class="inner-header-content">
-										<h1 class="page-title">AFC Club Competitions Matches 2027</h1>
+										<h1 class="page-title">AFC Men's Club Competitions Matches 2027</h1>
 									</div>
 								</header>
 							</div>
@@ -2740,7 +2740,8 @@
     .crank .country-flag,
     .contrib .country-flag,
     .ccoef .country-flag,
-    .prizemoney .country-flag {
+    .prizemoney .country-flag,
+    .clubcoef .country-flag {
         width: 32px;
     }
 
@@ -2943,8 +2944,22 @@
         text-align: right;
     }
 
-    .prizemoney tr {
+    .prizemoney tr,
+    .clubcoef tr {
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .clubcoef td:nth-child(1),
+    .clubcoef td:nth-child(3),
+    .clubcoef td:nth-child(4),
+    .clubcoef td:nth-child(5),
+    .clubcoef td:nth-child(6) {
+        text-align: center;
+    }
+
+    .clubcoef td:nth-child(7) {
+        text-align: right;
+        font-weight: bold;
     }
 
     @media only screen and (max-width: 360px) {
@@ -2985,7 +3000,8 @@
         .cpts .country-flag,
         .ccoef .country-flag,
         .contrib .country-flag,
-        .prizemoney .country-flag {
+        .prizemoney .country-flag,
+        .clubcoef .country-flag {
             width: 20px !important;
         }
 
@@ -3018,7 +3034,9 @@
         }
 
         .prizemoney th,
-        .prizemoney td {
+        .prizemoney td,
+        .clubcoef th,
+        .clubcoef td {
             padding: 4px;
             font-size: 11px;
         }
@@ -3129,6 +3147,7 @@
             <!--  -->
                             <span><a href="https://footyrankings.github.io/crank2027/">Country Ranking</a></span>
                                         <span><a href="https://footyrankings.github.io/cpts2027/">Country Points</a></span>
+                                        <span><a href="https://footyrankings.github.io/clubcoef2027/">Club Points</a></span>
                                         <span><a href="https://footyrankings.github.io/contrib2027/">Club Contribution</a></span>
                                         <span><a href="https://footyrankings.github.io/prizemoney2027/">Prize Money</a></span>
             		        <span><a href="#info">Info</a></span>
@@ -3155,6 +3174,11 @@
                             <tr>
                 <td colspan="2" style="text-align: center">
                     <a href="https://footyrankings.github.io/cpts2027/">Country Points</a>
+                </td>
+            </tr>
+                            <tr>
+                <td colspan="2" style="text-align: center">
+                    <a href="https://footyrankings.github.io/clubcoef2027/">Club Points</a>
                 </td>
             </tr>
                             <tr>
@@ -3560,7 +3584,7 @@
         <td style=''>
             Al Hilal (KSA)        </td>
         <td style='text-align:center;'>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span>0-2</span>
                 </td>
         <td style='text-align:center;'>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -5381,7 +5405,7 @@
         <td style=''>
             Al Shorta (IRQ)        </td>
         <td style='text-align:center;'>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span>2-3</span>
                 </td>
         <td style='text-align:center;'>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -5395,7 +5419,7 @@
         <td style=''>
             Al Hussein (JOR)        </td>
         <td style='text-align:center;'>
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span>0-3</span>
                 </td>
         <td style='text-align:center;'>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

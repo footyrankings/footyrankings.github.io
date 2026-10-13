@@ -2740,7 +2740,8 @@
     .crank .country-flag,
     .contrib .country-flag,
     .ccoef .country-flag,
-    .prizemoney .country-flag {
+    .prizemoney .country-flag,
+    .clubcoef .country-flag {
         width: 32px;
     }
 
@@ -2943,8 +2944,22 @@
         text-align: right;
     }
 
-    .prizemoney tr {
+    .prizemoney tr,
+    .clubcoef tr {
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .clubcoef td:nth-child(1),
+    .clubcoef td:nth-child(3),
+    .clubcoef td:nth-child(4),
+    .clubcoef td:nth-child(5),
+    .clubcoef td:nth-child(6) {
+        text-align: center;
+    }
+
+    .clubcoef td:nth-child(7) {
+        text-align: right;
+        font-weight: bold;
     }
 
     @media only screen and (max-width: 360px) {
@@ -2985,7 +3000,8 @@
         .cpts .country-flag,
         .ccoef .country-flag,
         .contrib .country-flag,
-        .prizemoney .country-flag {
+        .prizemoney .country-flag,
+        .clubcoef .country-flag {
             width: 20px !important;
         }
 
@@ -3018,7 +3034,9 @@
         }
 
         .prizemoney th,
-        .prizemoney td {
+        .prizemoney td,
+        .clubcoef th,
+        .clubcoef td {
             padding: 4px;
             font-size: 11px;
         }
@@ -3121,7 +3139,7 @@
     </script>
 </head><table class='cpts cpts-BHR' style='padding: 16px 4px 0'>
     <tr style='text-align: right;'>
-		<th style='width: 20px;text-align: left; font-weight: bold;'>17</th>
+		<th style='width: 20px;text-align: left; font-weight: bold;'>18</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
             <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/BHR' />

@@ -1889,7 +1889,7 @@
 		<meta property="og:image:alt" content="" />
 		<meta property="og:locale" content="en_US" />
 		<meta name="twitter:site" content="@footyrankings" />
-		<meta name="twitter:text:title" content="AFC Country Points 2027" />
+		<meta name="twitter:text:title" content="AFC Men's Club Competitions MA Ranking (Single Season) 2027" />
 		<meta name="twitter:card" content="summary" />
 		<meta name="twitter:image" content="https://footyrankings.github.io/static/images/cropped-Slide1-270x270.png"/>
 
@@ -2712,7 +2712,7 @@
 							<div class="container">
 								<header class="page-header">
 									<div class="inner-header-content">
-										<h1 class="page-title">AFC Country Points 2027</h1>
+										<h1 class="page-title">AFC Men's Club Competitions MA Ranking (Single Season) 2027</h1>
 									</div>
 								</header>
 							</div>
@@ -2740,7 +2740,8 @@
     .crank .country-flag,
     .contrib .country-flag,
     .ccoef .country-flag,
-    .prizemoney .country-flag {
+    .prizemoney .country-flag,
+    .clubcoef .country-flag {
         width: 32px;
     }
 
@@ -2943,8 +2944,22 @@
         text-align: right;
     }
 
-    .prizemoney tr {
+    .prizemoney tr,
+    .clubcoef tr {
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .clubcoef td:nth-child(1),
+    .clubcoef td:nth-child(3),
+    .clubcoef td:nth-child(4),
+    .clubcoef td:nth-child(5),
+    .clubcoef td:nth-child(6) {
+        text-align: center;
+    }
+
+    .clubcoef td:nth-child(7) {
+        text-align: right;
+        font-weight: bold;
     }
 
     @media only screen and (max-width: 360px) {
@@ -2985,7 +3000,8 @@
         .cpts .country-flag,
         .ccoef .country-flag,
         .contrib .country-flag,
-        .prizemoney .country-flag {
+        .prizemoney .country-flag,
+        .clubcoef .country-flag {
             width: 20px !important;
         }
 
@@ -3018,7 +3034,9 @@
         }
 
         .prizemoney th,
-        .prizemoney td {
+        .prizemoney td,
+        .clubcoef th,
+        .clubcoef td {
             padding: 4px;
             font-size: 11px;
         }
@@ -3121,7 +3139,7 @@
     </script>
 </head><p style='font-size: 11pt; text-align: center;'>
     Last updated :&nbsp;
-    13 October 2026 21:14:33 WIB</p>
+    14 October 2026 01:00:38 WIB</p>
 
 <table style="width:100%;border:0;font-size:14pt;" class="hide-mob-tab rank-nav">
     <tbody>
@@ -3136,7 +3154,8 @@
             <!--                 <span><a href="https://footyrankings.github.io/matches2027/">Matches</a></span>
              -->
                             <span><a href="https://footyrankings.github.io/crank2027/">Country Ranking</a></span>
-                                                    <span><a href="https://footyrankings.github.io/contrib2027/">Club Contribution</a></span>
+                                                    <span><a href="https://footyrankings.github.io/clubcoef2027/">Club Points</a></span>
+                                        <span><a href="https://footyrankings.github.io/contrib2027/">Club Contribution</a></span>
                                         <span><a href="https://footyrankings.github.io/prizemoney2027/">Prize Money</a></span>
             		        <span><a href="#info">Info</a></span>
 		    </td>
@@ -3169,6 +3188,11 @@
                 </td>
             </tr>
                                     <tr>
+                <td colspan="2" style="text-align: center">
+                    <a href="https://footyrankings.github.io/clubcoef2027/">Club Points</a>
+                </td>
+            </tr>
+                            <tr>
                 <td colspan="2" style="text-align: center">
                     <a href="https://footyrankings.github.io/contrib2027/">Club Contribution</a>
                 </td>
@@ -3453,10 +3477,29 @@
             <td class='hide-mob-tab' colspan='8' style='background-color: #EEEEEE; padding: 2px 10px; text-align: left;'>Group and knockout stage</td>
         <td class='hide-des' colspan='8' style='background-color: #EEEEEE; padding: 2px 10px; text-align: left;'>Group and knockout stage</td>
     			
-        <td rowspan='9' style='background-color: #FFFF93; font-weight: bold; text-align: right;'>5.744</td>
+        <td rowspan='9' style='background-color: #FFFF93; font-weight: bold; text-align: right;'>6.244</td>
 	</tr>
     <tr style='background-color: lightgreen;'>
         <td style='text-align: left;'>1</td>
+        <td style='text-align: left;'>
+            <span class='hide-tab-des'>Al Hilal</span>
+            <span class='hide-mob'>Al Hilal</span>
+        </td>
+        <td>CLE</td>
+
+    
+        <td class=''>2</td>
+        <td class=''>0</td>
+        <td class=''>0</td>
+
+        
+        <td class=''>3</td>
+		<td>9.000</td>
+
+        
+	</tr>
+    <tr style='background-color: lightgreen;'>
+        <td style='text-align: left;'>2</td>
         <td style='text-align: left;'>
             <span class='hide-tab-des'>Al Ahli</span>
             <span class='hide-mob'>Al Ahli</span>
@@ -3475,7 +3518,7 @@
         
 	</tr>
     <tr style='background-color: lightgreen;'>
-        <td style='text-align: left;'>2</td>
+        <td style='text-align: left;'>3</td>
         <td style='text-align: left;'>
             <span class='hide-tab-des'>Al Qadsiah</span>
             <span class='hide-mob'>Al Qadsiah</span>
@@ -3490,25 +3533,6 @@
         
         <td class=''>3</td>
 		<td>7.000</td>
-
-        
-	</tr>
-    <tr style='background-color: lightgreen;'>
-        <td style='text-align: left;'>3</td>
-        <td style='text-align: left;'>
-            <span class='hide-tab-des'>Al Hilal</span>
-            <span class='hide-mob'>Al Hilal</span>
-        </td>
-        <td>CLE</td>
-
-    
-        <td class=''>1</td>
-        <td class=''>0</td>
-        <td class=''>0</td>
-
-        
-        <td class=''>3</td>
-		<td>6.000</td>
 
         
 	</tr>
@@ -3989,9 +4013,72 @@
         
 	</tr>
 
-</table><table class='cpts cpts-KOR' style='padding: 16px 4px 0'>
+</table><table class='cpts cpts-IRQ' style='padding: 16px 4px 0'>
     <tr style='text-align: right;'>
 		<th style='width: 20px;text-align: left; font-weight: bold;'>8</th>
+		
+                <th style='text-align: left; width: 250px; font-weight: bold;'>
+            <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/IRQ' />
+            <span class='hide-mob-tab'>&nbsp;&nbsp;Iraq</span>
+            <span class='hide-des'>&nbsp;&nbsp;IRQ</span>
+        </th>
+        <th style='width: 40px;'>Cup</th>
+        <th>W</th>
+        <th>D</th>
+        <th>L</th>
+        <th>Bonus</th>
+        <th>Points</th>
+        <th>Country<br/>Points</th>
+		
+            </tr>    <tr>
+
+            <td class='hide-mob-tab' colspan='8' style='background-color: #EEEEEE; padding: 2px 10px; text-align: left;'>Group and knockout stage</td>
+        <td class='hide-des' colspan='8' style='background-color: #EEEEEE; padding: 2px 10px; text-align: left;'>Group and knockout stage</td>
+    			
+        <td rowspan='3' style='background-color: #FFFF93; font-weight: bold; text-align: right;'>4.500</td>
+	</tr>
+    <tr style='background-color: lightgreen;'>
+        <td style='text-align: left;'>1</td>
+        <td style='text-align: left;'>
+            <span class='hide-tab-des'>Al Shorta</span>
+            <span class='hide-mob'>Al Shorta</span>
+        </td>
+        <td>CL2</td>
+
+    
+        <td class=''>2</td>
+        <td class=''>0</td>
+        <td class=''>0</td>
+
+        
+        <td class=''>3</td>
+		<td>6.000</td>
+
+        
+	</tr>
+    <tr style='background-color: lightgreen;'>
+        <td style='text-align: left;'>2</td>
+        <td style='text-align: left;'>
+            <span class='hide-tab-des'>Al Quwa Jawiya</span>
+            <span class='hide-mob'>Al Quwa Al Jawiya</span>
+        </td>
+        <td>CLE</td>
+
+    
+        <td class=''>0</td>
+        <td class=''>0</td>
+        <td class=''>2</td>
+
+        
+        <td class=''>3</td>
+		<td>3.000</td>
+
+        
+	</tr>
+
+</table><table class='cpts cpts-KOR' style='padding: 16px 4px 0'>
+    <tr style='text-align: right;'>
+		<th style='width: 20px;text-align: left; font-weight: bold;'>9</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
             <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/KOR' />
@@ -4135,7 +4222,7 @@
 
 </table><table class='cpts cpts-QAT' style='padding: 16px 4px 0'>
     <tr style='text-align: right;'>
-		<th style='width: 20px;text-align: left; font-weight: bold;'>9</th>
+		<th style='width: 20px;text-align: left; font-weight: bold;'>10</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
             <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/QAT' />
@@ -4225,7 +4312,7 @@
     
         <td class=''>0</td>
         <td class=''>0</td>
-        <td class=''>1</td>
+        <td class=''>2</td>
 
         
         <td class=''>3</td>
@@ -4234,14 +4321,14 @@
         
 	</tr>
 
-</table><table class='cpts cpts-IRQ' style='padding: 16px 4px 0'>
+</table><table class='cpts cpts-JOR' style='padding: 16px 4px 0'>
     <tr style='text-align: right;'>
-		<th style='width: 20px;text-align: left; font-weight: bold;'>10</th>
+		<th style='width: 20px;text-align: left; font-weight: bold;'>11</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
-            <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/IRQ' />
-            <span class='hide-mob-tab'>&nbsp;&nbsp;Iraq</span>
-            <span class='hide-des'>&nbsp;&nbsp;IRQ</span>
+            <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/JOR' />
+            <span class='hide-mob-tab'>&nbsp;&nbsp;Jordan</span>
+            <span class='hide-des'>&nbsp;&nbsp;JOR</span>
         </th>
         <th style='width: 40px;'>Cup</th>
         <th>W</th>
@@ -4256,50 +4343,74 @@
             <td class='hide-mob-tab' colspan='8' style='background-color: #EEEEEE; padding: 2px 10px; text-align: left;'>Group and knockout stage</td>
         <td class='hide-des' colspan='8' style='background-color: #EEEEEE; padding: 2px 10px; text-align: left;'>Group and knockout stage</td>
     			
-        <td rowspan='3' style='background-color: #FFFF93; font-weight: bold; text-align: right;'>3.500</td>
+        <td rowspan='5' style='background-color: #FFFF93; font-weight: bold; text-align: right;'>3.333</td>
 	</tr>
     <tr style='background-color: lightgreen;'>
         <td style='text-align: left;'>1</td>
         <td style='text-align: left;'>
-            <span class='hide-tab-des'>Al Shorta</span>
-            <span class='hide-mob'>Al Shorta</span>
+            <span class='hide-tab-des'>Al Hussein</span>
+            <span class='hide-mob'>Al Hussein</span>
         </td>
         <td>CL2</td>
 
     
         <td class=''>1</td>
-        <td class=''>0</td>
+        <td class=''>1</td>
         <td class=''>0</td>
 
         
         <td class=''>3</td>
-		<td>4.000</td>
+		<td>4.667</td>
 
         
 	</tr>
     <tr style='background-color: lightgreen;'>
         <td style='text-align: left;'>2</td>
         <td style='text-align: left;'>
-            <span class='hide-tab-des'>Al Quwa Jawiya</span>
-            <span class='hide-mob'>Al Quwa Al Jawiya</span>
+            <span class='hide-tab-des'>Al Faisaly</span>
+            <span class='hide-mob'>Al Faisaly</span>
         </td>
-        <td>CLE</td>
+        <td>CL2</td>
 
     
         <td class=''>0</td>
         <td class=''>0</td>
-        <td class=''>2</td>
+        <td class=''>1</td>
 
         
         <td class=''>3</td>
-		<td>3.000</td>
+		<td>2.000</td>
 
         
 	</tr>
+    <tr>
+    
+            <td class='hide-mob-tab' colspan='8' style='background-color: #EEEEEE; padding: 2px 10px; text-align: left;'>Qualifying play-offs stage</td>
+        <td class='hide-des' colspan='8' style='background-color: #EEEEEE; padding: 2px 10px; text-align: left;'>Qualifying play-offs stage</td>
+        
+    
+    </tr>
+    <tr style='background-color: lightblue; text-align: right;'>
+        <td style='text-align: left;'>1</td>
+        <td style='text-align: left;'>
+            <span class='hide-tab-des'>Al Hussein</span>
+            <span class='hide-mob'>Al Hussein</span>
+        </td>
+        <td>CLE</td>
+
+					
+        <td class=''>0</td>
+        <td class=''>0</td>
+        <td class=''>1</td>
+
+        
+        <td class=''></td>
+        <td>0</td>
+    </tr>
 
 </table><table class='cpts cpts-AUS' style='padding: 16px 4px 0'>
     <tr style='text-align: right;'>
-		<th style='width: 20px;text-align: left; font-weight: bold;'>11</th>
+		<th style='width: 20px;text-align: left; font-weight: bold;'>12</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
             <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/AUS' />
@@ -4405,7 +4516,7 @@
 
 </table><table class='cpts cpts-THA' style='padding: 16px 4px 0'>
     <tr style='text-align: right;'>
-		<th style='width: 20px;text-align: left; font-weight: bold;'>12</th>
+		<th style='width: 20px;text-align: left; font-weight: bold;'>13</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
             <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/THA' />
@@ -4506,7 +4617,7 @@
 
 </table><table class='cpts cpts-VIE' style='padding: 16px 4px 0'>
     <tr style='text-align: right;'>
-		<th style='width: 20px;text-align: left; font-weight: bold;'>13</th>
+		<th style='width: 20px;text-align: left; font-weight: bold;'>14</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
             <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/VIE' />
@@ -4593,7 +4704,7 @@
 
 </table><table class='cpts cpts-CAM' style='padding: 16px 4px 0'>
     <tr style='text-align: right;'>
-		<th style='width: 20px;text-align: left; font-weight: bold;'>14</th>
+		<th style='width: 20px;text-align: left; font-weight: bold;'>15</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
             <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/CAM' />
@@ -4656,7 +4767,7 @@
 
 </table><table class='cpts cpts-TKM' style='padding: 16px 4px 0'>
     <tr style='text-align: right;'>
-		<th style='width: 20px;text-align: left; font-weight: bold;'>15</th>
+		<th style='width: 20px;text-align: left; font-weight: bold;'>16</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
             <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/TKM' />
@@ -4743,7 +4854,7 @@
 
 </table><table class='cpts cpts-IDN' style='padding: 16px 4px 0'>
     <tr style='text-align: right;'>
-		<th style='width: 20px;text-align: left; font-weight: bold;'>16</th>
+		<th style='width: 20px;text-align: left; font-weight: bold;'>17</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
             <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/IDN' />
@@ -4830,7 +4941,7 @@
 
 </table><table class='cpts cpts-BHR' style='padding: 16px 4px 0'>
     <tr style='text-align: right;'>
-		<th style='width: 20px;text-align: left; font-weight: bold;'>17</th>
+		<th style='width: 20px;text-align: left; font-weight: bold;'>18</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
             <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/BHR' />
@@ -4893,7 +5004,7 @@
 
 </table><table class='cpts cpts-OMA' style='padding: 16px 4px 0'>
     <tr style='text-align: right;'>
-		<th style='width: 20px;text-align: left; font-weight: bold;'>18</th>
+		<th style='width: 20px;text-align: left; font-weight: bold;'>19</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
             <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/OMA' />
@@ -4945,7 +5056,7 @@
     
         <td class=''>0</td>
         <td class=''>0</td>
-        <td class=''>1</td>
+        <td class=''>2</td>
 
         
         <td class=''>3</td>
@@ -4956,7 +5067,7 @@
 
 </table><table class='cpts cpts-SIN' style='padding: 16px 4px 0'>
     <tr style='text-align: right;'>
-		<th style='width: 20px;text-align: left; font-weight: bold;'>19</th>
+		<th style='width: 20px;text-align: left; font-weight: bold;'>20</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
             <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/SIN' />
@@ -5019,7 +5130,7 @@
 
 </table><table class='cpts cpts-HKG' style='padding: 16px 4px 0'>
     <tr style='text-align: right;'>
-		<th style='width: 20px;text-align: left; font-weight: bold;'>20</th>
+		<th style='width: 20px;text-align: left; font-weight: bold;'>21</th>
 		
                 <th style='text-align: left; width: 250px; font-weight: bold;'>
             <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/HKG' />
@@ -5080,93 +5191,6 @@
         
 	</tr>
 
-</table><table class='cpts cpts-JOR' style='padding: 16px 4px 0'>
-    <tr style='text-align: right;'>
-		<th style='width: 20px;text-align: left; font-weight: bold;'>21</th>
-		
-                <th style='text-align: left; width: 250px; font-weight: bold;'>
-            <img class='country-flag' src='https://api.fifa.com/api/v3/picture/flags-sq-2/JOR' />
-            <span class='hide-mob-tab'>&nbsp;&nbsp;Jordan</span>
-            <span class='hide-des'>&nbsp;&nbsp;JOR</span>
-        </th>
-        <th style='width: 40px;'>Cup</th>
-        <th>W</th>
-        <th>D</th>
-        <th>L</th>
-        <th>Bonus</th>
-        <th>Points</th>
-        <th>Country<br/>Points</th>
-		
-            </tr>    <tr>
-
-            <td class='hide-mob-tab' colspan='8' style='background-color: #EEEEEE; padding: 2px 10px; text-align: left;'>Group and knockout stage</td>
-        <td class='hide-des' colspan='8' style='background-color: #EEEEEE; padding: 2px 10px; text-align: left;'>Group and knockout stage</td>
-    			
-        <td rowspan='5' style='background-color: #FFFF93; font-weight: bold; text-align: right;'>2.333</td>
-	</tr>
-    <tr style='background-color: lightgreen;'>
-        <td style='text-align: left;'>1</td>
-        <td style='text-align: left;'>
-            <span class='hide-tab-des'>Al Hussein</span>
-            <span class='hide-mob'>Al Hussein</span>
-        </td>
-        <td>CL2</td>
-
-    
-        <td class=''>0</td>
-        <td class=''>1</td>
-        <td class=''>0</td>
-
-        
-        <td class=''>3</td>
-		<td>2.667</td>
-
-        
-	</tr>
-    <tr style='background-color: lightgreen;'>
-        <td style='text-align: left;'>2</td>
-        <td style='text-align: left;'>
-            <span class='hide-tab-des'>Al Faisaly</span>
-            <span class='hide-mob'>Al Faisaly</span>
-        </td>
-        <td>CL2</td>
-
-    
-        <td class=''>0</td>
-        <td class=''>0</td>
-        <td class=''>1</td>
-
-        
-        <td class=''>3</td>
-		<td>2.000</td>
-
-        
-	</tr>
-    <tr>
-    
-            <td class='hide-mob-tab' colspan='8' style='background-color: #EEEEEE; padding: 2px 10px; text-align: left;'>Qualifying play-offs stage</td>
-        <td class='hide-des' colspan='8' style='background-color: #EEEEEE; padding: 2px 10px; text-align: left;'>Qualifying play-offs stage</td>
-        
-    
-    </tr>
-    <tr style='background-color: lightblue; text-align: right;'>
-        <td style='text-align: left;'>1</td>
-        <td style='text-align: left;'>
-            <span class='hide-tab-des'>Al Hussein</span>
-            <span class='hide-mob'>Al Hussein</span>
-        </td>
-        <td>CLE</td>
-
-					
-        <td class=''>0</td>
-        <td class=''>0</td>
-        <td class=''>1</td>
-
-        
-        <td class=''></td>
-        <td>0</td>
-    </tr>
-
 </table><table class='cpts cpts-IND' style='padding: 16px 4px 0'>
     <tr style='text-align: right;'>
 		<th style='width: 20px;text-align: left; font-weight: bold;'>22</th>
@@ -5202,7 +5226,7 @@
     
         <td class=''>0</td>
         <td class=''>1</td>
-        <td class=''>0</td>
+        <td class=''>1</td>
 
         
         <td class=''>3</td>

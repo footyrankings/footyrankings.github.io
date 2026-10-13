@@ -2740,7 +2740,8 @@
     .crank .country-flag,
     .contrib .country-flag,
     .ccoef .country-flag,
-    .prizemoney .country-flag {
+    .prizemoney .country-flag,
+    .clubcoef .country-flag {
         width: 32px;
     }
 
@@ -2943,8 +2944,22 @@
         text-align: right;
     }
 
-    .prizemoney tr {
+    .prizemoney tr,
+    .clubcoef tr {
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .clubcoef td:nth-child(1),
+    .clubcoef td:nth-child(3),
+    .clubcoef td:nth-child(4),
+    .clubcoef td:nth-child(5),
+    .clubcoef td:nth-child(6) {
+        text-align: center;
+    }
+
+    .clubcoef td:nth-child(7) {
+        text-align: right;
+        font-weight: bold;
     }
 
     @media only screen and (max-width: 360px) {
@@ -2985,7 +3000,8 @@
         .cpts .country-flag,
         .ccoef .country-flag,
         .contrib .country-flag,
-        .prizemoney .country-flag {
+        .prizemoney .country-flag,
+        .clubcoef .country-flag {
             width: 20px !important;
         }
 
@@ -3018,7 +3034,9 @@
         }
 
         .prizemoney th,
-        .prizemoney td {
+        .prizemoney td,
+        .clubcoef th,
+        .clubcoef td {
             padding: 4px;
             font-size: 11px;
         }
@@ -3141,10 +3159,29 @@
             <td class='hide-mob-tab' colspan='8' style='background-color: #EEEEEE; padding: 2px 10px; text-align: left;'>Group and knockout stage</td>
         <td class='hide-des' colspan='8' style='background-color: #EEEEEE; padding: 2px 10px; text-align: left;'>Group and knockout stage</td>
     			
-        <td rowspan='9' style='background-color: #FFFF93; font-weight: bold; text-align: right;'>5.744</td>
+        <td rowspan='9' style='background-color: #FFFF93; font-weight: bold; text-align: right;'>6.244</td>
 	</tr>
     <tr style='background-color: lightgreen;'>
         <td style='text-align: left;'>1</td>
+        <td style='text-align: left;'>
+            <span class='hide-tab-des'>Al Hilal</span>
+            <span class='hide-mob'>Al Hilal</span>
+        </td>
+        <td>CLE</td>
+
+    
+        <td class=''>2</td>
+        <td class=''>0</td>
+        <td class=''>0</td>
+
+        
+        <td class=''>3</td>
+		<td>9.000</td>
+
+        
+	</tr>
+    <tr style='background-color: lightgreen;'>
+        <td style='text-align: left;'>2</td>
         <td style='text-align: left;'>
             <span class='hide-tab-des'>Al Ahli</span>
             <span class='hide-mob'>Al Ahli</span>
@@ -3163,7 +3200,7 @@
         
 	</tr>
     <tr style='background-color: lightgreen;'>
-        <td style='text-align: left;'>2</td>
+        <td style='text-align: left;'>3</td>
         <td style='text-align: left;'>
             <span class='hide-tab-des'>Al Qadsiah</span>
             <span class='hide-mob'>Al Qadsiah</span>
@@ -3178,25 +3215,6 @@
         
         <td class=''>3</td>
 		<td>7.000</td>
-
-        
-	</tr>
-    <tr style='background-color: lightgreen;'>
-        <td style='text-align: left;'>3</td>
-        <td style='text-align: left;'>
-            <span class='hide-tab-des'>Al Hilal</span>
-            <span class='hide-mob'>Al Hilal</span>
-        </td>
-        <td>CLE</td>
-
-    
-        <td class=''>1</td>
-        <td class=''>0</td>
-        <td class=''>0</td>
-
-        
-        <td class=''>3</td>
-		<td>6.000</td>
 
         
 	</tr>
