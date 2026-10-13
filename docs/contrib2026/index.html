@@ -2374,7 +2374,7 @@
 				border: 1px solid #e6e6e6;
 			}
 			th {
-				background-color: #014a7f !important;
+				background-color: #211D52 !important;
 				color: #fff;
 				text-align: center;
 			}
@@ -2391,11 +2391,11 @@
 				border: 0;
 			}
 
-			table:not(.rank-nav):not(.latest-rank) tr:nth-child(odd) {
+			table:not(.rank-nav):not(.latest-rank):not(.crank) tr:nth-child(odd) {
 				background: #fff;
 				color: #444;
 			}
-			table:not(.rank-nav):not(.latest-rank) tr:nth-child(even) {
+			table:not(.rank-nav):not(.latest-rank):not(.crank) tr:nth-child(even) {
 				background: #f2f2f2;
 				color: #444;
 			}
@@ -2751,10 +2751,19 @@
         justify-content: space-between;
     }
 
+    .crank {
+        border-collapse: separate;
+    }
+
     .crank th {
-        border: 1px solid white;
         border-collapse: collapse;
         vertical-align: middle;
+        position: sticky;
+        top: 90.5px;
+    }
+
+    .crank tr:nth-child(2) th {
+        top: 129px;
     }
 
     .crank th a {
@@ -2764,8 +2773,12 @@
 
     .crank td,
     .matches td {
-        border: 1px solid white;
         border-collapse: collapse;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    .crank .overall-rank {
+        white-space: nowrap;
     }
 
     .crank small {	
@@ -2775,6 +2788,20 @@
     .rank-nav span:not(:last-child)::after {
         content: "|";
         margin: 0 8px;
+    }
+
+    .crank tr.odd-row {
+        background: #f2f2f2;
+    }
+
+    .crank-current tbody tr.status-active .overall-rank,
+    .crank-current tbody tr.status-active .region-rank {
+        border-left: 5px solid #10b981;
+    }
+
+    .crank-current tbody tr.status-eliminated .overall-rank,
+    .crank-current tbody tr.status-eliminated .region-rank {
+        border-left: 5px solid #9ca3af;
     }
 
     .cpts {
@@ -2920,6 +2947,10 @@
         border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     }
 
+    @media only screen and (max-width: 360px) {
+        
+    }
+
     @media only screen and (max-width: 400px) {
         .crank td, .matches td {
             padding: 3px 6px;
@@ -2980,8 +3011,6 @@
         .crank th {
             font-size: 12px;
             padding: 4px;
-            position: sticky;
-            top: 65px;
         }
 
         .cpts, .matches, .matches tr.round td {
@@ -2993,9 +3022,22 @@
             padding: 4px;
             font-size: 11px;
         }
+
+        .crank tr.hide-tab-des+tr.hide-tab-des th {
+            top: 117.6px;
+        }
     }
 
-    @media only screen and (min-width: 768px) {
+    @media only screen and (max-width: 575px) {
+        .crank th {
+            top: 69.5px;
+        }
+        .crank tr.hide-tab-des+tr.hide-tab-des th {
+            top: 96.7px;
+        }
+    }
+
+    @media only screen and (min-width: 769px) {
         .hide-tab-des {
             display: none;
         }
@@ -3006,21 +3048,33 @@
             display: none;
         }
 
-        .crank.crank-current,
         .crank.crank-8years {
             font-size: 12px;
         }
 
-        .crank.crank-current .country-flag,
         .crank.crank-8years .country-flag {
             width: 20px;
         }
+
+        .crank tr.hide-mob-des+tr.hide-mob-des th {
+            top: 123.6px;
+        }
     }
 
-    @media only screen and (min-width: 992px) {
+    @media only screen and (min-width: 993px) {
         .hide-des,
         .hide-mob-des {
             display: none;
+        }
+    }
+
+    @media only screen and (max-width: 1200px) {
+        .crank.crank-8years {
+            font-size: 12px;
+        }
+
+        .crank tr.hide-mob-tab+tr.hide-mob-tab th {
+            top: 124.6px;
         }
     }
 
@@ -3050,6 +3104,19 @@
             if (selected === "team-all") document.querySelectorAll(".overall-rank").forEach(el => el.style.display = "table-cell");
             if (selected.includes("region")) document.querySelectorAll(".region-rank").forEach(el => el.style.display = "table-cell");
             if (selected.includes("zone")) document.querySelectorAll(".zone-rank").forEach(el => el.style.display = "table-cell");
+
+            updateTableStripes();
+        }
+
+        function updateTableStripes() {
+            document.querySelectorAll('.crank').forEach(table => {
+                const visibleRows = [...table.querySelectorAll('tr')]
+                    .filter(row => row.offsetParent !== null);
+
+                visibleRows.forEach((row, index) => {
+                    row.classList.toggle('odd-row', index % 2 === 0);
+                });
+            });
         }
     </script>
 </head>
@@ -3249,6 +3316,37 @@ To calculate the contribution of each club, the points earned by the club are di
     </tr>
         <tr style="background-color: transparent">
         <td>
+            <img width="20" height="20" src="https://www.flashscore.com/res/image/data/ny6quoU0-EJoO9TRD.png" style="visibility: visible">&nbsp;
+            Al Nassr</td>
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab">23.6</td>
+
+        
+        <td class="hide-mob-tab">23</td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab">29.6</td>
+
+        
+        <td class="hide-mob-tab">33</td>
+
+        
+        <td class="hide-mob-tab">30.72</td>
+
+                <td style="font-weight: bold">29.16</td>
+        <td>22</td>
+    </tr>
+        <tr style="background-color: transparent">
+        <td>
             <img width="20" height="20" src="https://static.flashscore.com/res/image/data/YFt73dQq-6ctx6cMC.png" style="visibility: visible">&nbsp;
             Al Ahli</td>
         
@@ -3277,37 +3375,6 @@ To calculate the contribution of each club, the points earned by the club are di
 
                 <td style="font-weight: bold">29.06</td>
         <td>21.9</td>
-    </tr>
-        <tr style="background-color: transparent">
-        <td>
-            <img width="20" height="20" src="https://www.flashscore.com/res/image/data/ny6quoU0-EJoO9TRD.png" style="visibility: visible">&nbsp;
-            Al Nassr</td>
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab">23</td>
-
-        
-        <td class="hide-mob-tab">23</td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab">29</td>
-
-        
-        <td class="hide-mob-tab">33</td>
-
-        
-        <td class="hide-mob-tab">30.72</td>
-
-                <td style="font-weight: bold">28.38</td>
-        <td>21.4</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -3357,7 +3424,7 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">7</td>
+        <td class="hide-mob-tab">7.45</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -3368,8 +3435,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">6.25</td>
-        <td>4.7</td>
+                <td style="font-weight: bold">6.57</td>
+        <td>5</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -3469,7 +3536,7 @@ To calculate the contribution of each club, the points earned by the club are di
             <img width="20" height="20" src="https://static.flashscore.com/res/image/data/t6XzCy7k-ll4pyUYI.png" style="visibility: visible">&nbsp;
             Al Fateh</td>
         
-        <td class="hide-mob-tab">6</td>
+        <td class="hide-mob-tab">6.6</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -3492,30 +3559,30 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">0.45</td>
-        <td>0.3</td>
+                <td style="font-weight: bold">0.63</td>
+        <td>0.5</td>
     </tr>
-        <tr style="background-color: lightblue">
+        <tr style="background-color: transparent">
         <td>
-            <img width="20" height="20" src="" style="visibility: hidden">&nbsp;
-            Qualification</td>
+            <img width="20" height="20" src="https://www.flashscore.com/res/image/data/zTqAr7BN-WQ8COsi0.png" style="visibility: visible">&nbsp;
+            Al Wehda</td>
         
-        <td class="hide-mob-tab">0.6</td>
+        <td class="hide-mob-tab"></td>
 
         
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">0.6</td>
+        <td class="hide-mob-tab"></td>
 
         
         <td class="hide-mob-tab">0.45</td>
 
         
-        <td class="hide-mob-tab">0.45</td>
+        <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">0.6</td>
+        <td class="hide-mob-tab"></td>
 
         
         <td class="hide-mob-tab"></td>
@@ -3523,8 +3590,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">1.55</td>
-        <td>1.2</td>
+                <td style="font-weight: bold">0.27</td>
+        <td>0.2</td>
     </tr>
     </table>
 
@@ -3694,7 +3761,7 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">17.95</td>
+        <td class="hide-mob-tab">18.55</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -3705,8 +3772,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab">32</td>
 
-                <td style="font-weight: bold">16.41</td>
-        <td>13.6</td>
+                <td style="font-weight: bold">16.83</td>
+        <td>14</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -3728,7 +3795,7 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab">33</td>
 
         
-        <td class="hide-mob-tab">7</td>
+        <td class="hide-mob-tab">7.6</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -3736,8 +3803,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">14.15</td>
-        <td>11.8</td>
+                <td style="font-weight: bold">14.63</td>
+        <td>12.2</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -3750,7 +3817,7 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">21</td>
+        <td class="hide-mob-tab">21.45</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -3767,8 +3834,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab">24</td>
 
-                <td style="font-weight: bold">13.2</td>
-        <td>11</td>
+                <td style="font-weight: bold">13.42</td>
+        <td>11.1</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -3806,7 +3873,7 @@ To calculate the contribution of each club, the points earned by the club are di
             <img width="20" height="20" src="https://www.flashscore.com/res/image/data/Q9lHEF5k-jq9ih1dt.png" style="visibility: visible">&nbsp;
             Gamba Osaka</td>
         
-        <td class="hide-mob-tab">4</td>
+        <td class="hide-mob-tab">4.6</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -3829,8 +3896,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab">27</td>
 
-                <td style="font-weight: bold">8.4</td>
-        <td>7</td>
+                <td style="font-weight: bold">8.58</td>
+        <td>7.1</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -3843,7 +3910,7 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab">38</td>
 
         
-        <td class="hide-mob-tab">21</td>
+        <td class="hide-mob-tab">21.6</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -3860,8 +3927,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">7.78</td>
-        <td>6.5</td>
+                <td style="font-weight: bold">8.08</td>
+        <td>6.7</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -3964,7 +4031,7 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">4</td>
+        <td class="hide-mob-tab">4.6</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -3984,39 +4051,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">0.4</td>
-        <td>0.3</td>
-    </tr>
-        <tr style="background-color: lightblue">
-        <td>
-            <img width="20" height="20" src="" style="visibility: hidden">&nbsp;
-            Qualification</td>
-        
-        <td class="hide-mob-tab">0.6</td>
-
-        
-        <td class="hide-mob-tab">0.6</td>
-
-        
-        <td class="hide-mob-tab">1.05</td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab">0.6</td>
-
-        
-        <td class="hide-mob-tab">0.6</td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-                <td style="font-weight: bold">1.85</td>
-        <td>1.5</td>
+                <td style="font-weight: bold">0.64</td>
+        <td>0.5</td>
     </tr>
     </table>
 
@@ -4112,19 +4148,19 @@ To calculate the contribution of each club, the points earned by the club are di
             <img width="20" height="20" src="https://static.flashscore.com/res/image/data/8nEvADCN-0hHJPkl1.png" style="visibility: visible">&nbsp;
             Ulsan HD</td>
         
-        <td class="hide-mob-tab">7</td>
+        <td class="hide-mob-tab">7.45</td>
 
         
         <td class="hide-mob-tab">15</td>
 
         
-        <td class="hide-mob-tab">17</td>
+        <td class="hide-mob-tab">17.6</td>
 
         
         <td class="hide-mob-tab">29</td>
 
         
-        <td class="hide-mob-tab">10</td>
+        <td class="hide-mob-tab">10.6</td>
 
         
         <td class="hide-mob-tab">32</td>
@@ -4135,8 +4171,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab">12</td>
 
-                <td style="font-weight: bold">21.09</td>
-        <td>24.1</td>
+                <td style="font-weight: bold">21.94</td>
+        <td>25.1</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -4217,7 +4253,7 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab">15</td>
 
         
-        <td class="hide-mob-tab">16</td>
+        <td class="hide-mob-tab">16.45</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -4228,8 +4264,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">6.18</td>
-        <td>7.1</td>
+                <td style="font-weight: bold">6.49</td>
+        <td>7.4</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -4332,7 +4368,7 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab">9</td>
 
         
-        <td class="hide-mob-tab">26</td>
+        <td class="hide-mob-tab">26.6</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -4352,8 +4388,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">3.28</td>
-        <td>3.7</td>
+                <td style="font-weight: bold">3.52</td>
+        <td>4</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -4375,7 +4411,7 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">12</td>
+        <td class="hide-mob-tab">12.6</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -4383,8 +4419,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">2.4</td>
-        <td>2.7</td>
+                <td style="font-weight: bold">2.88</td>
+        <td>3.3</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -4478,37 +4514,6 @@ To calculate the contribution of each club, the points earned by the club are di
 
                 <td style="font-weight: bold">1</td>
         <td>1.1</td>
-    </tr>
-        <tr style="background-color: lightblue">
-        <td>
-            <img width="20" height="20" src="" style="visibility: hidden">&nbsp;
-            Qualification</td>
-        
-        <td class="hide-mob-tab">0.45</td>
-
-        
-        <td class="hide-mob-tab">0.6</td>
-
-        
-        <td class="hide-mob-tab">0.6</td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab">1.05</td>
-
-        
-        <td class="hide-mob-tab">0.6</td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-                <td style="font-weight: bold">1.89</td>
-        <td>2.2</td>
     </tr>
     </table>
 
@@ -4607,13 +4612,13 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab">22</td>
 
         
-        <td class="hide-mob-tab">13</td>
+        <td class="hide-mob-tab">13.6</td>
 
         
         <td class="hide-mob-tab">2</td>
 
         
-        <td class="hide-mob-tab"></td>
+        <td class="hide-mob-tab">0.3</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -4627,8 +4632,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">20.41</td>
-        <td>25.7</td>
+                <td style="font-weight: bold">20.83</td>
+        <td>26.2</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -4650,16 +4655,16 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab">13</td>
 
         
-        <td class="hide-mob-tab"></td>
+        <td class="hide-mob-tab">0.6</td>
 
         
-        <td class="hide-mob-tab">19</td>
+        <td class="hide-mob-tab">19.15</td>
 
         
         <td class="hide-mob-tab">25.55</td>
 
-                <td style="font-weight: bold">16.22</td>
-        <td>20.4</td>
+                <td style="font-weight: bold">16.84</td>
+        <td>21.2</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -4678,10 +4683,10 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab">15</td>
 
         
-        <td class="hide-mob-tab">5</td>
+        <td class="hide-mob-tab">5.45</td>
 
         
-        <td class="hide-mob-tab">8</td>
+        <td class="hide-mob-tab">8.9</td>
 
         
         <td class="hide-mob-tab">23</td>
@@ -4689,15 +4694,15 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab">11.71</td>
 
-                <td style="font-weight: bold">15.47</td>
-        <td>19.5</td>
+                <td style="font-weight: bold">16.5</td>
+        <td>20.8</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
             <img width="20" height="20" src="https://www.flashscore.com/res/image/data/AyCpMq86-8dqXppkD.png" style="visibility: visible">&nbsp;
             Al Wahda</td>
         
-        <td class="hide-mob-tab">4</td>
+        <td class="hide-mob-tab">4.6</td>
 
         
         <td class="hide-mob-tab">3</td>
@@ -4706,7 +4711,7 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab">17</td>
 
         
-        <td class="hide-mob-tab">18.5</td>
+        <td class="hide-mob-tab">19.1</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -4720,8 +4725,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab">22.35</td>
 
-                <td style="font-weight: bold">12.72</td>
-        <td>16</td>
+                <td style="font-weight: bold">13.26</td>
+        <td>16.7</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -4785,36 +4790,67 @@ To calculate the contribution of each club, the points earned by the club are di
                 <td style="font-weight: bold">2.48</td>
         <td>3.1</td>
     </tr>
-        <tr style="background-color: lightblue">
+        <tr style="background-color: transparent">
         <td>
-            <img width="20" height="20" src="" style="visibility: hidden">&nbsp;
-            Qualification</td>
+            <img width="20" height="20" src="https://www.flashscore.com/res/image/data/x8DyZFne-fguToQZ6.png" style="visibility: visible">&nbsp;
+            Baniyas</td>
         
-        <td class="hide-mob-tab">0.6</td>
+        <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">0.6</td>
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
 
         
         <td class="hide-mob-tab">0.3</td>
 
         
-        <td class="hide-mob-tab">0.9</td>
-
-        
-        <td class="hide-mob-tab">0.75</td>
-
-        
-        <td class="hide-mob-tab">1.5</td>
-
-        
-        <td class="hide-mob-tab">0.15</td>
+        <td class="hide-mob-tab"></td>
 
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">2.97</td>
-        <td>3.7</td>
+        
+        <td class="hide-mob-tab"></td>
+
+                <td style="font-weight: bold">0.21</td>
+        <td>0.3</td>
+    </tr>
+        <tr style="background-color: transparent">
+        <td>
+            <img width="20" height="20" src="https://www.flashscore.com/res/image/data/Q3crtsVH-fguToQZ6.png" style="visibility: visible">&nbsp;
+            Al Nasr</td>
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab">0.3</td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+                <td style="font-weight: bold">0.15</td>
+        <td>0.2</td>
     </tr>
     </table>
 
@@ -4907,6 +4943,37 @@ To calculate the contribution of each club, the points earned by the club are di
     </tr>
         <tr style="background-color: transparent">
         <td>
+            <img width="20" height="20" src="https://static.flashscore.com/res/image/data/E1GAXuRq-YLLRGqLF.png" style="visibility: visible">&nbsp;
+            Tractor</td>
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab">2</td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab">13</td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab">0.3</td>
+
+        
+        <td class="hide-mob-tab">17.83</td>
+
+        
+        <td class="hide-mob-tab">24.48</td>
+
+                <td style="font-weight: bold">14.56</td>
+        <td>20.4</td>
+    </tr>
+        <tr style="background-color: transparent">
+        <td>
             <img width="20" height="20" src="https://static.flashscore.com/res/image/data/fFlLLxT0-Oli0orYQ.png" style="visibility: visible">&nbsp;
             Persepolis</td>
         
@@ -4938,41 +5005,10 @@ To calculate the contribution of each club, the points earned by the club are di
     </tr>
         <tr style="background-color: transparent">
         <td>
-            <img width="20" height="20" src="https://static.flashscore.com/res/image/data/E1GAXuRq-YLLRGqLF.png" style="visibility: visible">&nbsp;
-            Tractor</td>
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab">2</td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab">13</td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab">17.83</td>
-
-        
-        <td class="hide-mob-tab">24.48</td>
-
-                <td style="font-weight: bold">14.32</td>
-        <td>20</td>
-    </tr>
-        <tr style="background-color: transparent">
-        <td>
             <img width="20" height="20" src="https://www.flashscore.com/res/image/data/fyhmHABN-fguToQZ6.png" style="visibility: visible">&nbsp;
             Esteghlal</td>
         
-        <td class="hide-mob-tab">17</td>
+        <td class="hide-mob-tab">17.45</td>
 
         
         <td class="hide-mob-tab">22</td>
@@ -4995,8 +5031,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab">10.62</td>
 
-                <td style="font-weight: bold">14.05</td>
-        <td>19.7</td>
+                <td style="font-weight: bold">14.18</td>
+        <td>19.9</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -5021,13 +5057,13 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab">13</td>
 
         
-        <td class="hide-mob-tab">8.67</td>
+        <td class="hide-mob-tab">8.82</td>
 
         
         <td class="hide-mob-tab">13.2</td>
 
-                <td style="font-weight: bold">12.27</td>
-        <td>17.2</td>
+                <td style="font-weight: bold">12.4</td>
+        <td>17.4</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -5043,7 +5079,7 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">5</td>
+        <td class="hide-mob-tab">5.6</td>
 
         
         <td class="hide-mob-tab">19.5</td>
@@ -5057,8 +5093,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">7.58</td>
-        <td>10.6</td>
+                <td style="font-weight: bold">7.94</td>
+        <td>11.1</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -5068,13 +5104,10 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab">7</td>
 
         
-        <td class="hide-mob-tab">13</td>
+        <td class="hide-mob-tab">13.6</td>
 
         
-        <td class="hide-mob-tab">15</td>
-
-        
-        <td class="hide-mob-tab"></td>
+        <td class="hide-mob-tab">15.9</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -5088,8 +5121,11 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">4.33</td>
-        <td>6.1</td>
+        
+        <td class="hide-mob-tab"></td>
+
+                <td style="font-weight: bold">5.02</td>
+        <td>7</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -5153,18 +5189,15 @@ To calculate the contribution of each club, the points earned by the club are di
                 <td style="font-weight: bold">0.9</td>
         <td>1.3</td>
     </tr>
-        <tr style="background-color: lightblue">
+        <tr style="background-color: transparent">
         <td>
-            <img width="20" height="20" src="" style="visibility: hidden">&nbsp;
-            Qualification</td>
+            <img width="20" height="20" src="https://www.flashscore.com/res/image/data/SpaH3G7k-fguToQZ6.png" style="visibility: visible">&nbsp;
+            Saipa</td>
         
-        <td class="hide-mob-tab">0.45</td>
+        <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">0.6</td>
-
-        
-        <td class="hide-mob-tab">1.5</td>
+        <td class="hide-mob-tab"></td>
 
         
         <td class="hide-mob-tab">0.6</td>
@@ -5173,16 +5206,19 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">0.3</td>
+        <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">0.15</td>
+        <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">0</td>
+        <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">1.86</td>
-        <td>2.6</td>
+        
+        <td class="hide-mob-tab"></td>
+
+                <td style="font-weight: bold">0.3</td>
+        <td>0.4</td>
     </tr>
     </table>
 
@@ -5278,7 +5314,7 @@ To calculate the contribution of each club, the points earned by the club are di
             <img width="20" height="20" src="https://www.flashscore.com/res/image/data/6wz76yhT-EJoO9TRD.png" style="visibility: visible">&nbsp;
             Al Sadd</td>
         
-        <td class="hide-mob-tab"></td>
+        <td class="hide-mob-tab">0.45</td>
 
         
         <td class="hide-mob-tab">30</td>
@@ -5301,8 +5337,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab">18.63</td>
 
-                <td style="font-weight: bold">24.43</td>
-        <td>35.2</td>
+                <td style="font-weight: bold">24.56</td>
+        <td>35.4</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -5330,10 +5366,10 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">15.97</td>
+        <td class="hide-mob-tab">16.27</td>
 
-                <td style="font-weight: bold">21.13</td>
-        <td>30.5</td>
+                <td style="font-weight: bold">21.43</td>
+        <td>30.9</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -5346,7 +5382,7 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab">6</td>
 
         
-        <td class="hide-mob-tab">3</td>
+        <td class="hide-mob-tab">3.6</td>
 
         
         <td class="hide-mob-tab">2</td>
@@ -5363,8 +5399,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">8.68</td>
-        <td>12.5</td>
+                <td style="font-weight: bold">8.98</td>
+        <td>12.9</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -5374,13 +5410,13 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">8</td>
+        <td class="hide-mob-tab">8.6</td>
 
         
-        <td class="hide-mob-tab"></td>
+        <td class="hide-mob-tab">0.3</td>
 
         
-        <td class="hide-mob-tab"></td>
+        <td class="hide-mob-tab">0.3</td>
 
         
         <td class="hide-mob-tab">5</td>
@@ -5389,13 +5425,13 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">10</td>
+        <td class="hide-mob-tab">10.3</td>
 
         
         <td class="hide-mob-tab">9.58</td>
 
-                <td style="font-weight: bold">6.32</td>
-        <td>9.1</td>
+                <td style="font-weight: bold">7.16</td>
+        <td>10.3</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -5448,7 +5484,7 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab"></td>
+        <td class="hide-mob-tab">0.3</td>
 
         
         <td class="hide-mob-tab">9.1</td>
@@ -5456,21 +5492,27 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">2.05</td>
-        <td>3</td>
+                <td style="font-weight: bold">2.29</td>
+        <td>3.3</td>
     </tr>
-        <tr style="background-color: lightblue">
+        <tr style="background-color: transparent">
         <td>
-            <img width="20" height="20" src="" style="visibility: hidden">&nbsp;
-            Qualification</td>
+            <img width="20" height="20" src="https://www.flashscore.com/res/image/data/dvIFQXS0-jDSSxEMB.png" style="visibility: visible">&nbsp;
+            Al Arabi</td>
         
-        <td class="hide-mob-tab">0.9</td>
+        <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">0.6</td>
+        <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">0.9</td>
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
 
         
         <td class="hide-mob-tab">0.3</td>
@@ -5479,16 +5521,41 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">0.6</td>
+        <td class="hide-mob-tab"></td>
+
+                <td style="font-weight: bold">0.24</td>
+        <td>0.3</td>
+    </tr>
+        <tr style="background-color: transparent">
+        <td>
+            <img width="20" height="20" src="https://www.flashscore.com/res/image/data/2eTiaM96-8fQzyhiO.png" style="visibility: visible">&nbsp;
+            El Jaish</td>
+        
+        <td class="hide-mob-tab">0.45</td>
 
         
-        <td class="hide-mob-tab">0.3</td>
+        <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">0.3</td>
+        <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">2.19</td>
-        <td>3.2</td>
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+                <td style="font-weight: bold">0.14</td>
+        <td>0.2</td>
     </tr>
     </table>
 
@@ -5596,7 +5663,7 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab"></td>
+        <td class="hide-mob-tab">0.45</td>
 
         
         <td class="hide-mob-tab">6</td>
@@ -5607,21 +5674,21 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab">24.5</td>
 
-                <td style="font-weight: bold">21.01</td>
-        <td>33.4</td>
+                <td style="font-weight: bold">21.33</td>
+        <td>33.9</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
             <img width="20" height="20" src="https://www.flashscore.com/res/image/data/tQ1P0PTH-fguToQZ6.png" style="visibility: visible">&nbsp;
             Bangkok United</td>
         
-        <td class="hide-mob-tab"></td>
+        <td class="hide-mob-tab">0.45</td>
 
         
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab"></td>
+        <td class="hide-mob-tab">0.3</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -5638,8 +5705,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab">20</td>
 
-                <td style="font-weight: bold">12.68</td>
-        <td>20.2</td>
+                <td style="font-weight: bold">12.97</td>
+        <td>20.6</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -5661,7 +5728,7 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab">19.5</td>
 
         
-        <td class="hide-mob-tab">0</td>
+        <td class="hide-mob-tab">0.6</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -5669,8 +5736,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab">6</td>
 
-                <td style="font-weight: bold">10.73</td>
-        <td>17.1</td>
+                <td style="font-weight: bold">11.21</td>
+        <td>17.8</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -5680,7 +5747,7 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab">14</td>
 
         
-        <td class="hide-mob-tab"></td>
+        <td class="hide-mob-tab">0.6</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -5700,8 +5767,39 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">6.75</td>
-        <td>10.7</td>
+                <td style="font-weight: bold">6.99</td>
+        <td>11.1</td>
+    </tr>
+        <tr style="background-color: transparent">
+        <td>
+            <img width="20" height="20" src="https://www.flashscore.com/res/image/data/GI6T9L96-fguToQZ6.png" style="visibility: visible">&nbsp;
+            Port</td>
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab">8</td>
+
+        
+        <td class="hide-mob-tab">0.3</td>
+
+        
+        <td class="hide-mob-tab">0.3</td>
+
+        
+        <td class="hide-mob-tab">10.67</td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+                <td style="font-weight: bold">4.05</td>
+        <td>6.4</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -5736,47 +5834,16 @@ To calculate the contribution of each club, the points earned by the club are di
     </tr>
         <tr style="background-color: transparent">
         <td>
-            <img width="20" height="20" src="https://www.flashscore.com/res/image/data/GI6T9L96-fguToQZ6.png" style="visibility: visible">&nbsp;
-            Port</td>
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab">8</td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab">10.67</td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-                <td style="font-weight: bold">3.6</td>
-        <td>5.7</td>
-    </tr>
-        <tr style="background-color: transparent">
-        <td>
             <img width="20" height="20" src="https://www.flashscore.com/res/image/data/h8msOBme-fguToQZ6.png" style="visibility: visible">&nbsp;
             Chiangrai United</td>
         
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab"></td>
+        <td class="hide-mob-tab">0.6</td>
 
         
-        <td class="hide-mob-tab"></td>
+        <td class="hide-mob-tab">0.75</td>
 
         
         <td class="hide-mob-tab">8</td>
@@ -5793,39 +5860,39 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">1.63</td>
-        <td>2.6</td>
+                <td style="font-weight: bold">2.24</td>
+        <td>3.6</td>
     </tr>
-        <tr style="background-color: lightblue">
+        <tr style="background-color: transparent">
         <td>
-            <img width="20" height="20" src="" style="visibility: hidden">&nbsp;
-            Qualification</td>
+            <img width="20" height="20" src="https://www.flashscore.com/res/image/data/AHOGVFWH-2kwK1905.png" style="visibility: visible">&nbsp;
+            Sukhothai</td>
         
-        <td class="hide-mob-tab">1.05</td>
-
-        
-        <td class="hide-mob-tab">1.2</td>
-
-        
-        <td class="hide-mob-tab">1.05</td>
+        <td class="hide-mob-tab">0.6</td>
 
         
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">0.75</td>
-
-        
-        <td class="hide-mob-tab">0.9</td>
+        <td class="hide-mob-tab"></td>
 
         
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">0</td>
+        <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">2.57</td>
-        <td>4.1</td>
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+                <td style="font-weight: bold">0.18</td>
+        <td>0.3</td>
     </tr>
     </table>
 
@@ -5921,22 +5988,22 @@ To calculate the contribution of each club, the points earned by the club are di
             <img width="20" height="20" src="https://www.flashscore.com/res/image/data/GOaievne-jq9ih1dt.png" style="visibility: visible">&nbsp;
             Shanghai Port</td>
         
-        <td class="hide-mob-tab">31</td>
+        <td class="hide-mob-tab">31.6</td>
 
         
-        <td class="hide-mob-tab">17</td>
+        <td class="hide-mob-tab">17.6</td>
 
         
         <td class="hide-mob-tab">19</td>
 
         
-        <td class="hide-mob-tab"></td>
+        <td class="hide-mob-tab">0.3</td>
 
         
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab"></td>
+        <td class="hide-mob-tab">0.3</td>
 
         
         <td class="hide-mob-tab">14</td>
@@ -5944,8 +6011,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab">7</td>
 
-                <td style="font-weight: bold">12.08</td>
-        <td>24.4</td>
+                <td style="font-weight: bold">12.92</td>
+        <td>26.1</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -5958,7 +6025,7 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">17</td>
+        <td class="hide-mob-tab">17.6</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -5975,8 +6042,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">8.08</td>
-        <td>16.3</td>
+                <td style="font-weight: bold">8.38</td>
+        <td>16.9</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -6014,7 +6081,7 @@ To calculate the contribution of each club, the points earned by the club are di
             <img width="20" height="20" src="https://www.flashscore.com/res/image/data/lzLqXwRq-EJoO9TRD.png" style="visibility: visible">&nbsp;
             Shanghai Shenhua</td>
         
-        <td class="hide-mob-tab"></td>
+        <td class="hide-mob-tab">0.3</td>
 
         
         <td class="hide-mob-tab">5</td>
@@ -6037,8 +6104,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab">7</td>
 
-                <td style="font-weight: bold">6.53</td>
-        <td>13.2</td>
+                <td style="font-weight: bold">6.62</td>
+        <td>13.4</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -6060,7 +6127,7 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">7</td>
+        <td class="hide-mob-tab">7.6</td>
 
         
         <td class="hide-mob-tab">8</td>
@@ -6068,8 +6135,39 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">3.67</td>
-        <td>7.4</td>
+                <td style="font-weight: bold">4.15</td>
+        <td>8.4</td>
+    </tr>
+        <tr style="background-color: transparent">
+        <td>
+            <img width="20" height="20" src="https://static.flashscore.com/res/image/data/SUTGQXmC-OOoISEmk.png" style="visibility: visible">&nbsp;
+            Chengdu Rongcheng</td>
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab">9.3</td>
+
+                <td style="font-weight: bold">2.55</td>
+        <td>5.2</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -6104,44 +6202,13 @@ To calculate the contribution of each club, the points earned by the club are di
     </tr>
         <tr style="background-color: transparent">
         <td>
-            <img width="20" height="20" src="https://static.flashscore.com/res/image/data/SUTGQXmC-OOoISEmk.png" style="visibility: visible">&nbsp;
-            Chengdu Rongcheng</td>
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab">9</td>
-
-                <td style="font-weight: bold">2.25</td>
-        <td>4.5</td>
-    </tr>
-        <tr style="background-color: transparent">
-        <td>
             <img width="20" height="20" src="https://www.flashscore.com/res/image/data/WjnSaR7k-8dqXppkD.png" style="visibility: visible">&nbsp;
             Tianjin Quanjian</td>
         
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">21</td>
+        <td class="hide-mob-tab">21.6</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -6161,8 +6228,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">2.1</td>
-        <td>4.2</td>
+                <td style="font-weight: bold">2.34</td>
+        <td>4.7</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -6225,37 +6292,6 @@ To calculate the contribution of each club, the points earned by the club are di
 
                 <td style="font-weight: bold">1.33</td>
         <td>2.7</td>
-    </tr>
-        <tr style="background-color: lightblue">
-        <td>
-            <img width="20" height="20" src="" style="visibility: hidden">&nbsp;
-            Qualification</td>
-        
-        <td class="hide-mob-tab">0.9</td>
-
-        
-        <td class="hide-mob-tab">1.2</td>
-
-        
-        <td class="hide-mob-tab">0.6</td>
-
-        
-        <td class="hide-mob-tab">0.3</td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab">0.9</td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab">0.3</td>
-
-                <td style="font-weight: bold">2.25</td>
-        <td>4.5</td>
     </tr>
     </table>
 
@@ -6394,7 +6430,7 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">2</td>
+        <td class="hide-mob-tab">2.6</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -6405,8 +6441,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">12.25</td>
-        <td>24.9</td>
+                <td style="font-weight: bold">12.67</td>
+        <td>25.8</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -6487,6 +6523,37 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
+        <td class="hide-mob-tab">0.3</td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+                <td style="font-weight: bold">2.06</td>
+        <td>4.2</td>
+    </tr>
+        <tr style="background-color: transparent">
+        <td>
+            <img width="20" height="20" src="https://www.flashscore.com/res/image/data/W08GpqiT-fguToQZ6.png" style="visibility: visible">&nbsp;
+            Brisbane Roar</td>
+        
+        <td class="hide-mob-tab">4.9</td>
+
+        
+        <td class="hide-mob-tab">0.3</td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
         <td class="hide-mob-tab"></td>
 
         
@@ -6498,8 +6565,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">1.85</td>
-        <td>3.8</td>
+                <td style="font-weight: bold">0.79</td>
+        <td>1.6</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -6565,44 +6632,13 @@ To calculate the contribution of each club, the points earned by the club are di
     </tr>
         <tr style="background-color: transparent">
         <td>
-            <img width="20" height="20" src="https://www.flashscore.com/res/image/data/W08GpqiT-fguToQZ6.png" style="visibility: visible">&nbsp;
-            Brisbane Roar</td>
-        
-        <td class="hide-mob-tab">4</td>
-
+            <img width="20" height="20" src="https://www.flashscore.com/res/image/data/G2fVyzjC-fguToQZ6.png" style="visibility: visible">&nbsp;
+            Newcastle Jets</td>
         
         <td class="hide-mob-tab"></td>
 
         
         <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-                <td style="font-weight: bold">0.4</td>
-        <td>0.8</td>
-    </tr>
-        <tr style="background-color: lightblue">
-        <td>
-            <img width="20" height="20" src="" style="visibility: hidden">&nbsp;
-            Qualification</td>
-        
-        <td class="hide-mob-tab">0.9</td>
-
-        
-        <td class="hide-mob-tab">0.3</td>
 
         
         <td class="hide-mob-tab">0.6</td>
@@ -6611,9 +6647,6 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">0.9</td>
-
-        
         <td class="hide-mob-tab"></td>
 
         
@@ -6622,8 +6655,11 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">1.32</td>
-        <td>2.7</td>
+        
+        <td class="hide-mob-tab"></td>
+
+                <td style="font-weight: bold">0.3</td>
+        <td>0.6</td>
     </tr>
     </table>
 
@@ -6719,10 +6755,10 @@ To calculate the contribution of each club, the points earned by the club are di
             <img width="20" height="20" src="https://static.flashscore.com/res/image/data/fLkfY76k-MwERIUFm.png" style="visibility: visible">&nbsp;
             Nasaf</td>
         
-        <td class="hide-mob-tab"></td>
+        <td class="hide-mob-tab">0.6</td>
 
         
-        <td class="hide-mob-tab">10</td>
+        <td class="hide-mob-tab">10.6</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -6731,7 +6767,7 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab">11.08</td>
 
         
-        <td class="hide-mob-tab">12</td>
+        <td class="hide-mob-tab">12.6</td>
 
         
         <td class="hide-mob-tab">15</td>
@@ -6742,8 +6778,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab">7.45</td>
 
-                <td style="font-weight: bold">15.84</td>
-        <td>33.5</td>
+                <td style="font-weight: bold">16.68</td>
+        <td>35.3</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -6753,10 +6789,10 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab"></td>
+        <td class="hide-mob-tab">0.3</td>
 
         
-        <td class="hide-mob-tab">8</td>
+        <td class="hide-mob-tab">8.9</td>
 
         
         <td class="hide-mob-tab">7</td>
@@ -6773,8 +6809,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">13.4</td>
-        <td>28.4</td>
+                <td style="font-weight: bold">13.97</td>
+        <td>29.6</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -6827,7 +6863,7 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">17</td>
+        <td class="hide-mob-tab">17.6</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -6835,8 +6871,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">3.4</td>
-        <td>7.2</td>
+                <td style="font-weight: bold">3.88</td>
+        <td>8.2</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -6871,6 +6907,37 @@ To calculate the contribution of each club, the points earned by the club are di
     </tr>
         <tr style="background-color: transparent">
         <td>
+            <img width="20" height="20" src="https://static.flashscore.com/res/image/data/dxduYkle-EPflwKJK.png" style="visibility: visible">&nbsp;
+            AGMK</td>
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab">0.6</td>
+
+        
+        <td class="hide-mob-tab">7.6</td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab">0.9</td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+                <td style="font-weight: bold">2.78</td>
+        <td>5.9</td>
+    </tr>
+        <tr style="background-color: transparent">
+        <td>
             <img width="20" height="20" src="https://www.flashscore.com/res/image/data/b986k8kC-bD8HhLBn.png" style="visibility: visible">&nbsp;
             Sogdiana</td>
         
@@ -6902,41 +6969,10 @@ To calculate the contribution of each club, the points earned by the club are di
     </tr>
         <tr style="background-color: transparent">
         <td>
-            <img width="20" height="20" src="https://static.flashscore.com/res/image/data/dxduYkle-EPflwKJK.png" style="visibility: visible">&nbsp;
-            AGMK</td>
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab">7</td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab">0</td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-                <td style="font-weight: bold">1.4</td>
-        <td>3</td>
-    </tr>
-        <tr style="background-color: transparent">
-        <td>
             <img width="20" height="20" src="https://www.flashscore.com/res/image/data/fwDsSyCN-EJoO9TRD.png" style="visibility: visible">&nbsp;
             Bunyodkor</td>
         
-        <td class="hide-mob-tab">3</td>
+        <td class="hide-mob-tab">3.45</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -6959,39 +6995,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">0.45</td>
-        <td>1</td>
-    </tr>
-        <tr style="background-color: lightblue">
-        <td>
-            <img width="20" height="20" src="" style="visibility: hidden">&nbsp;
-            Qualification</td>
-        
-        <td class="hide-mob-tab">1.05</td>
-
-        
-        <td class="hide-mob-tab">0.9</td>
-
-        
-        <td class="hide-mob-tab">1.5</td>
-
-        
-        <td class="hide-mob-tab">0.6</td>
-
-        
-        <td class="hide-mob-tab">0.6</td>
-
-        
-        <td class="hide-mob-tab">1.5</td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-                <td style="font-weight: bold">3.41</td>
-        <td>7.2</td>
+                <td style="font-weight: bold">0.59</td>
+        <td>1.2</td>
     </tr>
     </table>
 
@@ -7087,10 +7092,10 @@ To calculate the contribution of each club, the points earned by the club are di
             <img width="20" height="20" src="https://www.flashscore.com/res/image/data/pSe4mFne-8dqXppkD.png" style="visibility: visible">&nbsp;
             Johor Darul Ta'zim</td>
         
-        <td class="hide-mob-tab">6.22</td>
+        <td class="hide-mob-tab">6.67</td>
 
         
-        <td class="hide-mob-tab">3.33</td>
+        <td class="hide-mob-tab">3.63</td>
 
         
         <td class="hide-mob-tab">4</td>
@@ -7110,8 +7115,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab">21.5</td>
 
-                <td style="font-weight: bold">33.61</td>
-        <td>74.4</td>
+                <td style="font-weight: bold">33.86</td>
+        <td>74.9</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -7299,20 +7304,20 @@ To calculate the contribution of each club, the points earned by the club are di
                 <td style="font-weight: bold">0.25</td>
         <td>0.6</td>
     </tr>
-        <tr style="background-color: lightblue">
+        <tr style="background-color: transparent">
         <td>
-            <img width="20" height="20" src="" style="visibility: hidden">&nbsp;
-            Qualification</td>
+            <img width="20" height="20" src="https://www.flashscore.com/res/image/data/jBDRo2ne-bD8HhLBn.png" style="visibility: visible">&nbsp;
+            Perak</td>
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
         
         <td class="hide-mob-tab">0.45</td>
 
         
-        <td class="hide-mob-tab">0.3</td>
-
-        
-        <td class="hide-mob-tab">0.45</td>
-
-        
         <td class="hide-mob-tab"></td>
 
         
@@ -7327,8 +7332,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">0.48</td>
-        <td>1.1</td>
+                <td style="font-weight: bold">0.23</td>
+        <td>0.5</td>
     </tr>
     </table>
 
@@ -7424,13 +7429,13 @@ To calculate the contribution of each club, the points earned by the club are di
             <img width="20" height="20" src="https://www.flashscore.com/res/image/data/hnLvIIRq-fguToQZ6.png" style="visibility: visible">&nbsp;
             Al Wehdat</td>
         
-        <td class="hide-mob-tab">6.6</td>
+        <td class="hide-mob-tab">7.2</td>
 
         
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">5.87</td>
+        <td class="hide-mob-tab">6.17</td>
 
         
         <td class="hide-mob-tab">7</td>
@@ -7439,7 +7444,7 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab">6</td>
 
         
-        <td class="hide-mob-tab">4.23</td>
+        <td class="hide-mob-tab">4.53</td>
 
         
         <td class="hide-mob-tab">11.33</td>
@@ -7447,8 +7452,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab">5.31</td>
 
-                <td style="font-weight: bold">17.5</td>
-        <td>40.4</td>
+                <td style="font-weight: bold">18.07</td>
+        <td>41.7</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -7489,7 +7494,7 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">5.87</td>
+        <td class="hide-mob-tab">6.17</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -7509,8 +7514,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">4.24</td>
-        <td>9.8</td>
+                <td style="font-weight: bold">4.36</td>
+        <td>10.1</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -7604,37 +7609,6 @@ To calculate the contribution of each club, the points earned by the club are di
 
                 <td style="font-weight: bold">0.3</td>
         <td>0.7</td>
-    </tr>
-        <tr style="background-color: lightblue">
-        <td>
-            <img width="20" height="20" src="" style="visibility: hidden">&nbsp;
-            Qualification</td>
-        
-        <td class="hide-mob-tab">0.6</td>
-
-        
-        <td class="hide-mob-tab">0.3</td>
-
-        
-        <td class="hide-mob-tab">0.3</td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab">0.3</td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-                <td style="font-weight: bold">0.69</td>
-        <td>1.6</td>
     </tr>
     </table>
 
@@ -7736,10 +7710,10 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab">13.93</td>
 
         
-        <td class="hide-mob-tab"></td>
+        <td class="hide-mob-tab">0.3</td>
 
         
-        <td class="hide-mob-tab">2</td>
+        <td class="hide-mob-tab">2.45</td>
 
         
         <td class="hide-mob-tab">7</td>
@@ -7753,8 +7727,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">16.4</td>
-        <td>38.9</td>
+                <td style="font-weight: bold">16.82</td>
+        <td>39.9</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -7770,10 +7744,10 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab">8</td>
 
         
-        <td class="hide-mob-tab"></td>
+        <td class="hide-mob-tab">0.3</td>
 
         
-        <td class="hide-mob-tab"></td>
+        <td class="hide-mob-tab">0.45</td>
 
         
         <td class="hide-mob-tab">4.65</td>
@@ -7784,8 +7758,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab">13.66</td>
 
-                <td style="font-weight: bold">13.56</td>
-        <td>32.2</td>
+                <td style="font-weight: bold">14.06</td>
+        <td>33.3</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -7848,37 +7822,6 @@ To calculate the contribution of each club, the points earned by the club are di
 
                 <td style="font-weight: bold">2.07</td>
         <td>4.9</td>
-    </tr>
-        <tr style="background-color: lightblue">
-        <td>
-            <img width="20" height="20" src="" style="visibility: hidden">&nbsp;
-            Qualification</td>
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab">0.3</td>
-
-        
-        <td class="hide-mob-tab">0.75</td>
-
-        
-        <td class="hide-mob-tab">0.45</td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-                <td style="font-weight: bold">0.92</td>
-        <td>2.2</td>
     </tr>
     </table>
 
@@ -7974,13 +7917,13 @@ To calculate the contribution of each club, the points earned by the club are di
             <img width="20" height="20" src="https://www.flashscore.com/res/image/data/YBAghElC-EJoO9TRD.png" style="visibility: visible">&nbsp;
             Lion City Sailors</td>
         
-        <td class="hide-mob-tab">7.08</td>
+        <td class="hide-mob-tab">7.38</td>
 
         
         <td class="hide-mob-tab">10.3</td>
 
         
-        <td class="hide-mob-tab">3.33</td>
+        <td class="hide-mob-tab">3.63</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -7997,18 +7940,18 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab">8.67</td>
 
-                <td style="font-weight: bold">22.37</td>
-        <td>57.5</td>
+                <td style="font-weight: bold">22.61</td>
+        <td>58.1</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
             <img width="20" height="20" src="https://www.flashscore.com/res/image/data/hplVTA8k-fguToQZ6.png" style="visibility: visible">&nbsp;
             Tampines Rovers</td>
         
-        <td class="hide-mob-tab">2</td>
+        <td class="hide-mob-tab">2.3</td>
 
         
-        <td class="hide-mob-tab">0.33</td>
+        <td class="hide-mob-tab">0.63</td>
 
         
         <td class="hide-mob-tab">4.33</td>
@@ -8020,7 +7963,7 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab">0</td>
 
         
-        <td class="hide-mob-tab"></td>
+        <td class="hide-mob-tab">0.1</td>
 
         
         <td class="hide-mob-tab">7.33</td>
@@ -8028,8 +7971,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab">20.33</td>
 
-                <td style="font-weight: bold">14.92</td>
-        <td>38.4</td>
+                <td style="font-weight: bold">15.21</td>
+        <td>39.1</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -8061,37 +8004,6 @@ To calculate the contribution of each club, the points earned by the club are di
 
                 <td style="font-weight: bold">1.08</td>
         <td>2.8</td>
-    </tr>
-        <tr style="background-color: lightblue">
-        <td>
-            <img width="20" height="20" src="" style="visibility: hidden">&nbsp;
-            Qualification</td>
-        
-        <td class="hide-mob-tab">0.6</td>
-
-        
-        <td class="hide-mob-tab">0.3</td>
-
-        
-        <td class="hide-mob-tab">0.3</td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab">0.1</td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-                <td style="font-weight: bold">0.53</td>
-        <td>1.4</td>
     </tr>
     </table>
 
@@ -8218,13 +8130,13 @@ To calculate the contribution of each club, the points earned by the club are di
             <img width="20" height="20" src="https://www.flashscore.com/res/image/data/KnHkOB7k-8dqXppkD.png" style="visibility: visible">&nbsp;
             Hanoi</td>
         
-        <td class="hide-mob-tab">3.67</td>
+        <td class="hide-mob-tab">3.97</td>
 
         
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">13.08</td>
+        <td class="hide-mob-tab">13.68</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -8241,8 +8153,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">6.22</td>
-        <td>16.4</td>
+                <td style="font-weight: bold">6.61</td>
+        <td>17.4</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -8308,6 +8220,37 @@ To calculate the contribution of each club, the points earned by the club are di
     </tr>
         <tr style="background-color: transparent">
         <td>
+            <img width="20" height="20" src="https://static.flashscore.com/res/image/data/2ZaqGCiT-dr1Rx2yJ.png" style="visibility: visible">&nbsp;
+            Haiphong</td>
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab">4.2</td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+                <td style="font-weight: bold">1.92</td>
+        <td>5</td>
+    </tr>
+        <tr style="background-color: transparent">
+        <td>
             <img width="20" height="20" src="https://www.flashscore.com/res/image/data/GC1l9kme-jq9ih1dt.png" style="visibility: visible">&nbsp;
             Becamex Binh Duong</td>
         
@@ -8370,37 +8313,6 @@ To calculate the contribution of each club, the points earned by the club are di
     </tr>
         <tr style="background-color: transparent">
         <td>
-            <img width="20" height="20" src="https://static.flashscore.com/res/image/data/2ZaqGCiT-dr1Rx2yJ.png" style="visibility: visible">&nbsp;
-            Haiphong</td>
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab">3.6</td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-                <td style="font-weight: bold">1.44</td>
-        <td>3.8</td>
-    </tr>
-        <tr style="background-color: transparent">
-        <td>
             <img width="20" height="20" src="https://www.flashscore.com/res/image/data/Aem5GNBN-bD8HhLBn.png" style="visibility: visible">&nbsp;
             Song Lam Nghe An</td>
         
@@ -8438,7 +8350,7 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">2</td>
+        <td class="hide-mob-tab">2.6</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -8458,8 +8370,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">0.4</td>
-        <td>1.1</td>
+                <td style="font-weight: bold">0.64</td>
+        <td>1.7</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -8491,37 +8403,6 @@ To calculate the contribution of each club, the points earned by the club are di
 
                 <td style="font-weight: bold">0.2</td>
         <td>0.5</td>
-    </tr>
-        <tr style="background-color: lightblue">
-        <td>
-            <img width="20" height="20" src="" style="visibility: hidden">&nbsp;
-            Qualification</td>
-        
-        <td class="hide-mob-tab">0.3</td>
-
-        
-        <td class="hide-mob-tab">0.6</td>
-
-        
-        <td class="hide-mob-tab">0.6</td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab">0.6</td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-                <td style="font-weight: bold">1.11</td>
-        <td>2.9</td>
     </tr>
     </table>
 
@@ -8632,7 +8513,7 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab"></td>
+        <td class="hide-mob-tab">0.1</td>
 
         
         <td class="hide-mob-tab">12.67</td>
@@ -8640,8 +8521,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab">6.83</td>
 
-                <td style="font-weight: bold">9.11</td>
-        <td>30.8</td>
+                <td style="font-weight: bold">9.19</td>
+        <td>31.1</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -8744,7 +8625,7 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">2.33</td>
+        <td class="hide-mob-tab">2.63</td>
 
         
         <td class="hide-mob-tab">2.67</td>
@@ -8764,8 +8645,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">1.13</td>
-        <td>3.8</td>
+                <td style="font-weight: bold">1.25</td>
+        <td>4.2</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -8803,7 +8684,7 @@ To calculate the contribution of each club, the points earned by the club are di
             <img width="20" height="20" src="https://www.flashscore.com/res/image/data/hKETde5k-fguToQZ6.png" style="visibility: visible">&nbsp;
             Al Hidd</td>
         
-        <td class="hide-mob-tab">3</td>
+        <td class="hide-mob-tab">3.3</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -8826,8 +8707,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">0.65</td>
-        <td>2.2</td>
+                <td style="font-weight: bold">0.74</td>
+        <td>2.5</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -8890,37 +8771,6 @@ To calculate the contribution of each club, the points earned by the club are di
 
                 <td style="font-weight: bold">0.07</td>
         <td>0.2</td>
-    </tr>
-        <tr style="background-color: lightblue">
-        <td>
-            <img width="20" height="20" src="" style="visibility: hidden">&nbsp;
-            Qualification</td>
-        
-        <td class="hide-mob-tab">0.3</td>
-
-        
-        <td class="hide-mob-tab">0.3</td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab">0.1</td>
-
-        
-        <td class="hide-mob-tab">0</td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-                <td style="font-weight: bold">0.29</td>
-        <td>1</td>
     </tr>
     </table>
 
@@ -9031,7 +8881,7 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab">11.15</td>
 
         
-        <td class="hide-mob-tab"></td>
+        <td class="hide-mob-tab">0.3</td>
 
         
         <td class="hide-mob-tab">9</td>
@@ -9039,8 +8889,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab">4.28</td>
 
-                <td style="font-weight: bold">14.14</td>
-        <td>48.1</td>
+                <td style="font-weight: bold">14.38</td>
+        <td>48.9</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -9062,7 +8912,7 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">9.28</td>
+        <td class="hide-mob-tab">9.48</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -9070,8 +8920,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">7.42</td>
-        <td>25.2</td>
+                <td style="font-weight: bold">7.58</td>
+        <td>25.8</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -9140,10 +8990,10 @@ To calculate the contribution of each club, the points earned by the club are di
             <img width="20" height="20" src="https://www.flashscore.com/res/image/data/0ntmjWUH-jq9ih1dt.png" style="visibility: visible">&nbsp;
             Al Suwaiq</td>
         
-        <td class="hide-mob-tab">1.67</td>
+        <td class="hide-mob-tab">1.87</td>
 
         
-        <td class="hide-mob-tab">0</td>
+        <td class="hide-mob-tab">0.25</td>
 
         
         <td class="hide-mob-tab">1.33</td>
@@ -9163,8 +9013,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">0.92</td>
-        <td>3.1</td>
+                <td style="font-weight: bold">1.08</td>
+        <td>3.7</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -9197,15 +9047,15 @@ To calculate the contribution of each club, the points earned by the club are di
                 <td style="font-weight: bold">0.35</td>
         <td>1.2</td>
     </tr>
-        <tr style="background-color: lightblue">
+        <tr style="background-color: transparent">
         <td>
-            <img width="20" height="20" src="" style="visibility: hidden">&nbsp;
-            Qualification</td>
+            <img width="20" height="20" src="https://www.flashscore.com/res/image/data/jqGGOOR0-fguToQZ6.png" style="visibility: visible">&nbsp;
+            Al Nasr</td>
         
-        <td class="hide-mob-tab">0.2</td>
+        <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">0.25</td>
+        <td class="hide-mob-tab"></td>
 
         
         <td class="hide-mob-tab">0.1</td>
@@ -9217,16 +9067,16 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">0.5</td>
+        <td class="hide-mob-tab"></td>
 
         
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">0</td>
+        <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">0.61</td>
-        <td>2.1</td>
+                <td style="font-weight: bold">0.05</td>
+        <td>0.2</td>
     </tr>
     </table>
 
@@ -9328,7 +9178,7 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">3.33</td>
+        <td class="hide-mob-tab">3.93</td>
 
         
         <td class="hide-mob-tab">7.07</td>
@@ -9340,13 +9190,13 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab">2.95</td>
 
         
-        <td class="hide-mob-tab">6</td>
+        <td class="hide-mob-tab">6.2</td>
 
         
         <td class="hide-mob-tab">14.06</td>
 
-                <td style="font-weight: bold">17.05</td>
-        <td>60.4</td>
+                <td style="font-weight: bold">17.53</td>
+        <td>62.1</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -9374,10 +9224,10 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab">9.75</td>
 
         
-        <td class="hide-mob-tab">4.89</td>
+        <td class="hide-mob-tab">4.99</td>
 
-                <td style="font-weight: bold">10.03</td>
-        <td>35.5</td>
+                <td style="font-weight: bold">10.13</td>
+        <td>35.9</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -9406,37 +9256,6 @@ To calculate the contribution of each club, the points earned by the club are di
 
         
         <td class="hide-mob-tab"></td>
-
-                <td style="font-weight: bold">0.58</td>
-        <td>2.1</td>
-    </tr>
-        <tr style="background-color: lightblue">
-        <td>
-            <img width="20" height="20" src="" style="visibility: hidden">&nbsp;
-            Qualification</td>
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab">0.6</td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab">0.2</td>
-
-        
-        <td class="hide-mob-tab">0.1</td>
 
                 <td style="font-weight: bold">0.58</td>
         <td>2.1</td>
@@ -9566,7 +9385,7 @@ To calculate the contribution of each club, the points earned by the club are di
             <img width="20" height="20" src="https://static.flashscore.com/res/image/data/zoYX1L76-CnwIgY1c.png" style="visibility: visible">&nbsp;
             Phnom Penh Crown</td>
         
-        <td class="hide-mob-tab"></td>
+        <td class="hide-mob-tab">0.1</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -9581,29 +9400,26 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab">1.38</td>
 
         
-        <td class="hide-mob-tab">5.32</td>
+        <td class="hide-mob-tab">5.62</td>
 
         
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">6.5</td>
+        <td class="hide-mob-tab">6.6</td>
 
-                <td style="font-weight: bold">7.99</td>
-        <td>28.7</td>
+                <td style="font-weight: bold">8.36</td>
+        <td>30</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
             <img width="20" height="20" src="https://www.flashscore.com/res/image/data/zoFgGnle-8dqXppkD.png" style="visibility: visible">&nbsp;
             Boeung Ket</td>
         
-        <td class="hide-mob-tab">1.33</td>
+        <td class="hide-mob-tab">1.58</td>
 
         
-        <td class="hide-mob-tab">2</td>
-
-        
-        <td class="hide-mob-tab"></td>
+        <td class="hide-mob-tab">2.25</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -9620,8 +9436,11 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">1.2</td>
-        <td>4.3</td>
+        
+        <td class="hide-mob-tab"></td>
+
+                <td style="font-weight: bold">1.37</td>
+        <td>4.9</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -9684,37 +9503,6 @@ To calculate the contribution of each club, the points earned by the club are di
 
                 <td style="font-weight: bold">0.5</td>
         <td>1.8</td>
-    </tr>
-        <tr style="background-color: lightblue">
-        <td>
-            <img width="20" height="20" src="" style="visibility: hidden">&nbsp;
-            Qualification</td>
-        
-        <td class="hide-mob-tab">0.35</td>
-
-        
-        <td class="hide-mob-tab">0.25</td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab">0.3</td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab">0.1</td>
-
-                <td style="font-weight: bold">0.55</td>
-        <td>2</td>
     </tr>
     </table>
 
@@ -9831,10 +9619,10 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab">5.33</td>
 
         
-        <td class="hide-mob-tab">14.67</td>
+        <td class="hide-mob-tab">14.87</td>
 
-                <td style="font-weight: bold">9.73</td>
-        <td>35.7</td>
+                <td style="font-weight: bold">9.93</td>
+        <td>36.4</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -9856,7 +9644,7 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab">5.16</td>
 
         
-        <td class="hide-mob-tab">3.6</td>
+        <td class="hide-mob-tab">3.8</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -9864,8 +9652,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">4.89</td>
-        <td>17.9</td>
+                <td style="font-weight: bold">5.05</td>
+        <td>18.5</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -9937,7 +9725,7 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">1.67</td>
+        <td class="hide-mob-tab">2.27</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -9949,7 +9737,7 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab">2.76</td>
 
         
-        <td class="hide-mob-tab">2.52</td>
+        <td class="hide-mob-tab">2.82</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -9957,8 +9745,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">2.31</td>
-        <td>8.5</td>
+                <td style="font-weight: bold">2.79</td>
+        <td>10.2</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -9971,7 +9759,7 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab">5.33</td>
 
         
-        <td class="hide-mob-tab">2.33</td>
+        <td class="hide-mob-tab">2.93</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -9988,39 +9776,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">1.65</td>
-        <td>6</td>
-    </tr>
-        <tr style="background-color: lightblue">
-        <td>
-            <img width="20" height="20" src="" style="visibility: hidden">&nbsp;
-            Qualification</td>
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab">0.6</td>
-
-        
-        <td class="hide-mob-tab">0.6</td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab">0.5</td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab">0.2</td>
-
-                <td style="font-weight: bold">1.14</td>
-        <td>4.2</td>
+                <td style="font-weight: bold">1.95</td>
+        <td>7.1</td>
     </tr>
     </table>
 
@@ -10134,13 +9891,13 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab">4.23</td>
 
         
-        <td class="hide-mob-tab">2</td>
+        <td class="hide-mob-tab">2.2</td>
 
         
         <td class="hide-mob-tab">5.5</td>
 
-                <td style="font-weight: bold">11.04</td>
-        <td>41.3</td>
+                <td style="font-weight: bold">11.22</td>
+        <td>42</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -10181,10 +9938,10 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">2.33</td>
+        <td class="hide-mob-tab">2.78</td>
 
         
-        <td class="hide-mob-tab"></td>
+        <td class="hide-mob-tab">0.4</td>
 
         
         <td class="hide-mob-tab">4.34</td>
@@ -10199,10 +9956,41 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">3.52</td>
+        <td class="hide-mob-tab">3.72</td>
 
-                <td style="font-weight: bold">4.94</td>
-        <td>18.5</td>
+                <td style="font-weight: bold">5.52</td>
+        <td>20.7</td>
+    </tr>
+        <tr style="background-color: transparent">
+        <td>
+            <img width="20" height="20" src="https://static.flashscore.com/res/image/data/8SnI13WH-MePZUwIb.png" style="visibility: visible">&nbsp;
+            Merw</td>
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab">1.56</td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+                <td style="font-weight: bold">0.58</td>
+        <td>2.2</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -10237,47 +10025,16 @@ To calculate the contribution of each club, the points earned by the club are di
     </tr>
         <tr style="background-color: transparent">
         <td>
-            <img width="20" height="20" src="https://static.flashscore.com/res/image/data/8SnI13WH-MePZUwIb.png" style="visibility: visible">&nbsp;
-            Merw</td>
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab">1.26</td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-                <td style="font-weight: bold">0.34</td>
-        <td>1.3</td>
-    </tr>
-        <tr style="background-color: lightblue">
-        <td>
-            <img width="20" height="20" src="" style="visibility: hidden">&nbsp;
-            Qualification</td>
+            <img width="20" height="20" src="https://www.flashscore.com/res/image/data/6ud5jYjT-jq9ih1dt.png" style="visibility: visible">&nbsp;
+            Balkan</td>
         
         <td class="hide-mob-tab">0.15</td>
 
         
-        <td class="hide-mob-tab">0.45</td>
+        <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">0.4</td>
+        <td class="hide-mob-tab"></td>
 
         
         <td class="hide-mob-tab"></td>
@@ -10286,16 +10043,16 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">0.3</td>
+        <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">0.2</td>
+        <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">0.2</td>
+        <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">1.05</td>
-        <td>3.9</td>
+                <td style="font-weight: bold">0.05</td>
+        <td>0.2</td>
     </tr>
     </table>
 
@@ -10391,13 +10148,13 @@ To calculate the contribution of each club, the points earned by the club are di
             <img width="20" height="20" src="https://static.flashscore.com/res/image/data/SnRiGNoe-YBnXkHJq.png" style="visibility: visible">&nbsp;
             Kitchee</td>
         
-        <td class="hide-mob-tab"></td>
+        <td class="hide-mob-tab">0.75</td>
 
         
         <td class="hide-mob-tab">3</td>
 
         
-        <td class="hide-mob-tab">3.33</td>
+        <td class="hide-mob-tab">3.78</td>
 
         
         <td class="hide-mob-tab">11</td>
@@ -10414,8 +10171,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">10.13</td>
-        <td>42.3</td>
+                <td style="font-weight: bold">10.58</td>
+        <td>44.2</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -10425,7 +10182,7 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab">1</td>
 
         
-        <td class="hide-mob-tab"></td>
+        <td class="hide-mob-tab">0.3</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -10445,8 +10202,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab">2</td>
 
-                <td style="font-weight: bold">5.16</td>
-        <td>21.6</td>
+                <td style="font-weight: bold">5.28</td>
+        <td>22.1</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -10459,7 +10216,7 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">2.67</td>
+        <td class="hide-mob-tab">2.87</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -10476,8 +10233,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab">6.67</td>
 
-                <td style="font-weight: bold">4</td>
-        <td>16.7</td>
+                <td style="font-weight: bold">4.1</td>
+        <td>17.1</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -10496,10 +10253,10 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab">7</td>
 
         
-        <td class="hide-mob-tab">2.2</td>
+        <td class="hide-mob-tab">2.4</td>
 
         
-        <td class="hide-mob-tab"></td>
+        <td class="hide-mob-tab">0.6</td>
 
         
         <td class="hide-mob-tab">2.67</td>
@@ -10507,39 +10264,39 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">3.11</td>
-        <td>13</td>
+                <td style="font-weight: bold">3.73</td>
+        <td>15.6</td>
     </tr>
-        <tr style="background-color: lightblue">
+        <tr style="background-color: transparent">
         <td>
-            <img width="20" height="20" src="" style="visibility: hidden">&nbsp;
-            Qualification</td>
+            <img width="20" height="20" src="https://static.flashscore.com/res/image/data/U1nvY2hT-f5cCdGda.png" style="visibility: visible">&nbsp;
+            Rangers</td>
         
-        <td class="hide-mob-tab">0.75</td>
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
 
         
         <td class="hide-mob-tab">0.3</td>
 
         
-        <td class="hide-mob-tab">0.65</td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab">0.2</td>
-
-        
-        <td class="hide-mob-tab">0.9</td>
-
-        
         <td class="hide-mob-tab"></td>
 
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">1.53</td>
-        <td>6.4</td>
+                <td style="font-weight: bold">0.24</td>
+        <td>1</td>
     </tr>
     </table>
 
@@ -10641,7 +10398,7 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab">4.33</td>
 
         
-        <td class="hide-mob-tab">2.67</td>
+        <td class="hide-mob-tab">2.97</td>
 
         
         <td class="hide-mob-tab">13</td>
@@ -10658,8 +10415,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab">9.1</td>
 
-                <td style="font-weight: bold">16.13</td>
-        <td>72.1</td>
+                <td style="font-weight: bold">16.28</td>
+        <td>72.8</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -10700,10 +10457,10 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab"></td>
+        <td class="hide-mob-tab">0.1</td>
 
         
-        <td class="hide-mob-tab">2.33</td>
+        <td class="hide-mob-tab">2.53</td>
 
         
         <td class="hide-mob-tab">1.91</td>
@@ -10712,7 +10469,7 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab">3.44</td>
 
         
-        <td class="hide-mob-tab"></td>
+        <td class="hide-mob-tab">0.1</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -10720,8 +10477,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">1.77</td>
-        <td>7.9</td>
+                <td style="font-weight: bold">1.99</td>
+        <td>8.9</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -10785,18 +10542,18 @@ To calculate the contribution of each club, the points earned by the club are di
                 <td style="font-weight: bold">0.24</td>
         <td>1.1</td>
     </tr>
-        <tr style="background-color: lightblue">
+        <tr style="background-color: transparent">
         <td>
-            <img width="20" height="20" src="" style="visibility: hidden">&nbsp;
-            Qualification</td>
+            <img width="20" height="20" src="https://www.flashscore.com/res/image/data/dSP8ggBN-YHuCWdwU.png" style="visibility: visible">&nbsp;
+            Khosilot</td>
         
         <td class="hide-mob-tab">0.3</td>
 
         
-        <td class="hide-mob-tab">0.1</td>
+        <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">0.5</td>
+        <td class="hide-mob-tab"></td>
 
         
         <td class="hide-mob-tab"></td>
@@ -10805,16 +10562,16 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">0.1</td>
+        <td class="hide-mob-tab"></td>
 
         
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">0</td>
+        <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">0.46</td>
-        <td>2.1</td>
+                <td style="font-weight: bold">0.09</td>
+        <td>0.4</td>
     </tr>
     </table>
 
@@ -10928,13 +10685,13 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab">11.73</td>
 
         
-        <td class="hide-mob-tab">4.5</td>
+        <td class="hide-mob-tab">4.6</td>
 
         
-        <td class="hide-mob-tab">2.44</td>
+        <td class="hide-mob-tab">2.54</td>
 
-                <td style="font-weight: bold">14.66</td>
-        <td>65.6</td>
+                <td style="font-weight: bold">14.85</td>
+        <td>66.4</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -10962,20 +10719,20 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">9.47</td>
+        <td class="hide-mob-tab">9.57</td>
 
-                <td style="font-weight: bold">4.74</td>
-        <td>21.2</td>
+                <td style="font-weight: bold">4.84</td>
+        <td>21.6</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
             <img width="20" height="20" src="https://www.flashscore.com/res/image/data/Y52m9I86-fguToQZ6.png" style="visibility: visible">&nbsp;
             Dordoi</td>
         
-        <td class="hide-mob-tab">1</td>
+        <td class="hide-mob-tab">1.4</td>
 
         
-        <td class="hide-mob-tab"></td>
+        <td class="hide-mob-tab">0.15</td>
 
         
         <td class="hide-mob-tab">2.33</td>
@@ -10995,8 +10752,39 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">2.03</td>
-        <td>9.1</td>
+                <td style="font-weight: bold">2.21</td>
+        <td>9.9</td>
+    </tr>
+        <tr style="background-color: transparent">
+        <td>
+            <img width="20" height="20" src="https://static.flashscore.com/res/image/data/MHtm4E8k-ML6qDOAI.png" style="visibility: visible">&nbsp;
+            Alay</td>
+        
+        <td class="hide-mob-tab">1</td>
+
+        
+        <td class="hide-mob-tab">0</td>
+
+        
+        <td class="hide-mob-tab">0.1</td>
+
+        
+        <td class="hide-mob-tab">0</td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab">0.1</td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+                <td style="font-weight: bold">0.28</td>
+        <td>1.3</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -11028,68 +10816,6 @@ To calculate the contribution of each club, the points earned by the club are di
 
                 <td style="font-weight: bold">0.18</td>
         <td>0.8</td>
-    </tr>
-        <tr style="background-color: transparent">
-        <td>
-            <img width="20" height="20" src="https://static.flashscore.com/res/image/data/MHtm4E8k-ML6qDOAI.png" style="visibility: visible">&nbsp;
-            Alay</td>
-        
-        <td class="hide-mob-tab">1</td>
-
-        
-        <td class="hide-mob-tab">0</td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab">0</td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-                <td style="font-weight: bold">0.15</td>
-        <td>0.7</td>
-    </tr>
-        <tr style="background-color: lightblue">
-        <td>
-            <img width="20" height="20" src="" style="visibility: hidden">&nbsp;
-            Qualification</td>
-        
-        <td class="hide-mob-tab">0.4</td>
-
-        
-        <td class="hide-mob-tab">0.15</td>
-
-        
-        <td class="hide-mob-tab">0.1</td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab">0.1</td>
-
-        
-        <td class="hide-mob-tab">0.1</td>
-
-        
-        <td class="hide-mob-tab">0.2</td>
-
-                <td style="font-weight: bold">0.6</td>
-        <td>2.7</td>
     </tr>
     </table>
 
@@ -11429,7 +11155,7 @@ To calculate the contribution of each club, the points earned by the club are di
             <img width="20" height="20" src="https://www.flashscore.com/res/image/data/Ee1HbPjC-bqHYNPpl.png" style="visibility: visible">&nbsp;
             Mohun Bagan</td>
         
-        <td class="hide-mob-tab">2.33</td>
+        <td class="hide-mob-tab">2.78</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -11441,10 +11167,10 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab">4.9</td>
 
         
-        <td class="hide-mob-tab">4.66</td>
+        <td class="hide-mob-tab">4.96</td>
 
         
-        <td class="hide-mob-tab">2.96</td>
+        <td class="hide-mob-tab">3.26</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -11452,30 +11178,24 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab">0</td>
 
-                <td style="font-weight: bold">3.21</td>
-        <td>15.4</td>
+                <td style="font-weight: bold">3.79</td>
+        <td>18.3</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
             <img width="20" height="20" src="https://www.flashscore.com/res/image/data/CrzhLnS0-fguToQZ6.png" style="visibility: visible">&nbsp;
             Bengaluru</td>
         
-        <td class="hide-mob-tab">8.67</td>
+        <td class="hide-mob-tab">8.97</td>
 
         
-        <td class="hide-mob-tab">6</td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab">2.23</td>
+        <td class="hide-mob-tab">6.45</td>
 
         
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab"></td>
+        <td class="hide-mob-tab">2.53</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -11483,8 +11203,14 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">2.95</td>
-        <td>14.2</td>
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+                <td style="font-weight: bold">3.4</td>
+        <td>16.4</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -11512,10 +11238,10 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">2.28</td>
+        <td class="hide-mob-tab">2.48</td>
 
-                <td style="font-weight: bold">1.74</td>
-        <td>8.4</td>
+                <td style="font-weight: bold">1.94</td>
+        <td>9.3</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -11590,7 +11316,7 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">3.67</td>
+        <td class="hide-mob-tab">3.92</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -11607,8 +11333,39 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">0.92</td>
-        <td>4.4</td>
+                <td style="font-weight: bold">1.04</td>
+        <td>5</td>
+    </tr>
+        <tr style="background-color: transparent">
+        <td>
+            <img width="20" height="20" src="https://static.flashscore.com/res/image/data/CxY0mfQq-jLhAB3Wu.png" style="visibility: visible">&nbsp;
+            Minerva Punjab</td>
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab">1.97</td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+                <td style="font-weight: bold">0.57</td>
+        <td>2.7</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -11643,44 +11400,13 @@ To calculate the contribution of each club, the points earned by the club are di
     </tr>
         <tr style="background-color: transparent">
         <td>
-            <img width="20" height="20" src="https://static.flashscore.com/res/image/data/CxY0mfQq-jLhAB3Wu.png" style="visibility: visible">&nbsp;
-            Minerva Punjab</td>
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab">1.67</td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-                <td style="font-weight: bold">0.42</td>
-        <td>2</td>
-    </tr>
-        <tr style="background-color: transparent">
-        <td>
             <img width="20" height="20" src="https://www.flashscore.com/res/image/data/06cCTbRq-fguToQZ6.png" style="visibility: visible">&nbsp;
             Aizawl</td>
         
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">1.33</td>
+        <td class="hide-mob-tab">1.63</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -11700,39 +11426,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">0.27</td>
-        <td>1.3</td>
-    </tr>
-        <tr style="background-color: lightblue">
-        <td>
-            <img width="20" height="20" src="" style="visibility: hidden">&nbsp;
-            Qualification</td>
-        
-        <td class="hide-mob-tab">0.75</td>
-
-        
-        <td class="hide-mob-tab">0.75</td>
-
-        
-        <td class="hide-mob-tab">0.55</td>
-
-        
-        <td class="hide-mob-tab">0.3</td>
-
-        
-        <td class="hide-mob-tab">0.3</td>
-
-        
-        <td class="hide-mob-tab">0.3</td>
-
-        
-        <td class="hide-mob-tab">0</td>
-
-        
-        <td class="hide-mob-tab">0.2</td>
-
-                <td style="font-weight: bold">1.63</td>
-        <td>7.8</td>
+                <td style="font-weight: bold">0.39</td>
+        <td>1.9</td>
     </tr>
     </table>
 
@@ -11831,10 +11526,10 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab">8.74</td>
 
         
-        <td class="hide-mob-tab">7.52</td>
+        <td class="hide-mob-tab">8.27</td>
 
         
-        <td class="hide-mob-tab">6.3</td>
+        <td class="hide-mob-tab">6.6</td>
 
         
         <td class="hide-mob-tab">4</td>
@@ -11851,8 +11546,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">5.59</td>
-        <td>30.1</td>
+                <td style="font-weight: bold">6.04</td>
+        <td>32.5</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -11899,10 +11594,10 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab">2.67</td>
 
         
-        <td class="hide-mob-tab">0</td>
+        <td class="hide-mob-tab">0.6</td>
 
         
-        <td class="hide-mob-tab">0</td>
+        <td class="hide-mob-tab">0.3</td>
 
         
         <td class="hide-mob-tab">0</td>
@@ -11913,8 +11608,39 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab">2</td>
 
-                <td style="font-weight: bold">3.77</td>
-        <td>20.3</td>
+                <td style="font-weight: bold">4.34</td>
+        <td>23.3</td>
+    </tr>
+        <tr style="background-color: transparent">
+        <td>
+            <img width="20" height="20" src="https://www.flashscore.com/res/image/data/4nwezBBN-d6o2DLon.png" style="visibility: visible">&nbsp;
+            Global Cebu</td>
+        
+        <td class="hide-mob-tab">6.9</td>
+
+        
+        <td class="hide-mob-tab">2.67</td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+                <td style="font-weight: bold">1.66</td>
+        <td>8.9</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -11949,37 +11675,6 @@ To calculate the contribution of each club, the points earned by the club are di
     </tr>
         <tr style="background-color: transparent">
         <td>
-            <img width="20" height="20" src="https://www.flashscore.com/res/image/data/4nwezBBN-d6o2DLon.png" style="visibility: visible">&nbsp;
-            Global Cebu</td>
-        
-        <td class="hide-mob-tab">6.3</td>
-
-        
-        <td class="hide-mob-tab">2.67</td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-                <td style="font-weight: bold">1.48</td>
-        <td>8</td>
-    </tr>
-        <tr style="background-color: transparent">
-        <td>
             <img width="20" height="20" src="https://static.flashscore.com/res/image/data/fFNM3nDN-KAuUVZn2.png" style="visibility: visible">&nbsp;
             Stallion Laguna</td>
         
@@ -12008,37 +11703,6 @@ To calculate the contribution of each club, the points earned by the club are di
 
                 <td style="font-weight: bold">0.1</td>
         <td>0.5</td>
-    </tr>
-        <tr style="background-color: lightblue">
-        <td>
-            <img width="20" height="20" src="" style="visibility: hidden">&nbsp;
-            Qualification</td>
-        
-        <td class="hide-mob-tab">0.6</td>
-
-        
-        <td class="hide-mob-tab">0.75</td>
-
-        
-        <td class="hide-mob-tab">0.3</td>
-
-        
-        <td class="hide-mob-tab">0.6</td>
-
-        
-        <td class="hide-mob-tab">0.3</td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab">0</td>
-
-                <td style="font-weight: bold">1.2</td>
-        <td>6.5</td>
     </tr>
     </table>
 
@@ -12149,16 +11813,16 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab">3.66</td>
 
         
-        <td class="hide-mob-tab">4.23</td>
+        <td class="hide-mob-tab">4.53</td>
 
         
         <td class="hide-mob-tab">1.5</td>
 
         
-        <td class="hide-mob-tab">1.83</td>
+        <td class="hide-mob-tab">1.93</td>
 
-                <td style="font-weight: bold">10.8</td>
-        <td>66.2</td>
+                <td style="font-weight: bold">11.14</td>
+        <td>68.3</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -12177,50 +11841,50 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-                <td style="font-weight: bold">4.4</td>
-        <td>27</td>
-    </tr>
-        <tr style="background-color: lightblue">
-        <td>
-            <img width="20" height="20" src="" style="visibility: hidden">&nbsp;
-            Qualification</td>
-        
-        <td class="hide-mob-tab"></td>
-
-        
         <td class="hide-mob-tab">0.1</td>
 
         
-        <td class="hide-mob-tab"></td>
+        <td class="hide-mob-tab">0.2</td>
 
         
         <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab">0.1</td>
 
         
         <td class="hide-mob-tab">0.5</td>
 
+                <td style="font-weight: bold">5.13</td>
+        <td>31.4</td>
+    </tr>
+        <tr style="background-color: transparent">
+        <td>
+            <img width="20" height="20" src="https://www.flashscore.com/res/image/data/GWNl0qiT-fguToQZ6.png" style="visibility: visible">&nbsp;
+            Saif</td>
         
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">0.6</td>
+        <td class="hide-mob-tab">0.1</td>
 
-                <td style="font-weight: bold">1.11</td>
-        <td>6.8</td>
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+                <td style="font-weight: bold">0.04</td>
+        <td>0.2</td>
     </tr>
     </table>
 
@@ -12337,10 +12001,10 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab">6.05</td>
 
         
-        <td class="hide-mob-tab">3</td>
+        <td class="hide-mob-tab">3.1</td>
 
-                <td style="font-weight: bold">11.17</td>
-        <td>76.9</td>
+                <td style="font-weight: bold">11.27</td>
+        <td>77.6</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -12362,16 +12026,16 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">6.08</td>
+        <td class="hide-mob-tab">6.28</td>
 
         
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab"></td>
+        <td class="hide-mob-tab">0.5</td>
 
-                <td style="font-weight: bold">2.43</td>
-        <td>16.7</td>
+                <td style="font-weight: bold">3.09</td>
+        <td>21.3</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -12403,37 +12067,6 @@ To calculate the contribution of each club, the points earned by the club are di
 
                 <td style="font-weight: bold">0.17</td>
         <td>1.1</td>
-    </tr>
-        <tr style="background-color: lightblue">
-        <td>
-            <img width="20" height="20" src="" style="visibility: hidden">&nbsp;
-            Qualification</td>
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab">0.2</td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab">0.6</td>
-
-                <td style="font-weight: bold">0.76</td>
-        <td>5.2</td>
     </tr>
     </table>
 
@@ -12532,7 +12165,7 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">1</td>
+        <td class="hide-mob-tab">1.45</td>
 
         
         <td class="hide-mob-tab">0</td>
@@ -12552,8 +12185,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab">1.5</td>
 
-                <td style="font-weight: bold">9.29</td>
-        <td>73.6</td>
+                <td style="font-weight: bold">9.47</td>
+        <td>75.1</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -12566,7 +12199,7 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab">6.22</td>
 
         
-        <td class="hide-mob-tab">2</td>
+        <td class="hide-mob-tab">2.6</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -12575,23 +12208,23 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab"></td>
+        <td class="hide-mob-tab">0.2</td>
 
         
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab"></td>
+        <td class="hide-mob-tab">0.55</td>
 
-                <td style="font-weight: bold">1.74</td>
-        <td>13.8</td>
+                <td style="font-weight: bold">2.75</td>
+        <td>21.8</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
             <img width="20" height="20" src="https://www.flashscore.com/res/image/data/M9LV84oe-fguToQZ6.png" style="visibility: visible">&nbsp;
             Yadanarbon</td>
         
-        <td class="hide-mob-tab">1.33</td>
+        <td class="hide-mob-tab">1.63</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -12614,8 +12247,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">0.2</td>
-        <td>1.6</td>
+                <td style="font-weight: bold">0.29</td>
+        <td>2.3</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -12647,37 +12280,6 @@ To calculate the contribution of each club, the points earned by the club are di
 
                 <td style="font-weight: bold">0.1</td>
         <td>0.8</td>
-    </tr>
-        <tr style="background-color: lightblue">
-        <td>
-            <img width="20" height="20" src="" style="visibility: hidden">&nbsp;
-            Qualification</td>
-        
-        <td class="hide-mob-tab">0.3</td>
-
-        
-        <td class="hide-mob-tab">0.45</td>
-
-        
-        <td class="hide-mob-tab">0.6</td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab">0.2</td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab">0.55</td>
-
-                <td style="font-weight: bold">1.28</td>
-        <td>10.1</td>
     </tr>
     </table>
 
@@ -12816,7 +12418,7 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab"></td>
+        <td class="hide-mob-tab">0.45</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -12827,8 +12429,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">2.4</td>
-        <td>20.7</td>
+                <td style="font-weight: bold">2.71</td>
+        <td>23.4</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -12943,7 +12545,7 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">0.84</td>
+        <td class="hide-mob-tab">1.04</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -12951,13 +12553,13 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">0.42</td>
-        <td>3.6</td>
+                <td style="font-weight: bold">0.58</td>
+        <td>5</td>
     </tr>
-        <tr style="background-color: lightblue">
+        <tr style="background-color: transparent">
         <td>
-            <img width="20" height="20" src="" style="visibility: hidden">&nbsp;
-            Qualification</td>
+            <img width="20" height="20" src="https://www.flashscore.com/res/image/data/WnvhibWH-EJoO9TRD.png" style="visibility: visible">&nbsp;
+            Al Karamah</td>
         
         <td class="hide-mob-tab"></td>
 
@@ -12971,19 +12573,50 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">0.45</td>
-
-        
-        <td class="hide-mob-tab">0.2</td>
+        <td class="hide-mob-tab"></td>
 
         
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">1</td>
+        <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">1.48</td>
-        <td>12.7</td>
+        
+        <td class="hide-mob-tab">0.5</td>
+
+                <td style="font-weight: bold">0.5</td>
+        <td>4.3</td>
+    </tr>
+        <tr style="background-color: transparent">
+        <td>
+            <img width="20" height="20" src="https://static.flashscore.com/res/image/data/MNEp8Coe-pf2RcIoL.png" style="visibility: visible">&nbsp;
+            Hutteen</td>
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab">0.5</td>
+
+                <td style="font-weight: bold">0.5</td>
+        <td>4.3</td>
     </tr>
     </table>
 
@@ -13100,10 +12733,10 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab">2.2</td>
 
         
-        <td class="hide-mob-tab">3</td>
+        <td class="hide-mob-tab">3.1</td>
 
-                <td style="font-weight: bold">4.98</td>
-        <td>50.8</td>
+                <td style="font-weight: bold">5.08</td>
+        <td>51.8</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -13138,13 +12771,47 @@ To calculate the contribution of each club, the points earned by the club are di
     </tr>
         <tr style="background-color: transparent">
         <td>
+            <img width="20" height="20" src="https://static.flashscore.com/res/image/data/dxg0k1le-nNG2I7d3.png" style="visibility: visible">&nbsp;
+            Khangarid</td>
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab">0.5</td>
+
+                <td style="font-weight: bold">0.5</td>
+        <td>5.1</td>
+    </tr>
+        <tr style="background-color: transparent">
+        <td>
             <img width="20" height="20" src="https://www.flashscore.com/res/image/data/hv511YA6-SGSqJlxp.png" style="visibility: visible">&nbsp;
             Erchim</td>
         
         <td class="hide-mob-tab">0</td>
 
         
-        <td class="hide-mob-tab"></td>
+        <td class="hide-mob-tab">0.1</td>
+
+        
+        <td class="hide-mob-tab">0.1</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -13161,11 +12828,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-        
-        <td class="hide-mob-tab"></td>
-
-                <td style="font-weight: bold">0</td>
-        <td>0</td>
+                <td style="font-weight: bold">0.09</td>
+        <td>0.9</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -13184,37 +12848,6 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab">0</td>
 
         
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-                <td style="font-weight: bold">0</td>
-        <td>0</td>
-    </tr>
-        <tr style="background-color: lightblue">
-        <td>
-            <img width="20" height="20" src="" style="visibility: hidden">&nbsp;
-            Qualification</td>
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab">0.1</td>
-
-        
-        <td class="hide-mob-tab">0.1</td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
         <td class="hide-mob-tab">0.1</td>
 
         
@@ -13224,10 +12857,10 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">0.6</td>
+        <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">0.76</td>
-        <td>7.8</td>
+                <td style="font-weight: bold">0.07</td>
+        <td>0.7</td>
     </tr>
     </table>
 
@@ -13351,6 +12984,37 @@ To calculate the contribution of each club, the points earned by the club are di
     </tr>
         <tr style="background-color: transparent">
         <td>
+            <img width="20" height="20" src="https://www.flashscore.com/res/image/data/zovdhIUH-2VQnr9TA.png" style="visibility: visible">&nbsp;
+            Hwaebul</td>
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab">2.3</td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+                <td style="font-weight: bold">0.52</td>
+        <td>5.5</td>
+    </tr>
+        <tr style="background-color: transparent">
+        <td>
             <img width="20" height="20" src="https://www.flashscore.com/res/image/data/WljDDoA6-Yml7sale.png" style="visibility: visible">&nbsp;
             Kigwancha</td>
         
@@ -13382,44 +13046,13 @@ To calculate the contribution of each club, the points earned by the club are di
     </tr>
         <tr style="background-color: transparent">
         <td>
-            <img width="20" height="20" src="https://www.flashscore.com/res/image/data/zovdhIUH-2VQnr9TA.png" style="visibility: visible">&nbsp;
-            Hwaebul</td>
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab">2</td>
-
+            <img width="20" height="20" src="https://www.flashscore.com/res/image/data/UumEXn86-UFecw2B2.png" style="visibility: visible">&nbsp;
+            Ryomyong</td>
         
         <td class="hide-mob-tab"></td>
 
         
         <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-                <td style="font-weight: bold">0.4</td>
-        <td>4.2</td>
-    </tr>
-        <tr style="background-color: lightblue">
-        <td>
-            <img width="20" height="20" src="" style="visibility: hidden">&nbsp;
-            Qualification</td>
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab">0.3</td>
 
         
         <td class="hide-mob-tab">0.4</td>
@@ -13439,8 +13072,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">0.32</td>
-        <td>3.4</td>
+                <td style="font-weight: bold">0.2</td>
+        <td>2.1</td>
     </tr>
     </table>
 
@@ -13557,10 +13190,10 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab">1.5</td>
 
         
-        <td class="hide-mob-tab"></td>
+        <td class="hide-mob-tab">0.5</td>
 
-                <td style="font-weight: bold">5.86</td>
-        <td>68.9</td>
+                <td style="font-weight: bold">6.36</td>
+        <td>74.7</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -13593,15 +13226,18 @@ To calculate the contribution of each club, the points earned by the club are di
                 <td style="font-weight: bold">1.6</td>
         <td>18.8</td>
     </tr>
-        <tr style="background-color: lightblue">
+        <tr style="background-color: transparent">
         <td>
-            <img width="20" height="20" src="" style="visibility: hidden">&nbsp;
-            Qualification</td>
+            <img width="20" height="20" src="https://www.flashscore.com/res/image/data/YXxR9Qle-fguToQZ6.png" style="visibility: visible">&nbsp;
+            Valencia</td>
         
         <td class="hide-mob-tab">0.3</td>
 
         
-        <td class="hide-mob-tab">0.3</td>
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
 
         
         <td class="hide-mob-tab"></td>
@@ -13610,7 +13246,35 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab">0.2</td>
 
         
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+                <td style="font-weight: bold">0.23</td>
+        <td>2.7</td>
+    </tr>
+        <tr style="background-color: transparent">
+        <td>
+            <img width="20" height="20" src="https://www.flashscore.com/res/image/data/YwBgzD5k-fguToQZ6.png" style="visibility: visible">&nbsp;
+            Eagles</td>
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
         <td class="hide-mob-tab">0.2</td>
+
+        
+        <td class="hide-mob-tab"></td>
 
         
         <td class="hide-mob-tab">0.1</td>
@@ -13619,10 +13283,41 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">0.5</td>
+        <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">1.05</td>
-        <td>12.3</td>
+                <td style="font-weight: bold">0.2</td>
+        <td>2.3</td>
+    </tr>
+        <tr style="background-color: transparent">
+        <td>
+            <img width="20" height="20" src="https://www.flashscore.com/res/image/data/QZLt7zXH-fguToQZ6.png" style="visibility: visible">&nbsp;
+            TC Sports</td>
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab">0.3</td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+                <td style="font-weight: bold">0.12</td>
+        <td>1.4</td>
     </tr>
     </table>
 
@@ -13730,26 +13425,26 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab"></td>
+        <td class="hide-mob-tab">0.1</td>
 
         
-        <td class="hide-mob-tab"></td>
+        <td class="hide-mob-tab">0.1</td>
 
         
-        <td class="hide-mob-tab">3.5</td>
+        <td class="hide-mob-tab">3.6</td>
 
         
-        <td class="hide-mob-tab">2.44</td>
+        <td class="hide-mob-tab">2.54</td>
 
-                <td style="font-weight: bold">5.59</td>
-        <td>91</td>
+                <td style="font-weight: bold">5.93</td>
+        <td>96.5</td>
     </tr>
-        <tr style="background-color: lightblue">
+        <tr style="background-color: transparent">
         <td>
-            <img width="20" height="20" src="" style="visibility: hidden">&nbsp;
-            Qualification</td>
+            <img width="20" height="20" src="https://www.flashscore.com/res/image/data/AZnlbBoe-pjKB4X9S.png" style="visibility: visible">&nbsp;
+            Transport United</td>
         
-        <td class="hide-mob-tab">0.15</td>
+        <td class="hide-mob-tab"></td>
 
         
         <td class="hide-mob-tab">0.15</td>
@@ -13758,22 +13453,53 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab">0.1</td>
 
         
-        <td class="hide-mob-tab">0.1</td>
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+                <td style="font-weight: bold">0.11</td>
+        <td>1.8</td>
+    </tr>
+        <tr style="background-color: transparent">
+        <td>
+            <img width="20" height="20" src="https://www.flashscore.com/res/image/data/hj4BDy8k-OAbZowFk.png" style="visibility: visible">&nbsp;
+            Thimphu City</td>
+        
+        <td class="hide-mob-tab">0.15</td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
 
         
         <td class="hide-mob-tab">0.1</td>
 
         
-        <td class="hide-mob-tab">0.1</td>
+        <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">0.1</td>
+        <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">0.1</td>
+        <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">0.56</td>
-        <td>9</td>
+        
+        <td class="hide-mob-tab"></td>
+
+                <td style="font-weight: bold">0.11</td>
+        <td>1.7</td>
     </tr>
     </table>
 
@@ -13872,10 +13598,10 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab"></td>
+        <td class="hide-mob-tab">0.15</td>
 
         
-        <td class="hide-mob-tab">2.67</td>
+        <td class="hide-mob-tab">2.97</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -13892,8 +13618,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">4.01</td>
-        <td>82.5</td>
+                <td style="font-weight: bold">4.22</td>
+        <td>86.8</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -13931,7 +13657,7 @@ To calculate the contribution of each club, the points earned by the club are di
             <img width="20" height="20" src="https://www.flashscore.com/res/image/data/KQIdePUH-fguToQZ6.png" style="visibility: visible">&nbsp;
             Shabab Al Khalil</td>
         
-        <td class="hide-mob-tab"></td>
+        <td class="hide-mob-tab">0.2</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -13946,7 +13672,7 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab">0</td>
 
         
-        <td class="hide-mob-tab"></td>
+        <td class="hide-mob-tab">0.1</td>
 
         
         <td class="hide-mob-tab"></td>
@@ -13954,8 +13680,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">0</td>
-        <td>0</td>
+                <td style="font-weight: bold">0.14</td>
+        <td>2.9</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
@@ -13987,37 +13713,6 @@ To calculate the contribution of each club, the points earned by the club are di
 
                 <td style="font-weight: bold">0</td>
         <td>0</td>
-    </tr>
-        <tr style="background-color: lightblue">
-        <td>
-            <img width="20" height="20" src="" style="visibility: hidden">&nbsp;
-            Qualification</td>
-        
-        <td class="hide-mob-tab">0.2</td>
-
-        
-        <td class="hide-mob-tab">0.15</td>
-
-        
-        <td class="hide-mob-tab">0.3</td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab">0.1</td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-                <td style="font-weight: bold">0.35</td>
-        <td>7.2</td>
     </tr>
     </table>
 
@@ -14110,6 +13805,37 @@ To calculate the contribution of each club, the points earned by the club are di
     </tr>
         <tr style="background-color: transparent">
         <td>
+            <img width="20" height="20" src="https://www.flashscore.com/res/image/data/YVKCOMme-8dqXppkD.png" style="visibility: visible">&nbsp;
+            Young Elephants</td>
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab">0</td>
+
+        
+        <td class="hide-mob-tab">0.1</td>
+
+        
+        <td class="hide-mob-tab">1.65</td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+                <td style="font-weight: bold">1.57</td>
+        <td>46.2</td>
+    </tr>
+        <tr style="background-color: transparent">
+        <td>
             <img width="20" height="20" src="https://static.flashscore.com/res/image/data/YFbsvRCN-favSsB3q.png" style="visibility: visible">&nbsp;
             Ezra</td>
         
@@ -14134,51 +13860,20 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">1.5</td>
+        <td class="hide-mob-tab">1.55</td>
 
-                <td style="font-weight: bold">1.5</td>
-        <td>44.3</td>
-    </tr>
-        <tr style="background-color: transparent">
-        <td>
-            <img width="20" height="20" src="https://www.flashscore.com/res/image/data/YVKCOMme-8dqXppkD.png" style="visibility: visible">&nbsp;
-            Young Elephants</td>
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab">0</td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab">1.65</td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-                <td style="font-weight: bold">1.49</td>
-        <td>43.8</td>
+                <td style="font-weight: bold">1.55</td>
+        <td>45.8</td>
     </tr>
         <tr style="background-color: transparent">
         <td>
             <img width="20" height="20" src="https://www.flashscore.com/res/image/data/K8xQ6FWH-lSK2Xscg.png" style="visibility: visible">&nbsp;
             Chantabouly</td>
         
-        <td class="hide-mob-tab"></td>
+        <td class="hide-mob-tab">0.15</td>
 
         
-        <td class="hide-mob-tab"></td>
+        <td class="hide-mob-tab">0.15</td>
 
         
         <td class="hide-mob-tab">0.33</td>
@@ -14198,39 +13893,8 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">0.17</td>
-        <td>4.9</td>
-    </tr>
-        <tr style="background-color: lightblue">
-        <td>
-            <img width="20" height="20" src="" style="visibility: hidden">&nbsp;
-            Qualification</td>
-        
-        <td class="hide-mob-tab">0.15</td>
-
-        
-        <td class="hide-mob-tab">0.15</td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab">0.1</td>
-
-        
-        <td class="hide-mob-tab"></td>
-
-        
-        <td class="hide-mob-tab">0.05</td>
-
-                <td style="font-weight: bold">0.24</td>
-        <td>6.9</td>
+                <td style="font-weight: bold">0.27</td>
+        <td>8</td>
     </tr>
     </table>
 
@@ -14383,10 +14047,10 @@ To calculate the contribution of each club, the points earned by the club are di
                 <td style="font-weight: bold">1.02</td>
         <td>37.7</td>
     </tr>
-        <tr style="background-color: lightblue">
+        <tr style="background-color: transparent">
         <td>
-            <img width="20" height="20" src="" style="visibility: hidden">&nbsp;
-            Qualification</td>
+            <img width="20" height="20" src="https://static.flashscore.com/res/image/data/zPlwyK6k-EViU4DJC.png" style="visibility: visible">&nbsp;
+            Monte Carlo</td>
         
         <td class="hide-mob-tab"></td>
 
@@ -14505,6 +14169,37 @@ To calculate the contribution of each club, the points earned by the club are di
     </tr>
         <tr style="background-color: transparent">
         <td>
+            <img width="20" height="20" src="https://tmssl.akamaized.net/images/wappen/head/82538.png?lm=1672243319" style="visibility: visible">&nbsp;
+            Church Boys United</td>
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab">0.5</td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+                <td style="font-weight: bold">0.45</td>
+        <td>39.7</td>
+    </tr>
+        <tr style="background-color: transparent">
+        <td>
             <img width="20" height="20" src="https://www.flashscore.com/res/image/data/I1ABG7hT-jHrperk1.png" style="visibility: visible">&nbsp;
             Manang Marshyangdi</td>
         
@@ -14534,10 +14229,10 @@ To calculate the contribution of each club, the points earned by the club are di
                 <td style="font-weight: bold">0.33</td>
         <td>29.5</td>
     </tr>
-        <tr style="background-color: lightblue">
+        <tr style="background-color: transparent">
         <td>
-            <img width="20" height="20" src="" style="visibility: hidden">&nbsp;
-            Qualification</td>
+            <img width="20" height="20" src="https://www.flashscore.com/res/image/data/xCuKFLVH-prz6fujd.png" style="visibility: visible">&nbsp;
+            Machhindra</td>
         
         <td class="hide-mob-tab"></td>
 
@@ -14548,7 +14243,7 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">0.2</td>
+        <td class="hide-mob-tab"></td>
 
         
         <td class="hide-mob-tab">0.1</td>
@@ -14557,13 +14252,44 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab">0.2</td>
 
         
-        <td class="hide-mob-tab">0.5</td>
+        <td class="hide-mob-tab"></td>
 
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">0.8</td>
-        <td>70.5</td>
+                <td style="font-weight: bold">0.23</td>
+        <td>20.3</td>
+    </tr>
+        <tr style="background-color: transparent">
+        <td>
+            <img width="20" height="20" src="https://www.flashscore.com/res/image/data/YBvlxMUH-Yi2txT3k.png" style="visibility: visible">&nbsp;
+            Tribhuvan Army</td>
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab">0.2</td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+                <td style="font-weight: bold">0.12</td>
+        <td>10.6</td>
     </tr>
     </table>
 
@@ -14654,10 +14380,72 @@ To calculate the contribution of each club, the points earned by the club are di
                 <th>1</th>
         <th>(%)</th>
     </tr>
-        <tr style="background-color: lightblue">
+        <tr style="background-color: transparent">
         <td>
-            <img width="20" height="20" src="" style="visibility: hidden">&nbsp;
-            Qualification</td>
+            <img width="20" height="20" src="https://static.flashscore.com/res/image/data/APZl5ig5-QmUhXsf5.png" style="visibility: visible">&nbsp;
+            Abu Muslim Farah</td>
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab">0.5</td>
+
+                <td style="font-weight: bold">0.5</td>
+        <td>50.3</td>
+    </tr>
+        <tr style="background-color: transparent">
+        <td>
+            <img width="20" height="20" src="https://tmssl.akamaized.net/images/wappen/head/104716.png?lm=1684684408" style="visibility: visible">&nbsp;
+            Attack Energy</td>
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab">0.5</td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+                <td style="font-weight: bold">0.45</td>
+        <td>45.2</td>
+    </tr>
+        <tr style="background-color: transparent">
+        <td>
+            <img width="20" height="20" src="https://www.flashscore.com/res/image/data/YHr21l8k-tjmpdYjB.png" style="visibility: visible">&nbsp;
+            Shaheen Asmayee</td>
         
         <td class="hide-mob-tab">0.15</td>
 
@@ -14677,13 +14465,13 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">0.5</td>
+        <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">0.5</td>
+        <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">1</td>
-        <td>100</td>
+                <td style="font-weight: bold">0.05</td>
+        <td>4.5</td>
     </tr>
     </table>
 
@@ -14774,10 +14562,41 @@ To calculate the contribution of each club, the points earned by the club are di
                 <th>0.58</th>
         <th>(%)</th>
     </tr>
-        <tr style="background-color: lightblue">
+        <tr style="background-color: transparent">
         <td>
-            <img width="20" height="20" src="" style="visibility: hidden">&nbsp;
-            Qualification</td>
+            <img width="20" height="20" src="https://static.flashscore.com/res/image/data/GCDrJR5k-ttCzrmUH.png" style="visibility: visible">&nbsp;
+            Kasuka</td>
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab">0.5</td>
+
+                <td style="font-weight: bold">0.5</td>
+        <td>86.2</td>
+    </tr>
+        <tr style="background-color: transparent">
+        <td>
+            <img width="20" height="20" src="https://static.flashscore.com/res/image/data/UNi30U96-nP3yiII0.png" style="visibility: visible">&nbsp;
+            DPMM</td>
         
         <td class="hide-mob-tab"></td>
 
@@ -14800,10 +14619,10 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab"></td>
 
         
-        <td class="hide-mob-tab">0.5</td>
+        <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">0.58</td>
-        <td>100</td>
+                <td style="font-weight: bold">0.08</td>
+        <td>13.8</td>
     </tr>
     </table>
 
@@ -14894,10 +14713,10 @@ To calculate the contribution of each club, the points earned by the club are di
                 <th>0.41</th>
         <th>(%)</th>
     </tr>
-        <tr style="background-color: lightblue">
+        <tr style="background-color: transparent">
         <td>
-            <img width="20" height="20" src="" style="visibility: hidden">&nbsp;
-            Qualification</td>
+            <img width="20" height="20" src="https://www.flashscore.com/res/image/data/rJw3S6iT-z5jykN3C.png" style="visibility: visible">&nbsp;
+            Colombo</td>
         
         <td class="hide-mob-tab">0.1</td>
 
@@ -14908,7 +14727,38 @@ To calculate the contribution of each club, the points earned by the club are di
         <td class="hide-mob-tab">0.35</td>
 
         
-        <td class="hide-mob-tab">0.1</td>
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+                <td style="font-weight: bold">0.21</td>
+        <td>50.6</td>
+    </tr>
+        <tr style="background-color: transparent">
+        <td>
+            <img width="20" height="20" src="https://www.flashscore.com/res/image/data/GKpda4UH-bmHHSvOC.png" style="visibility: visible">&nbsp;
+            Blue Star</td>
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
 
         
         <td class="hide-mob-tab">0.2</td>
@@ -14922,8 +14772,39 @@ To calculate the contribution of each club, the points earned by the club are di
         
         <td class="hide-mob-tab"></td>
 
-                <td style="font-weight: bold">0.41</td>
-        <td>100</td>
+                <td style="font-weight: bold">0.14</td>
+        <td>34.6</td>
+    </tr>
+        <tr style="background-color: transparent">
+        <td>
+            <img width="20" height="20" src="https://www.flashscore.com/res/image/data/YehjDIkC-AT1VHggE.png" style="visibility: visible">&nbsp;
+            SL Police</td>
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab">0.1</td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+        
+        <td class="hide-mob-tab"></td>
+
+                <td style="font-weight: bold">0.06</td>
+        <td>14.8</td>
     </tr>
     </table>
 
